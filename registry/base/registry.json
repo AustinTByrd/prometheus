@@ -30,7 +30,7 @@
           "baseColor": "neutral"
         },
         "registries": {
-          "@prometheus": "https://prometheus-ui.vercel.app/r/{name}.json"
+          "@prometheus": "https://prometheus-ui-rust.vercel.app/r/{name}.json"
         }
       },
       "cssVars": {

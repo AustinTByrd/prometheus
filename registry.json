@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "prometheus",
-  "homepage": "https://github.com/AustinTByrd/prometheus",
+  "homepage": "https://prometheus-ui-rust.vercel.app",
   "include": [
     "registry/base/registry.json",
     "registry/components/registry.json",

@@ -8,8 +8,8 @@ npx shadcn@latest add AustinTByrd/prometheus/responsive-dialog
 ```
 
 - GitHub registry: `AustinTByrd/prometheus/<item>`
-- Hosted namespace (after deploy): `@prometheus/<item>`
-- Docs and `llms.txt` ship with this Next.js app
+- Hosted namespace: `@prometheus/<item>` via https://prometheus-ui-rust.vercel.app
+- Docs and `llms.txt`: https://prometheus-ui-rust.vercel.app
 
 ## Local
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "prometheus",
-  "homepage": "https://github.com/AustinTByrd/prometheus",
+  "homepage": "https://prometheus-ui-rust.vercel.app",
   "items": [
     {
       "name": "base",
@@ -79,7 +79,7 @@
         },
         "iconLibrary": "lucide",
         "registries": {
-          "@prometheus": "https://prometheus-ui.vercel.app/r/{name}.json"
+          "@prometheus": "https://prometheus-ui-rust.vercel.app/r/{name}.json"
         }
       }
     },
