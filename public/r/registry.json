@@ -1,0 +1,347 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "prometheus",
+  "homepage": "https://github.com/AustinTByrd/prometheus",
+  "items": [
+    {
+      "name": "base",
+      "title": "Prometheus Base",
+      "description": "Prometheus design-system defaults for a new app. Locks Base UI, Geist, Lucide, ember tokens, and the @prometheus namespace. Install this with shadcn init instead of composing a theme by hand.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "tw-animate-css",
+        "lucide-react",
+        "next-themes",
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "font-geist",
+        "AustinTByrd/prometheus/agent",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "cssVars": {
+        "theme": {
+          "font-sans": "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "Geist Mono, Geist Mono Fallback, ui-monospace, monospace",
+          "radius": "0.625rem"
+        },
+        "light": {
+          "background": "oklch(1 0 0)",
+          "foreground": "oklch(0.145 0 0)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.145 0 0)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.145 0 0)",
+          "primary": "oklch(0.55 0.16 48)",
+          "primary-foreground": "oklch(0.99 0.01 90)",
+          "secondary": "oklch(0.97 0 0)",
+          "secondary-foreground": "oklch(0.205 0 0)",
+          "muted": "oklch(0.97 0 0)",
+          "muted-foreground": "oklch(0.556 0 0)",
+          "accent": "oklch(0.97 0 0)",
+          "accent-foreground": "oklch(0.205 0 0)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "oklch(0.922 0 0)",
+          "input": "oklch(0.922 0 0)",
+          "ring": "oklch(0.55 0.16 48)"
+        },
+        "dark": {
+          "background": "oklch(0.145 0 0)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.205 0 0)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.205 0 0)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "primary": "oklch(0.78 0.14 55)",
+          "primary-foreground": "oklch(0.22 0.04 50)",
+          "secondary": "oklch(0.269 0 0)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.269 0 0)",
+          "muted-foreground": "oklch(0.708 0 0)",
+          "accent": "oklch(0.269 0 0)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.78 0.14 55)"
+        }
+      },
+      "type": "registry:base",
+      "config": {
+        "style": "base-nova",
+        "rsc": true,
+        "tsx": true,
+        "tailwind": {
+          "baseColor": "neutral"
+        },
+        "iconLibrary": "lucide",
+        "registries": {
+          "@prometheus": "https://prometheus-ui.vercel.app/r/{name}.json"
+        }
+      }
+    },
+    {
+      "name": "prometheus-provider",
+      "title": "Prometheus Provider",
+      "description": "App provider for Prometheus. Supplies isMobile, next-themes, and TooltipProvider once at the root. Use usePrometheus() instead of adding a second breakpoint hook beside every dialog or menu.",
+      "dependencies": [
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/components/prometheus-provider.tsx",
+          "type": "registry:component",
+          "target": "components/prometheus-provider.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Enhanced button with loading, leading/trailing icons, and href rendering. Use this instead of wrapping the primitive with a Spinner and icon spacing on every action.",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/components/button.tsx",
+          "type": "registry:component",
+          "target": "components/button.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "simple-tooltip",
+      "title": "Simple Tooltip",
+      "description": "Tooltip with a one-prop API: pass content and a single child trigger. Use this instead of assembling Tooltip, TooltipTrigger, and TooltipContent for a standard hint.",
+      "registryDependencies": [
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/components/simple-tooltip.tsx",
+          "type": "registry:component",
+          "target": "components/simple-tooltip.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "conditional-tooltip",
+      "title": "Conditional Tooltip",
+      "description": "Renders SimpleTooltip only when a condition and content are present. Use it for disabled explanations without duplicating the trigger in two branches.",
+      "registryDependencies": [
+        "AustinTByrd/prometheus/simple-tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/components/conditional-tooltip.tsx",
+          "type": "registry:component",
+          "target": "components/conditional-tooltip.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "conditional-wrap",
+      "title": "Conditional Wrap",
+      "description": "Conditionally wrap children with a function so optional links, providers, or layouts do not duplicate the child tree in a ternary.",
+      "files": [
+        {
+          "path": "registry/components/conditional-wrap.tsx",
+          "type": "registry:component",
+          "target": "components/conditional-wrap.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "simple-dialog",
+      "title": "Simple Dialog",
+      "description": "Centered dialog with title, description, trigger, and footer props. Use this for the standard desktop modal. It does not install mobile drawer behavior — use Responsive Dialog when the same interaction must become a sheet on small screens.",
+      "registryDependencies": [
+        "dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/components/simple-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/simple-dialog.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "responsive-dialog",
+      "title": "Responsive Dialog",
+      "description": "Same API as Simple Dialog, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop dialog. Do not rebuild a second mobile sheet beside Simple Dialog.",
+      "registryDependencies": [
+        "drawer",
+        "AustinTByrd/prometheus/simple-dialog",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "files": [
+        {
+          "path": "registry/components/responsive-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/responsive-dialog.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "page-header",
+      "title": "Page Header",
+      "description": "Title, description, and action slot with optional sticky positioning. Use this instead of rebuilding header layout on every screen.",
+      "files": [
+        {
+          "path": "registry/components/page-header.tsx",
+          "type": "registry:component",
+          "target": "components/page-header.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "description": "Shared spinner plus FullPageSpinner and FillHeightSpinner layouts. Use these instead of recentering a Loader icon at each loading boundary.",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/components/spinner.tsx",
+          "type": "registry:component",
+          "target": "components/spinner.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "kbd",
+      "title": "Keyboard Shortcut",
+      "description": "Visual keycaps for shortcut hints. Display only — bind the actual keys in your app. Use KbdShortcut with a string array instead of hand-styled kbd tags.",
+      "files": [
+        {
+          "path": "registry/components/kbd.tsx",
+          "type": "registry:component",
+          "target": "components/kbd.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-wrapper",
+      "title": "Form Field Wrapper",
+      "description": "Shared field shell for label, control, description, and error. Wrap custom controls with this instead of inventing a second error layout.",
+      "registryDependencies": [
+        "field",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-wrapper.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-wrapper.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-input",
+      "title": "Form Field Input",
+      "description": "Labeled text input with description and error wiring. Works with react-hook-form register() or plain value/onChange. Do not rebuild Field + Label + Input for a standard text field.",
+      "registryDependencies": [
+        "input",
+        "AustinTByrd/prometheus/form-field-wrapper"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-input.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-input.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-textarea",
+      "title": "Form Field Textarea",
+      "description": "Labeled textarea with the shared field shell. Use this for multiline fields; use the textarea primitive only when you need a custom layout.",
+      "registryDependencies": [
+        "textarea",
+        "AustinTByrd/prometheus/form-field-wrapper"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-textarea.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-textarea.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-select",
+      "title": "Form Field Select",
+      "description": "Labeled single-value select from an options array. Use this instead of assembling Select, SelectTrigger, SelectContent, and Field by hand for a standard choice.",
+      "registryDependencies": [
+        "select",
+        "AustinTByrd/prometheus/form-field-wrapper"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-select.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-select.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-checkbox",
+      "title": "Form Field Checkbox",
+      "description": "Checkbox paired with its label and validation message. Use this for standard boolean fields.",
+      "registryDependencies": [
+        "checkbox",
+        "AustinTByrd/prometheus/form-field-wrapper"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-checkbox.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-checkbox.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "agent",
+      "title": "Prometheus Agent Pack",
+      "description": "Agent instructions and a Cursor skill that tell models to search Prometheus before writing UI. Installs with the base so every new project starts with the same conventions.",
+      "files": [
+        {
+          "path": "registry/agent/AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": "registry/agent/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.cursor/skills/prometheus/SKILL.md"
+        }
+      ],
+      "type": "registry:item"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "base",
+      "type": "registry:base",
+      "title": "Prometheus Base",
+      "description": "Prometheus design-system defaults for a new app. Locks Base UI, Geist, Lucide, ember tokens, and the @prometheus namespace. Install this with shadcn init instead of composing a theme by hand.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "tw-animate-css",
+        "lucide-react",
+        "next-themes",
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "font-geist",
+        "AustinTByrd/prometheus/agent",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "config": {
+        "style": "base-nova",
+        "iconLibrary": "lucide",
+        "rsc": true,
+        "tsx": true,
+        "tailwind": {
+          "baseColor": "neutral"
+        },
+        "registries": {
+          "@prometheus": "https://prometheus-ui.vercel.app/r/{name}.json"
+        }
+      },
+      "cssVars": {
+        "theme": {
+          "font-sans": "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "Geist Mono, Geist Mono Fallback, ui-monospace, monospace",
+          "radius": "0.625rem"
+        },
+        "light": {
+          "background": "oklch(1 0 0)",
+          "foreground": "oklch(0.145 0 0)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.145 0 0)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.145 0 0)",
+          "primary": "oklch(0.55 0.16 48)",
+          "primary-foreground": "oklch(0.99 0.01 90)",
+          "secondary": "oklch(0.97 0 0)",
+          "secondary-foreground": "oklch(0.205 0 0)",
+          "muted": "oklch(0.97 0 0)",
+          "muted-foreground": "oklch(0.556 0 0)",
+          "accent": "oklch(0.97 0 0)",
+          "accent-foreground": "oklch(0.205 0 0)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "oklch(0.922 0 0)",
+          "input": "oklch(0.922 0 0)",
+          "ring": "oklch(0.55 0.16 48)"
+        },
+        "dark": {
+          "background": "oklch(0.145 0 0)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.205 0 0)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.205 0 0)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "primary": "oklch(0.78 0.14 55)",
+          "primary-foreground": "oklch(0.22 0.04 50)",
+          "secondary": "oklch(0.269 0 0)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.269 0 0)",
+          "muted-foreground": "oklch(0.708 0 0)",
+          "accent": "oklch(0.269 0 0)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.78 0.14 55)"
+        }
+      }
+    }
+  ]
+}

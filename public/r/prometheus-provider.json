@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prometheus-provider",
+  "title": "Prometheus Provider",
+  "description": "App provider for Prometheus. Supplies isMobile, next-themes, and TooltipProvider once at the root. Use usePrometheus() instead of adding a second breakpoint hook beside every dialog or menu.",
+  "dependencies": [
+    "next-themes"
+  ],
+  "registryDependencies": [
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/components/prometheus-provider.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ThemeProvider } from \"next-themes\"\n\nimport { TooltipProvider } from \"@/components/ui/tooltip\"\n\ntype PrometheusContextValue = {\n  isMobile: boolean\n}\n\nconst PrometheusContext = React.createContext<PrometheusContextValue | null>(\n  null\n)\n\nexport function usePrometheus() {\n  const context = React.useContext(PrometheusContext)\n\n  if (!context) {\n    throw new Error(\"usePrometheus must be used within PrometheusProvider.\")\n  }\n\n  return context\n}\n\nexport function PrometheusProvider({\n  children,\n  breakpoint = 768,\n  isMobile: isMobileProp,\n  defaultTheme = \"dark\",\n}: {\n  children: React.ReactNode\n  breakpoint?: number\n  isMobile?: boolean\n  defaultTheme?: \"light\" | \"dark\" | \"system\"\n}) {\n  const [isMobileDetected, setIsMobileDetected] = React.useState(false)\n\n  React.useEffect(() => {\n    const media = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)\n    const update = () => setIsMobileDetected(media.matches)\n\n    update()\n    media.addEventListener(\"change\", update)\n    return () => media.removeEventListener(\"change\", update)\n  }, [breakpoint])\n\n  const isMobile = isMobileProp ?? isMobileDetected\n\n  return (\n    <ThemeProvider attribute=\"class\" defaultTheme={defaultTheme} enableSystem>\n      <TooltipProvider>\n        <PrometheusContext.Provider value={{ isMobile }}>\n          {children}\n        </PrometheusContext.Provider>\n      </TooltipProvider>\n    </ThemeProvider>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/prometheus-provider.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

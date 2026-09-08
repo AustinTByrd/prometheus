@@ -1,0 +1,147 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "prometheus-provider",
+      "type": "registry:component",
+      "title": "Prometheus Provider",
+      "description": "App provider for Prometheus. Supplies isMobile, next-themes, and TooltipProvider once at the root. Use usePrometheus() instead of adding a second breakpoint hook beside every dialog or menu.",
+      "dependencies": ["next-themes"],
+      "registryDependencies": ["tooltip"],
+      "files": [
+        {
+          "path": "prometheus-provider.tsx",
+          "type": "registry:component",
+          "target": "components/prometheus-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "Enhanced button with loading, leading/trailing icons, and href rendering. Use this instead of wrapping the primitive with a Spinner and icon spacing on every action.",
+      "registryDependencies": ["button", "spinner"],
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:component",
+          "target": "components/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "simple-tooltip",
+      "type": "registry:component",
+      "title": "Simple Tooltip",
+      "description": "Tooltip with a one-prop API: pass content and a single child trigger. Use this instead of assembling Tooltip, TooltipTrigger, and TooltipContent for a standard hint.",
+      "registryDependencies": ["tooltip"],
+      "files": [
+        {
+          "path": "simple-tooltip.tsx",
+          "type": "registry:component",
+          "target": "components/simple-tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "conditional-tooltip",
+      "type": "registry:component",
+      "title": "Conditional Tooltip",
+      "description": "Renders SimpleTooltip only when a condition and content are present. Use it for disabled explanations without duplicating the trigger in two branches.",
+      "registryDependencies": ["AustinTByrd/prometheus/simple-tooltip"],
+      "files": [
+        {
+          "path": "conditional-tooltip.tsx",
+          "type": "registry:component",
+          "target": "components/conditional-tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "conditional-wrap",
+      "type": "registry:component",
+      "title": "Conditional Wrap",
+      "description": "Conditionally wrap children with a function so optional links, providers, or layouts do not duplicate the child tree in a ternary.",
+      "files": [
+        {
+          "path": "conditional-wrap.tsx",
+          "type": "registry:component",
+          "target": "components/conditional-wrap.tsx"
+        }
+      ]
+    },
+    {
+      "name": "simple-dialog",
+      "type": "registry:component",
+      "title": "Simple Dialog",
+      "description": "Centered dialog with title, description, trigger, and footer props. Use this for the standard desktop modal. It does not install mobile drawer behavior — use Responsive Dialog when the same interaction must become a sheet on small screens.",
+      "registryDependencies": ["dialog"],
+      "files": [
+        {
+          "path": "simple-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/simple-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "responsive-dialog",
+      "type": "registry:component",
+      "title": "Responsive Dialog",
+      "description": "Same API as Simple Dialog, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop dialog. Do not rebuild a second mobile sheet beside Simple Dialog.",
+      "registryDependencies": [
+        "drawer",
+        "AustinTByrd/prometheus/simple-dialog",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "files": [
+        {
+          "path": "responsive-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/responsive-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:component",
+      "title": "Page Header",
+      "description": "Title, description, and action slot with optional sticky positioning. Use this instead of rebuilding header layout on every screen.",
+      "files": [
+        {
+          "path": "page-header.tsx",
+          "type": "registry:component",
+          "target": "components/page-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "Shared spinner plus FullPageSpinner and FillHeightSpinner layouts. Use these instead of recentering a Loader icon at each loading boundary.",
+      "registryDependencies": ["spinner"],
+      "files": [
+        {
+          "path": "spinner.tsx",
+          "type": "registry:component",
+          "target": "components/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:component",
+      "title": "Keyboard Shortcut",
+      "description": "Visual keycaps for shortcut hints. Display only — bind the actual keys in your app. Use KbdShortcut with a string array instead of hand-styled kbd tags.",
+      "files": [
+        {
+          "path": "kbd.tsx",
+          "type": "registry:component",
+          "target": "components/kbd.tsx"
+        }
+      ]
+    }
+  ]
+}

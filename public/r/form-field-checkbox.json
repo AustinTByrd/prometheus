@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-checkbox",
+  "title": "Form Field Checkbox",
+  "description": "Checkbox paired with its label and validation message. Use this for standard boolean fields.",
+  "registryDependencies": [
+    "checkbox",
+    "AustinTByrd/prometheus/form-field-wrapper"
+  ],
+  "files": [
+    {
+      "path": "registry/forms/form-field-checkbox.tsx",
+      "content": "\"use client\"\n\nimport { FormFieldWrapper } from \"@/components/form-field-wrapper\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nexport function FormFieldCheckbox({\n  label,\n  description,\n  error,\n  id,\n  checked,\n  onCheckedChange,\n  disabled,\n}: {\n  label: string\n  description?: string\n  error?: string\n  id?: string\n  checked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  disabled?: boolean\n}) {\n  return (\n    <FormFieldWrapper\n      description={description}\n      error={error}\n      htmlFor={id}\n      label={label}\n      orientation=\"horizontal\"\n    >\n      <Checkbox\n        aria-invalid={error ? true : undefined}\n        checked={checked}\n        disabled={disabled}\n        id={id}\n        onCheckedChange={onCheckedChange}\n      />\n    </FormFieldWrapper>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/form-field-checkbox.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

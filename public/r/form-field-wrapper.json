@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-wrapper",
+  "title": "Form Field Wrapper",
+  "description": "Shared field shell for label, control, description, and error. Wrap custom controls with this instead of inventing a second error layout.",
+  "registryDependencies": [
+    "field",
+    "label"
+  ],
+  "files": [
+    {
+      "path": "registry/forms/form-field-wrapper.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"@/components/ui/field\"\n\nexport function FormFieldWrapper({\n  label,\n  htmlFor,\n  description,\n  error,\n  children,\n  orientation = \"vertical\",\n}: {\n  label: string\n  htmlFor?: string\n  description?: string\n  error?: string\n  children: React.ReactNode\n  orientation?: \"vertical\" | \"horizontal\"\n}) {\n  return (\n    <Field data-invalid={error ? true : undefined} orientation={orientation}>\n      <FieldLabel htmlFor={htmlFor}>{label}</FieldLabel>\n      {children}\n      {description ? <FieldDescription>{description}</FieldDescription> : null}\n      {error ? <FieldError>{error}</FieldError> : null}\n    </Field>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/form-field-wrapper.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

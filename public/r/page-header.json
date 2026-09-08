@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header",
+  "title": "Page Header",
+  "description": "Title, description, and action slot with optional sticky positioning. Use this instead of rebuilding header layout on every screen.",
+  "files": [
+    {
+      "path": "registry/components/page-header.tsx",
+      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport function PageHeader({\n  title,\n  description,\n  children,\n  className,\n  sticky = false,\n}: {\n  title: string\n  description?: string\n  children?: React.ReactNode\n  className?: string\n  sticky?: boolean\n}) {\n  return (\n    <header\n      className={cn(\n        \"flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-start sm:justify-between\",\n        sticky && \"sticky top-0 z-20 bg-background/80 backdrop-blur-sm\",\n        className\n      )}\n    >\n      <div className=\"flex min-w-0 flex-col gap-1\">\n        <h1 className=\"text-2xl font-semibold tracking-tight\">{title}</h1>\n        {description ? (\n          <p className=\"text-sm text-muted-foreground\">{description}</p>\n        ) : null}\n      </div>\n      {children ? (\n        <div className=\"flex shrink-0 items-center gap-2\">{children}</div>\n      ) : null}\n    </header>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/page-header.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

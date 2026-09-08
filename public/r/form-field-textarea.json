@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-textarea",
+  "title": "Form Field Textarea",
+  "description": "Labeled textarea with the shared field shell. Use this for multiline fields; use the textarea primitive only when you need a custom layout.",
+  "registryDependencies": [
+    "textarea",
+    "AustinTByrd/prometheus/form-field-wrapper"
+  ],
+  "files": [
+    {
+      "path": "registry/forms/form-field-textarea.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { FormFieldWrapper } from \"@/components/form-field-wrapper\"\nimport { Textarea } from \"@/components/ui/textarea\"\n\nexport function FormFieldTextarea({\n  label,\n  description,\n  error,\n  id,\n  ...props\n}: React.ComponentProps<typeof Textarea> & {\n  label: string\n  description?: string\n  error?: string\n}) {\n  const inputId = id ?? props.name\n\n  return (\n    <FormFieldWrapper\n      description={description}\n      error={error}\n      htmlFor={inputId}\n      label={label}\n    >\n      <Textarea\n        aria-invalid={error ? true : undefined}\n        id={inputId}\n        {...props}\n      />\n    </FormFieldWrapper>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/form-field-textarea.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

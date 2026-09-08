@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/prometheus-provider": ["./registry/components/prometheus-provider.tsx"],
+      "@/components/button": ["./registry/components/button.tsx"],
+      "@/components/simple-tooltip": ["./registry/components/simple-tooltip.tsx"],
+      "@/components/conditional-tooltip": ["./registry/components/conditional-tooltip.tsx"],
+      "@/components/conditional-wrap": ["./registry/components/conditional-wrap.tsx"],
+      "@/components/simple-dialog": ["./registry/components/simple-dialog.tsx"],
+      "@/components/responsive-dialog": ["./registry/components/responsive-dialog.tsx"],
+      "@/components/page-header": ["./registry/components/page-header.tsx"],
+      "@/components/spinner": ["./registry/components/spinner.tsx"],
+      "@/components/kbd": ["./registry/components/kbd.tsx"],
+      "@/components/form-field-wrapper": ["./registry/forms/form-field-wrapper.tsx"],
+      "@/components/form-field-input": ["./registry/forms/form-field-input.tsx"],
+      "@/components/form-field-textarea": ["./registry/forms/form-field-textarea.tsx"],
+      "@/components/form-field-select": ["./registry/forms/form-field-select.tsx"],
+      "@/components/form-field-checkbox": ["./registry/forms/form-field-checkbox.tsx"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

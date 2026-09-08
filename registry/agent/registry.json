@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "agent",
+      "type": "registry:item",
+      "title": "Prometheus Agent Pack",
+      "description": "Agent instructions and a Cursor skill that tell models to search Prometheus before writing UI. Installs with the base so every new project starts with the same conventions.",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "type": "registry:file",
+          "target": "~/AGENTS.md"
+        },
+        {
+          "path": "SKILL.md",
+          "type": "registry:file",
+          "target": "~/.cursor/skills/prometheus/SKILL.md"
+        }
+      ]
+    }
+  ]
+}

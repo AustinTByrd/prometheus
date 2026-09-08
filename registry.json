@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "prometheus",
+  "homepage": "https://github.com/AustinTByrd/prometheus",
+  "include": [
+    "registry/base/registry.json",
+    "registry/components/registry.json",
+    "registry/forms/registry.json",
+    "registry/agent/registry.json"
+  ]
+}
