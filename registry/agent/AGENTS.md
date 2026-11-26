@@ -8,6 +8,7 @@ Search the registry before composing primitives or inventing a mobile variant.
 
 ```bash
 npx shadcn@latest search AustinTByrd/prometheus
+npx shadcn@latest view AustinTByrd/prometheus/<item>
 npx shadcn@latest add AustinTByrd/prometheus/<item> --dry-run
 ```
 
@@ -20,11 +21,12 @@ npx shadcn@latest add @prometheus/<item>
 ## Rules
 
 - Prefer a Prometheus wrapper over assembling shadcn primitives.
-- Simple Dialog is desktop-only. Responsive Dialog is the same API plus a mobile drawer. Do not pull drawer dependencies into Simple components.
-- Wrap the app in `PrometheusProvider`. Use `usePrometheus()` for `isMobile`.
-- Forms use `FormField*` wrappers (label, description, error together). Do not rebuild Field + Label by hand for standard inputs.
-- Buttons that need a spinner, icon, or link: use `@/components/button`, not a one-off composition.
-- Base UI uses `render`, not Radix `asChild`.
+- Simple vs Responsive is an installation boundary: `SimpleDialog` and `SimplePopover` are desktop-only; `ResponsiveDialog` and `ResponsivePopover` add a mobile drawer via `PrometheusProvider`. Do not pull drawer dependencies into Simple components.
+- For destructive or async confirmations, use `ConfirmDialog` instead of wiring `AlertDialog` and loading state by hand.
+- Wrap the app in `PrometheusProvider`. Use `usePrometheus()` for `isMobile`. Pair with `ThemeToggle` for light/dark switching.
+- Forms use `FormField*` wrappers (`FormFieldInput`, `FormFieldTextarea`, `FormFieldSelect`, `FormFieldCheckbox`, `FormFieldSwitch`, `FormFieldRadioGroup`, or `FormFieldWrapper` for custom controls). Do not rebuild `Field` + `Label` by hand.
+- Buttons that need a spinner, icon, or link: use `@/components/button`. For clipboard copy actions, use `CopyButton`.
+- Base UI uses `render`, not Radix `asChild`. For Base UI `Select`, always pass `items` (already handled by `FormFieldSelect`).
 - Use semantic tokens (`bg-background`, `text-muted-foreground`). Use `size-*` when width and height match. Use `gap-*`, not `space-y-*`.
 - Do not present official shadcn icons, loaders, or primitives as Prometheus features.
 

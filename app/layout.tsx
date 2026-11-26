@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import { PrometheusProvider } from "@/components/prometheus-provider"
+import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 
 import "./globals.css"
@@ -20,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Prometheus",
   description:
-    "A personal shadcn registry. Your components. Your defaults. Every project.",
+    "A personal shadcn registry on Base UI. Your components. Your defaults. Every project.",
 }
 
 export default function RootLayout({
@@ -34,10 +35,11 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className="min-h-svh antialiased">
+      <body className="flex min-h-svh flex-col antialiased">
         <PrometheusProvider>
           <SiteHeader />
-          {children}
+          <div className="flex-1">{children}</div>
+          <SiteFooter />
         </PrometheusProvider>
       </body>
     </html>

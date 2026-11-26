@@ -1,16 +1,28 @@
 "use client"
 
 import { Button } from "@/components/button"
-import { ResponsiveDialog } from "@/components/responsive-dialog"
+import {
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+} from "@/components/responsive-dialog"
 
 export function HomeDialogDemo() {
   return (
     <ResponsiveDialog
       description="One component. A dialog on desktop, a swipeable drawer on mobile."
       footer={
-        <Button href="#components" variant="outline">
-          Browse components
-        </Button>
+        <>
+          <ResponsiveDialogClose
+            render={<Button variant="outline" />}
+          >
+            Close
+          </ResponsiveDialogClose>
+          <ResponsiveDialogClose
+            render={<Button href="#components" />}
+          >
+            Browse components
+          </ResponsiveDialogClose>
+        </>
       }
       title="Your next project."
       trigger={<Button>Try the dialog</Button>}

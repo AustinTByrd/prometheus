@@ -1,39 +1,40 @@
 "use client"
 
-import * as React from "react"
-import { CheckIcon, CopyIcon } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
+import { CopyButton } from "@/components/copy-button"
+import {
+  installCommand,
+  namespaceInstallCommand,
+  SITE_URL,
+} from "@/lib/catalog"
 
 export function CopyForAgents({
   slug,
   description,
+  usage,
 }: {
   slug: string
   description: string
+  usage?: string
 }) {
-  const [copied, setCopied] = React.useState(false)
-
-  const text = [
-    `Install: npx shadcn@latest add AustinTByrd/prometheus/${slug}`,
+  const lines = [
+    `Install: ${installCommand(slug)}`,
+    `Namespaced: ${namespaceInstallCommand(slug)}`,
     `Purpose: ${description}`,
-    `Docs: /component/${slug}`,
-  ].join("\n")
+    `Docs: ${SITE_URL}/component/${slug}`,
+    `Registry JSON: ${SITE_URL}/r/${slug}.json`,
+  ]
 
-  async function copy() {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1600)
+  if (usage) {
+    lines.push("", "Usage:", "```tsx", usage, "```")
   }
 
   return (
-    <Button onClick={copy} size="sm" variant="outline">
-      {copied ? (
-        <CheckIcon data-icon="inline-start" />
-      ) : (
-        <CopyIcon data-icon="inline-start" />
-      )}
-      {copied ? "Copied" : "Copy for agents"}
-    </Button>
+    <CopyButton
+      copiedLabel="Copied"
+      label="Copy for agents"
+      size="sm"
+      value={lines.join("\n")}
+      variant="outline"
+    />
   )
 }

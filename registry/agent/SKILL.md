@@ -1,6 +1,6 @@
 ---
 name: prometheus
-description: Use Prometheus components and conventions in this project. Trigger when building UI, adding shadcn components, writing forms, dialogs, tooltips, or deciding between official shadcn and Prometheus wrappers.
+description: Use Prometheus components and conventions in this project. Trigger when building UI, adding shadcn components, writing forms, dialogs, popovers, tooltips, or deciding between official shadcn and Prometheus wrappers.
 ---
 
 # Prometheus
@@ -25,12 +25,18 @@ Bare names like `button` mean official shadcn. Prometheus items use `AustinTByrd
 | --- | --- |
 | App providers, isMobile | `PrometheusProvider` + `usePrometheus()` |
 | Action with loading, icon, or href | `@/components/button` |
-| Standard tooltip | `SimpleTooltip` |
+| Copy to clipboard with feedback | `CopyButton` |
+| Light/dark theme button | `ThemeToggle` |
+| Standard tooltip (including disabled triggers) | `SimpleTooltip` |
 | Tooltip only sometimes | `ConditionalTooltip` |
 | Optional wrapper without duplicating children | `ConditionalWrap` |
-| Desktop modal | `SimpleDialog` |
-| Modal that becomes a drawer on mobile | `ResponsiveDialog` |
-| Labeled input / textarea / select / checkbox | `FormFieldInput` and siblings |
+| Desktop modal | `SimpleDialog` + `SimpleDialogClose` |
+| Modal that becomes a drawer on mobile | `ResponsiveDialog` + `ResponsiveDialogClose` |
+| Confirmation / destructive modal with async state | `ConfirmDialog` |
+| Desktop popover | `SimplePopover` |
+| Popover that becomes a drawer on mobile | `ResponsivePopover` |
+| Labeled input / textarea / select / checkbox / switch / radio | `FormFieldInput`, `FormFieldTextarea`, `FormFieldSelect`, `FormFieldCheckbox`, `FormFieldSwitch`, `FormFieldRadioGroup` |
+| Custom control with shared label/error shell | `FormFieldWrapper` |
 | Page title + actions | `PageHeader` |
 | Loading | `Spinner`, `FullPageSpinner`, `FillHeightSpinner` |
 | Shortcut hint (display only) | `Kbd` / `KbdShortcut` |
@@ -38,10 +44,10 @@ Bare names like `button` mean official shadcn. Prometheus items use `AustinTByrd
 ## Do not
 
 - Compose Tooltip/Trigger/Content for a standard hint.
-- Rebuild dialog anatomy when Simple or Responsive already covers it.
+- Rebuild dialog, popover, or confirmation alert anatomy when a Prometheus wrapper already covers it.
 - Import drawer into a Simple component.
 - Mix Radix `asChild` with these Base UI wrappers. Use `render`.
-- Write raw `div` + `space-y-*` form layout. Use `FormFieldWrapper`.
+- Write raw `div` + `space-y-*` form layout. Use `FormField*` / `FormFieldWrapper`.
 - Override semantic colors with raw palette classes.
 
 ## Provider
@@ -49,7 +55,7 @@ Bare names like `button` mean official shadcn. Prometheus items use `AustinTByrd
 ```tsx
 import { PrometheusProvider } from "@/components/prometheus-provider"
 
-<html lang="en" className="dark">
+<html lang="en" className="dark" suppressHydrationWarning>
   <body>
     <PrometheusProvider>{children}</PrometheusProvider>
   </body>
