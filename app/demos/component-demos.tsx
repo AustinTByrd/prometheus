@@ -4,6 +4,7 @@ import * as React from "react"
 import { ArrowRightIcon, SearchIcon, Trash2Icon } from "lucide-react"
 import { useTheme } from "next-themes"
 
+import { AvatarDemo } from "@/app/demos/avatar-demo"
 import { Button } from "@/components/button"
 import { ConditionalTooltip } from "@/components/conditional-tooltip"
 import { ConditionalWrap } from "@/components/conditional-wrap"
@@ -468,4 +469,5 @@ export const demos: Record<string, React.ComponentType> = {
   "page-header": PageHeaderDemo,
   spinner: SpinnerDemo,
   kbd: KbdDemo,
+  avatar: AvatarDemo,
 }

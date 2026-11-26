@@ -11,12 +11,13 @@ npx shadcn@latest add AustinTByrd/prometheus/responsive-dialog
 - Hosted namespace (configured by `base`): `@prometheus/<item>` via https://prometheus-ui-rust.vercel.app
 - Docs and `llms.txt`: https://prometheus-ui-rust.vercel.app/llms.txt
 
-## Registry items (24)
+## Registry items (25)
 
 | Group | Items |
 | --- | --- |
 | **Setup & Agent** | `base`, `agent`, `prometheus-provider` |
 | **Actions** | `button`, `copy-button`, `theme-toggle`, `kbd` |
+| **Display** | `avatar` |
 | **Overlays** | `simple-tooltip`, `conditional-tooltip`, `simple-dialog`, `responsive-dialog`, `confirm-dialog`, `simple-popover`, `responsive-popover` |
 | **Forms** | `form-field-wrapper`, `form-field-input`, `form-field-textarea`, `form-field-select`, `form-field-checkbox`, `form-field-switch`, `form-field-radio-group` |
 | **Layout** | `conditional-wrap`, `page-header`, `spinner` |

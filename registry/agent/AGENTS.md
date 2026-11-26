@@ -26,6 +26,7 @@ npx shadcn@latest add @prometheus/<item>
 - Wrap the app in `PrometheusProvider`. Use `usePrometheus()` for `isMobile`. Pair with `ThemeToggle` for light/dark switching.
 - Forms use `FormField*` wrappers (`FormFieldInput`, `FormFieldTextarea`, `FormFieldSelect`, `FormFieldCheckbox`, `FormFieldSwitch`, `FormFieldRadioGroup`, or `FormFieldWrapper` for custom controls). Do not rebuild `Field` + `Label` by hand.
 - Buttons that need a spinner, icon, or link: use `@/components/button`. For clipboard copy actions, use `CopyButton`.
+- User avatars and overlapping stacks: use `Avatar` and `AvatarStack` (`--avatar-size` scales everything; cutouts use real CSS radial-gradient masks rather than rings).
 - Base UI uses `render`, not Radix `asChild`. For Base UI `Select`, always pass `items` (already handled by `FormFieldSelect`).
 - Use semantic tokens (`bg-background`, `text-muted-foreground`). Use `size-*` when width and height match. Use `gap-*`, not `space-y-*`.
 - Do not present official shadcn icons, loaders, or primitives as Prometheus features.

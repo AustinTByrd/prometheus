@@ -332,6 +332,19 @@
       "type": "registry:component"
     },
     {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "User avatar and see-through AvatarStack driven by --avatar-size. Uses CSS radial-gradient masks for true transparent overlap cutouts, automatic crescent initials nudging, topmost direction switching, and overflow count.",
+      "files": [
+        {
+          "path": "registry/components/avatar.tsx",
+          "type": "registry:component",
+          "target": "components/avatar.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
       "name": "form-field-wrapper",
       "title": "Form Field Wrapper",
       "description": "Shared field shell for label, control, description, and error. Wrap custom controls with this instead of inventing a second error layout.",

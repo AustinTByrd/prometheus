@@ -224,6 +224,19 @@
           "target": "components/kbd.tsx"
         }
       ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:component",
+      "title": "Avatar",
+      "description": "User avatar and see-through AvatarStack driven by --avatar-size. Uses CSS radial-gradient masks for true transparent overlap cutouts, automatic crescent initials nudging, topmost direction switching, and overflow count.",
+      "files": [
+        {
+          "path": "avatar.tsx",
+          "type": "registry:component",
+          "target": "components/avatar.tsx"
+        }
+      ]
     }
   ]
 }

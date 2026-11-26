@@ -40,6 +40,7 @@ Bare names like `button` mean official shadcn. Prometheus items use `AustinTByrd
 | Page title + actions | `PageHeader` |
 | Loading | `Spinner`, `FullPageSpinner`, `FillHeightSpinner` |
 | Shortcut hint (display only) | `Kbd` / `KbdShortcut` |
+| User avatar or overlapping see-through avatar stack | `Avatar` / `AvatarStack` |
 
 ## Do not
 

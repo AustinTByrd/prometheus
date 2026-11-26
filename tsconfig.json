@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/prometheus-provider": ["./registry/components/prometheus-provider.tsx"],
+      "@/components/avatar": ["./registry/components/avatar.tsx"],
       "@/components/button": ["./registry/components/button.tsx"],
       "@/components/simple-tooltip": ["./registry/components/simple-tooltip.tsx"],
       "@/components/conditional-tooltip": ["./registry/components/conditional-tooltip.tsx"],

@@ -5,6 +5,7 @@ export const REGISTRY_NAMESPACE = "@prometheus"
 export type CatalogCategory =
   | "Setup"
   | "Actions"
+  | "Display"
   | "Overlays"
   | "Forms"
   | "Layout"
@@ -12,6 +13,7 @@ export type CatalogCategory =
 export const catalogCategories: readonly CatalogCategory[] = [
   "Setup",
   "Actions",
+  "Display",
   "Overlays",
   "Forms",
   "Layout",
@@ -88,6 +90,24 @@ import { Button } from "@/components/button"
 
 <KbdShortcut keys={["⌘", "K"]} />
 <Kbd>Esc</Kbd>`,
+  },
+  {
+    slug: "avatar",
+    title: "Avatar",
+    description:
+      "Image/initials avatar and see-through AvatarStack sized from --avatar-size with radial-gradient cutout masks and crescent text nudging.",
+    category: "Display",
+    usage: `import { Avatar, AvatarStack } from "@/components/avatar"
+
+<Avatar src="/avatars/ada.png" name="Ada Lovelace" size="md" status="online" />
+
+<AvatarStack max={4} label="Contributors" topmost="right">
+  <Avatar src="/avatars/ada.png" name="Ada Lovelace" />
+  <Avatar src="/avatars/grace.png" name="Grace Hopper" />
+  <Avatar name="Alan Turing" />
+  <Avatar name="Margaret Hamilton" />
+  <Avatar name="Donald Knuth" />
+</AvatarStack>`,
   },
   {
     slug: "simple-tooltip",
