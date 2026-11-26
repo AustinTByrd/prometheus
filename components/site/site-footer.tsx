@@ -9,6 +9,12 @@ export function SiteFooter() {
           <Link className="transition-colors hover:text-foreground" href="/guide">
             Guide
           </Link>
+          <Link
+            className="transition-colors hover:text-foreground"
+            href="/typography"
+          >
+            Typography
+          </Link>
           <a className="transition-colors hover:text-foreground" href="/llms.txt">
             llms.txt
           </a>

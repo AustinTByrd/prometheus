@@ -17,6 +17,12 @@ export function SiteHeader() {
             </Link>
             <Link
               className="transition-colors hover:text-foreground"
+              href="/typography"
+            >
+              Typography
+            </Link>
+            <Link
+              className="transition-colors hover:text-foreground"
               href="/#components"
             >
               Components

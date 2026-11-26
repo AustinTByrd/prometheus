@@ -26,6 +26,7 @@ export function GET() {
     "## Documentation",
     "",
     `- [Usage guide](${SITE_URL}/guide)`,
+    `- [Typography scale](${SITE_URL}/typography)`,
     `- [Component collection](${SITE_URL}/)`,
     `- [Registry index](${SITE_URL}/r/registry.json)`,
     "",

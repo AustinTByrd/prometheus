@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import { CommandBlock } from "@/components/site/command-block"
 import { initCommand, OWNER_REPO, REGISTRY_NAMESPACE } from "@/lib/catalog"
@@ -100,6 +101,24 @@ npx shadcn@latest add ${REGISTRY_NAMESPACE}/confirm-dialog`}
           ) so labels, descriptions, accessible IDs, and validation errors stay
           consistent. Wrap custom inputs in{" "}
           <code className="font-mono text-foreground">FormFieldWrapper</code>.
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-xl font-semibold">Typography</h2>
+        <p className="text-sm text-muted-foreground">
+          Prometheus pairs Geist Sans with a 9-step scale from{" "}
+          <code className="font-mono text-foreground">12px</code> to{" "}
+          <code className="font-mono text-foreground">64px</code>. See the
+          interactive line-height ratio and tracking curves, live specimens, and
+          CSS tokens on the{" "}
+          <Link
+            className="text-foreground underline underline-offset-4"
+            href="/typography"
+          >
+            Typography scale
+          </Link>{" "}
+          page.
         </p>
       </section>
 
