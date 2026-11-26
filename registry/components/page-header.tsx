@@ -8,11 +8,10 @@ export function PageHeader({
   children,
   className,
   sticky = false,
-}: {
-  title: string
-  description?: string
-  children?: React.ReactNode
-  className?: string
+  ...props
+}: Omit<React.ComponentProps<"header">, "title"> & {
+  title: React.ReactNode
+  description?: React.ReactNode
   sticky?: boolean
 }) {
   return (
@@ -22,6 +21,7 @@ export function PageHeader({
         sticky && "sticky top-0 z-20 bg-background/80 backdrop-blur-sm",
         className
       )}
+      {...props}
     >
       <div className="flex min-w-0 flex-col gap-1">
         <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>

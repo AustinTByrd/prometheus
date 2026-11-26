@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/forms/form-field-input.tsx",
-      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { Input } from \"@/components/ui/input\"\nimport { FormFieldWrapper } from \"@/components/form-field-wrapper\"\n\nexport function FormFieldInput({\n  label,\n  description,\n  error,\n  id,\n  ...props\n}: React.ComponentProps<typeof Input> & {\n  label: string\n  description?: string\n  error?: string\n}) {\n  const inputId = id ?? props.name\n\n  return (\n    <FormFieldWrapper\n      description={description}\n      error={error}\n      htmlFor={inputId}\n      label={label}\n    >\n      <Input aria-invalid={error ? true : undefined} id={inputId} {...props} />\n    </FormFieldWrapper>\n  )\n}\n",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { FormFieldWrapper } from \"@/components/form-field-wrapper\"\nimport { Input } from \"@/components/ui/input\"\n\nexport function FormFieldInput({\n  label,\n  description,\n  error,\n  id,\n  wrapperClassName,\n  ...props\n}: React.ComponentProps<typeof Input> & {\n  label: React.ReactNode\n  description?: React.ReactNode\n  error?: React.ReactNode\n  wrapperClassName?: string\n}) {\n  const generatedId = React.useId()\n  const inputId = id ?? props.name ?? generatedId\n\n  return (\n    <FormFieldWrapper\n      className={wrapperClassName}\n      description={description}\n      disabled={props.disabled}\n      error={error}\n      htmlFor={inputId}\n      label={label}\n    >\n      <Input aria-invalid={error ? true : undefined} id={inputId} {...props} />\n    </FormFieldWrapper>\n  )\n}\n",
       "type": "registry:component",
       "target": "components/form-field-input.tsx"
     }

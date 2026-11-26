@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/conditional-tooltip.tsx",
-      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { SimpleTooltip } from \"@/components/simple-tooltip\"\n\nexport function ConditionalTooltip({\n  children,\n  content,\n  condition,\n  side = \"top\",\n}: {\n  children: React.ReactElement\n  content?: React.ReactNode\n  condition?: boolean\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\"\n}) {\n  if (!condition || content == null || content === false || content === \"\") {\n    return children\n  }\n\n  return (\n    <SimpleTooltip content={content} side={side}>\n      {children}\n    </SimpleTooltip>\n  )\n}\n",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { SimpleTooltip } from \"@/components/simple-tooltip\"\n\nexport function ConditionalTooltip({\n  children,\n  content,\n  condition,\n  side = \"top\",\n  align = \"center\",\n  sideOffset = 4,\n  delay,\n  className,\n}: {\n  children: React.ReactElement\n  content?: React.ReactNode\n  condition?: boolean\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  align?: \"start\" | \"center\" | \"end\"\n  sideOffset?: number\n  delay?: number\n  className?: string\n}) {\n  if (!condition || content == null || content === false || content === \"\") {\n    return children\n  }\n\n  return (\n    <SimpleTooltip\n      align={align}\n      className={className}\n      content={content}\n      delay={delay}\n      side={side}\n      sideOffset={sideOffset}\n    >\n      {children}\n    </SimpleTooltip>\n  )\n}\n",
       "type": "registry:component",
       "target": "components/conditional-tooltip.tsx"
     }

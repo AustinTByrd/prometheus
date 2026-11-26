@@ -4,6 +4,7 @@ import type * as React from "react"
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -20,21 +21,23 @@ export function SimpleDialog({
   footer,
   open,
   onOpenChange,
+  showCloseButton = true,
   className,
 }: {
   trigger?: React.ReactElement
-  title: string
-  description?: string
+  title: React.ReactNode
+  description?: React.ReactNode
   children?: React.ReactNode
   footer?: React.ReactNode
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  showCloseButton?: boolean
   className?: string
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       {trigger ? <DialogTrigger render={trigger} /> : null}
-      <DialogContent className={className}>
+      <DialogContent className={className} showCloseButton={showCloseButton}>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           {description ? (
@@ -46,4 +49,11 @@ export function SimpleDialog({
       </DialogContent>
     </Dialog>
   )
+}
+
+export function SimpleDialogClose({
+  children,
+  ...props
+}: React.ComponentProps<typeof DialogClose>) {
+  return <DialogClose {...props}>{children}</DialogClose>
 }

@@ -1,26 +1,31 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 
-import { Input } from "@/components/ui/input"
 import { FormFieldWrapper } from "@/components/form-field-wrapper"
+import { Input } from "@/components/ui/input"
 
 export function FormFieldInput({
   label,
   description,
   error,
   id,
+  wrapperClassName,
   ...props
 }: React.ComponentProps<typeof Input> & {
-  label: string
-  description?: string
-  error?: string
+  label: React.ReactNode
+  description?: React.ReactNode
+  error?: React.ReactNode
+  wrapperClassName?: string
 }) {
-  const inputId = id ?? props.name
+  const generatedId = React.useId()
+  const inputId = id ?? props.name ?? generatedId
 
   return (
     <FormFieldWrapper
+      className={wrapperClassName}
       description={description}
+      disabled={props.disabled}
       error={error}
       htmlFor={inputId}
       label={label}

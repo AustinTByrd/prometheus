@@ -12,6 +12,8 @@ function Button({
   icon: Icon,
   iconPosition = "start",
   href,
+  target,
+  rel,
   children,
   disabled,
   className,
@@ -21,7 +23,10 @@ function Button({
   icon?: LucideIcon
   iconPosition?: "start" | "end"
   href?: string
+  target?: React.HTMLAttributeAnchorTarget
+  rel?: string
 }) {
+  const isDisabled = disabled || loading
   const content = (
     <>
       {loading ? (
@@ -39,10 +44,11 @@ function Button({
   if (href) {
     return (
       <UiButton
-        className={cn(className)}
-        disabled={disabled || loading}
+        aria-busy={loading || undefined}
+        className={cn(isDisabled && "pointer-events-none opacity-50", className)}
+        disabled={isDisabled}
         nativeButton={false}
-        render={<a href={href} />}
+        render={<a href={href} rel={rel} target={target} />}
         {...props}
       >
         {content}
@@ -51,7 +57,12 @@ function Button({
   }
 
   return (
-    <UiButton className={cn(className)} disabled={disabled || loading} {...props}>
+    <UiButton
+      aria-busy={loading || undefined}
+      className={cn(className)}
+      disabled={isDisabled}
+      {...props}
+    >
       {content}
     </UiButton>
   )

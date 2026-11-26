@@ -46,11 +46,12 @@ export function PrometheusProvider({
   }, [breakpoint])
 
   const isMobile = isMobileProp ?? isMobileDetected
+  const contextValue = React.useMemo(() => ({ isMobile }), [isMobile])
 
   return (
     <ThemeProvider attribute="class" defaultTheme={defaultTheme} enableSystem>
       <TooltipProvider>
-        <PrometheusContext.Provider value={{ isMobile }}>
+        <PrometheusContext.Provider value={contextValue}>
           {children}
         </PrometheusContext.Provider>
       </TooltipProvider>

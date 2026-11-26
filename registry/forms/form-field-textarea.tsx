@@ -1,6 +1,6 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 
 import { FormFieldWrapper } from "@/components/form-field-wrapper"
 import { Textarea } from "@/components/ui/textarea"
@@ -10,17 +10,22 @@ export function FormFieldTextarea({
   description,
   error,
   id,
+  wrapperClassName,
   ...props
 }: React.ComponentProps<typeof Textarea> & {
-  label: string
-  description?: string
-  error?: string
+  label: React.ReactNode
+  description?: React.ReactNode
+  error?: React.ReactNode
+  wrapperClassName?: string
 }) {
-  const inputId = id ?? props.name
+  const generatedId = React.useId()
+  const inputId = id ?? props.name ?? generatedId
 
   return (
     <FormFieldWrapper
+      className={wrapperClassName}
       description={description}
+      disabled={props.disabled}
       error={error}
       htmlFor={inputId}
       label={label}
