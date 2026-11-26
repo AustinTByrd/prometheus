@@ -82,6 +82,34 @@
           "target": "components/form-field-checkbox.tsx"
         }
       ]
+    },
+    {
+      "name": "form-field-switch",
+      "type": "registry:component",
+      "title": "Form Field Switch",
+      "description": "Settings-row switch paired with label, description, and validation message. Use this for boolean settings toggles.",
+      "registryDependencies": ["field", "switch"],
+      "files": [
+        {
+          "path": "form-field-switch.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form-field-radio-group",
+      "type": "registry:component",
+      "title": "Form Field Radio Group",
+      "description": "Labeled single-choice radio group from an options array using FieldSet and FieldLegend. Use this instead of assembling RadioGroup and Field rows by hand.",
+      "registryDependencies": ["field", "radio-group"],
+      "files": [
+        {
+          "path": "form-field-radio-group.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-radio-group.tsx"
+        }
+      ]
     }
   ]
 }

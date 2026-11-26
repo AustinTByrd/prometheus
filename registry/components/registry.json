@@ -104,6 +104,88 @@
       ]
     },
     {
+      "name": "confirm-dialog",
+      "type": "registry:component",
+      "title": "Confirm Dialog",
+      "description": "Confirmation modal built on AlertDialog with async loading state and destructive variant. Use this instead of wiring AlertDialog, pending state, and cancel/confirm buttons by hand.",
+      "registryDependencies": [
+        "alert-dialog",
+        "AustinTByrd/prometheus/button"
+      ],
+      "files": [
+        {
+          "path": "confirm-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/confirm-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "simple-popover",
+      "type": "registry:component",
+      "title": "Simple Popover",
+      "description": "Desktop popover with trigger, optional header, and positioning props. Does not install mobile drawer behavior — use Responsive Popover when the same content should open as a drawer on mobile.",
+      "registryDependencies": ["popover"],
+      "files": [
+        {
+          "path": "simple-popover.tsx",
+          "type": "registry:component",
+          "target": "components/simple-popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "responsive-popover",
+      "type": "registry:component",
+      "title": "Responsive Popover",
+      "description": "Same API as Simple Popover, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop popover.",
+      "registryDependencies": [
+        "drawer",
+        "AustinTByrd/prometheus/simple-popover",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "files": [
+        {
+          "path": "responsive-popover.tsx",
+          "type": "registry:component",
+          "target": "components/responsive-popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:component",
+      "title": "Copy Button",
+      "description": "Clipboard copy button with temporary copied feedback built on Prometheus Button. Use this instead of repeating clipboard state and timeout cleanup.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["AustinTByrd/prometheus/button"],
+      "files": [
+        {
+          "path": "copy-button.tsx",
+          "type": "registry:component",
+          "target": "components/copy-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:component",
+      "title": "Theme Toggle",
+      "description": "Hydration-safe light/dark toggle wired to next-themes and SimpleTooltip. Pairs with PrometheusProvider.",
+      "dependencies": ["lucide-react", "next-themes"],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/simple-tooltip"
+      ],
+      "files": [
+        {
+          "path": "theme-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/theme-toggle.tsx"
+        }
+      ]
+    },
+    {
       "name": "page-header",
       "type": "registry:component",
       "title": "Page Header",

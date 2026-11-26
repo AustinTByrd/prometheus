@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle",
+  "title": "Theme Toggle",
+  "description": "Hydration-safe light/dark toggle wired to next-themes and SimpleTooltip. Pairs with PrometheusProvider.",
+  "dependencies": [
+    "lucide-react",
+    "next-themes"
+  ],
+  "registryDependencies": [
+    "AustinTByrd/prometheus/button",
+    "AustinTByrd/prometheus/simple-tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/components/theme-toggle.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\nimport { MoonIcon, SunIcon } from \"lucide-react\"\nimport { useTheme } from \"next-themes\"\n\nimport { Button } from \"@/components/button\"\nimport { SimpleTooltip } from \"@/components/simple-tooltip\"\nimport { cn } from \"@/lib/utils\"\n\nexport function ThemeToggle({\n  tooltip = \"Toggle theme\",\n  variant = \"ghost\",\n  size = \"icon-sm\",\n  className,\n  ...props\n}: Omit<React.ComponentProps<typeof Button>, \"children\" | \"icon\" | \"onClick\"> & {\n  tooltip?: string\n}) {\n  const { resolvedTheme, setTheme } = useTheme()\n\n  function toggle() {\n    setTheme(resolvedTheme === \"dark\" ? \"light\" : \"dark\")\n  }\n\n  return (\n    <SimpleTooltip content={tooltip}>\n      <Button\n        aria-label={tooltip}\n        className={cn(\"relative\", className)}\n        onClick={toggle}\n        size={size}\n        variant={variant}\n        {...props}\n      >\n        <SunIcon className=\"scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90\" />\n        <MoonIcon className=\"absolute scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0\" />\n        <span className=\"sr-only\">{tooltip}</span>\n      </Button>\n    </SimpleTooltip>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/theme-toggle.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

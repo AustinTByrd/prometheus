@@ -30,13 +30,13 @@ function Button({
   const content = (
     <>
       {loading ? (
-        <Spinner data-icon="inline-start" />
+        <Spinner data-icon={children ? "inline-start" : undefined} />
       ) : Icon && iconPosition === "start" ? (
-        <Icon data-icon="inline-start" />
+        <Icon data-icon={children ? "inline-start" : undefined} />
       ) : null}
       {children}
       {Icon && iconPosition === "end" && !loading ? (
-        <Icon data-icon="inline-end" />
+        <Icon data-icon={children ? "inline-end" : undefined} />
       ) : null}
     </>
   )

@@ -27,6 +27,11 @@
       "@/components/conditional-wrap": ["./registry/components/conditional-wrap.tsx"],
       "@/components/simple-dialog": ["./registry/components/simple-dialog.tsx"],
       "@/components/responsive-dialog": ["./registry/components/responsive-dialog.tsx"],
+      "@/components/confirm-dialog": ["./registry/components/confirm-dialog.tsx"],
+      "@/components/simple-popover": ["./registry/components/simple-popover.tsx"],
+      "@/components/responsive-popover": ["./registry/components/responsive-popover.tsx"],
+      "@/components/copy-button": ["./registry/components/copy-button.tsx"],
+      "@/components/theme-toggle": ["./registry/components/theme-toggle.tsx"],
       "@/components/page-header": ["./registry/components/page-header.tsx"],
       "@/components/spinner": ["./registry/components/spinner.tsx"],
       "@/components/kbd": ["./registry/components/kbd.tsx"],
@@ -34,7 +39,9 @@
       "@/components/form-field-input": ["./registry/forms/form-field-input.tsx"],
       "@/components/form-field-textarea": ["./registry/forms/form-field-textarea.tsx"],
       "@/components/form-field-select": ["./registry/forms/form-field-select.tsx"],
-      "@/components/form-field-checkbox": ["./registry/forms/form-field-checkbox.tsx"]
+      "@/components/form-field-checkbox": ["./registry/forms/form-field-checkbox.tsx"],
+      "@/components/form-field-switch": ["./registry/forms/form-field-switch.tsx"],
+      "@/components/form-field-radio-group": ["./registry/forms/form-field-radio-group.tsx"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

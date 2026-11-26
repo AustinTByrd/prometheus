@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "simple-popover",
+  "title": "Simple Popover",
+  "description": "Desktop popover with trigger, optional header, and positioning props. Does not install mobile drawer behavior — use Responsive Popover when the same content should open as a drawer on mobile.",
+  "registryDependencies": [
+    "popover"
+  ],
+  "files": [
+    {
+      "path": "registry/components/simple-popover.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/components/ui/popover\"\n\nexport function SimplePopover({\n  trigger,\n  title,\n  description,\n  children,\n  open,\n  onOpenChange,\n  side = \"bottom\",\n  align = \"center\",\n  sideOffset = 4,\n  className,\n}: {\n  trigger: React.ReactElement\n  title?: React.ReactNode\n  description?: React.ReactNode\n  children: React.ReactNode\n  open?: boolean\n  onOpenChange?: (open: boolean) => void\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  align?: \"start\" | \"center\" | \"end\"\n  sideOffset?: number\n  className?: string\n}) {\n  return (\n    <Popover onOpenChange={onOpenChange} open={open}>\n      <PopoverTrigger render={trigger} />\n      <PopoverContent\n        align={align}\n        className={className}\n        side={side}\n        sideOffset={sideOffset}\n      >\n        {title || description ? (\n          <PopoverHeader>\n            {title ? <PopoverTitle>{title}</PopoverTitle> : null}\n            {description ? (\n              <PopoverDescription>{description}</PopoverDescription>\n            ) : null}\n          </PopoverHeader>\n        ) : null}\n        {children}\n      </PopoverContent>\n    </Popover>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/simple-popover.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

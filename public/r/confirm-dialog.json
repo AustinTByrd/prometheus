@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "confirm-dialog",
+  "title": "Confirm Dialog",
+  "description": "Confirmation modal built on AlertDialog with async loading state and destructive variant. Use this instead of wiring AlertDialog, pending state, and cancel/confirm buttons by hand.",
+  "registryDependencies": [
+    "alert-dialog",
+    "AustinTByrd/prometheus/button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/confirm-dialog.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/button\"\nimport {\n  AlertDialog,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/components/ui/alert-dialog\"\n\nexport function ConfirmDialog({\n  trigger,\n  title,\n  description,\n  confirmLabel = \"Confirm\",\n  cancelLabel = \"Cancel\",\n  variant = \"default\",\n  onConfirm,\n  open: openProp,\n  onOpenChange,\n  size = \"default\",\n  className,\n}: {\n  trigger?: React.ReactElement\n  title: React.ReactNode\n  description?: React.ReactNode\n  confirmLabel?: string\n  cancelLabel?: string\n  variant?: \"default\" | \"destructive\"\n  onConfirm: () => void | Promise<void>\n  open?: boolean\n  onOpenChange?: (open: boolean) => void\n  size?: \"default\" | \"sm\"\n  className?: string\n}) {\n  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false)\n  const [pending, setPending] = React.useState(false)\n\n  const open = openProp ?? uncontrolledOpen\n  const setOpen = React.useCallback(\n    (nextOpen: boolean) => {\n      if (pending && !nextOpen) return\n      if (openProp === undefined) {\n        setUncontrolledOpen(nextOpen)\n      }\n      onOpenChange?.(nextOpen)\n    },\n    [onOpenChange, openProp, pending]\n  )\n\n  async function handleConfirm() {\n    try {\n      setPending(true)\n      await onConfirm()\n      if (openProp === undefined) {\n        setUncontrolledOpen(false)\n      }\n      onOpenChange?.(false)\n    } finally {\n      setPending(false)\n    }\n  }\n\n  return (\n    <AlertDialog onOpenChange={setOpen} open={open}>\n      {trigger ? <AlertDialogTrigger render={trigger} /> : null}\n      <AlertDialogContent className={className} size={size}>\n        <AlertDialogHeader>\n          <AlertDialogTitle>{title}</AlertDialogTitle>\n          {description ? (\n            <AlertDialogDescription>{description}</AlertDialogDescription>\n          ) : null}\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel disabled={pending}>{cancelLabel}</AlertDialogCancel>\n          <Button\n            loading={pending}\n            onClick={handleConfirm}\n            variant={variant === \"destructive\" ? \"destructive\" : \"default\"}\n          >\n            {confirmLabel}\n          </Button>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/confirm-dialog.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

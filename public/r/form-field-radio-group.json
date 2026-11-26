@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-radio-group",
+  "title": "Form Field Radio Group",
+  "description": "Labeled single-choice radio group from an options array using FieldSet and FieldLegend. Use this instead of assembling RadioGroup and Field rows by hand.",
+  "registryDependencies": [
+    "field",
+    "radio-group"
+  ],
+  "files": [
+    {
+      "path": "registry/forms/form-field-radio-group.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/components/ui/field\"\nimport { RadioGroup, RadioGroupItem } from \"@/components/ui/radio-group\"\nimport { cn } from \"@/lib/utils\"\n\nexport type FormFieldRadioOption = {\n  label: React.ReactNode\n  value: string\n  description?: React.ReactNode\n  disabled?: boolean\n}\n\nexport function FormFieldRadioGroup({\n  label,\n  description,\n  error,\n  name,\n  options,\n  value,\n  defaultValue,\n  onValueChange,\n  disabled,\n  required,\n  orientation = \"vertical\",\n  className,\n  wrapperClassName,\n}: {\n  label: React.ReactNode\n  description?: React.ReactNode\n  error?: React.ReactNode\n  name?: string\n  options: FormFieldRadioOption[]\n  value?: string\n  defaultValue?: string\n  onValueChange?: (value: string) => void\n  disabled?: boolean\n  required?: boolean\n  orientation?: \"vertical\" | \"horizontal\"\n  className?: string\n  wrapperClassName?: string\n}) {\n  const generatedId = React.useId()\n\n  return (\n    <FieldSet\n      className={cn(\"gap-3\", wrapperClassName)}\n      data-disabled={disabled ? true : undefined}\n      data-invalid={error ? true : undefined}\n    >\n      <div className=\"flex flex-col gap-1\">\n        <FieldLegend className=\"mb-0\" variant=\"label\">\n          {label}\n        </FieldLegend>\n        {description ? (\n          <FieldDescription>{description}</FieldDescription>\n        ) : null}\n      </div>\n      <RadioGroup\n        aria-invalid={error ? true : undefined}\n        className={cn(\n          orientation === \"horizontal\" && \"flex flex-wrap gap-4\",\n          className\n        )}\n        defaultValue={defaultValue}\n        disabled={disabled}\n        name={name}\n        onValueChange={(nextValue) => onValueChange?.(String(nextValue))}\n        required={required}\n        value={value}\n      >\n        {options.map((option) => {\n          const itemId = `${generatedId}-${option.value}`\n          const itemDisabled = disabled || option.disabled\n\n          return (\n            <Field\n              className=\"w-fit\"\n              data-disabled={itemDisabled ? true : undefined}\n              data-invalid={error ? true : undefined}\n              key={option.value}\n              orientation=\"horizontal\"\n            >\n              <RadioGroupItem\n                aria-invalid={error ? true : undefined}\n                disabled={itemDisabled}\n                id={itemId}\n                value={option.value}\n              />\n              <FieldContent>\n                <FieldLabel className=\"font-normal\" htmlFor={itemId}>\n                  {option.label}\n                </FieldLabel>\n                {option.description ? (\n                  <FieldDescription>{option.description}</FieldDescription>\n                ) : null}\n              </FieldContent>\n            </Field>\n          )\n        })}\n      </RadioGroup>\n      {error ? <FieldError>{error}</FieldError> : null}\n    </FieldSet>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/form-field-radio-group.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

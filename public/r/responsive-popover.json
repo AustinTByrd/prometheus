@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "responsive-popover",
+  "title": "Responsive Popover",
+  "description": "Same API as Simple Popover, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop popover.",
+  "registryDependencies": [
+    "drawer",
+    "AustinTByrd/prometheus/simple-popover",
+    "AustinTByrd/prometheus/prometheus-provider"
+  ],
+  "files": [
+    {
+      "path": "registry/components/responsive-popover.tsx",
+      "content": "\"use client\"\n\nimport type * as React from \"react\"\n\nimport { usePrometheus } from \"@/components/prometheus-provider\"\nimport { SimplePopover } from \"@/components/simple-popover\"\nimport {\n  Drawer,\n  DrawerContent,\n  DrawerDescription,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/components/ui/drawer\"\n\nexport function ResponsivePopover({\n  trigger,\n  title,\n  description,\n  children,\n  open,\n  onOpenChange,\n  side = \"bottom\",\n  align = \"center\",\n  sideOffset = 4,\n  className,\n  mobileView = \"drawer\",\n}: {\n  trigger: React.ReactElement\n  title?: React.ReactNode\n  description?: React.ReactNode\n  children: React.ReactNode\n  open?: boolean\n  onOpenChange?: (open: boolean) => void\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  align?: \"start\" | \"center\" | \"end\"\n  sideOffset?: number\n  className?: string\n  mobileView?: \"drawer\" | \"keep\"\n}) {\n  const { isMobile } = usePrometheus()\n\n  if (!isMobile || mobileView === \"keep\") {\n    return (\n      <SimplePopover\n        align={align}\n        className={className}\n        description={description}\n        onOpenChange={onOpenChange}\n        open={open}\n        side={side}\n        sideOffset={sideOffset}\n        title={title}\n        trigger={trigger}\n      >\n        {children}\n      </SimplePopover>\n    )\n  }\n\n  return (\n    <Drawer onOpenChange={onOpenChange} open={open} showSwipeHandle>\n      <DrawerTrigger render={trigger} />\n      <DrawerContent className={className}>\n        {title || description ? (\n          <DrawerHeader>\n            <DrawerTitle>{title ?? \"Options\"}</DrawerTitle>\n            {description ? (\n              <DrawerDescription>{description}</DrawerDescription>\n            ) : null}\n          </DrawerHeader>\n        ) : (\n          <DrawerTitle className=\"sr-only\">Options</DrawerTitle>\n        )}\n        <div className=\"flex flex-col gap-3 overflow-y-auto p-4\">{children}</div>\n      </DrawerContent>\n    </Drawer>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/responsive-popover.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

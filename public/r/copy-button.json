@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "title": "Copy Button",
+  "description": "Clipboard copy button with temporary copied feedback built on Prometheus Button. Use this instead of repeating clipboard state and timeout cleanup.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "AustinTByrd/prometheus/button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/copy-button.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { CheckIcon, CopyIcon } from \"lucide-react\"\n\nimport { Button } from \"@/components/button\"\n\nexport function CopyButton({\n  value,\n  label,\n  copiedLabel = \"Copied\",\n  timeout = 1600,\n  onCopied,\n  variant = \"outline\",\n  size,\n  onClick,\n  ...props\n}: Omit<React.ComponentProps<typeof Button>, \"children\" | \"icon\"> & {\n  value: string\n  label?: string\n  copiedLabel?: string\n  timeout?: number\n  onCopied?: (value: string) => void\n}) {\n  const [copied, setCopied] = React.useState(false)\n  const timerRef = React.useRef<number | null>(null)\n\n  React.useEffect(() => {\n    return () => {\n      if (timerRef.current !== null) {\n        window.clearTimeout(timerRef.current)\n      }\n    }\n  }, [])\n\n  const handleClick: NonNullable<React.ComponentProps<typeof Button>[\"onClick\"]> =\n    async (event) => {\n      onClick?.(event)\n      if (event.defaultPrevented) return\n\n      try {\n        await navigator.clipboard.writeText(value)\n        setCopied(true)\n        onCopied?.(value)\n        if (timerRef.current !== null) {\n          window.clearTimeout(timerRef.current)\n        }\n        timerRef.current = window.setTimeout(() => {\n          setCopied(false)\n          timerRef.current = null\n        }, timeout)\n      } catch {\n        setCopied(false)\n      }\n    }\n\n  const isIconOnly = !label\n  const resolvedSize = size ?? (isIconOnly ? \"icon-sm\" : \"sm\")\n\n  return (\n    <Button\n      aria-label={\n        props[\"aria-label\"] ?? (isIconOnly ? (copied ? copiedLabel : \"Copy\") : undefined)\n      }\n      icon={copied ? CheckIcon : CopyIcon}\n      onClick={handleClick}\n      size={resolvedSize}\n      variant={variant}\n      {...props}\n    >\n      {label ? (copied ? copiedLabel : label) : null}\n    </Button>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/copy-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-switch",
+  "title": "Form Field Switch",
+  "description": "Settings-row switch paired with label, description, and validation message. Use this for boolean settings toggles.",
+  "registryDependencies": [
+    "field",
+    "switch"
+  ],
+  "files": [
+    {
+      "path": "registry/forms/form-field-switch.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"@/components/ui/field\"\nimport { Switch } from \"@/components/ui/switch\"\nimport { cn } from \"@/lib/utils\"\n\nexport function FormFieldSwitch({\n  label,\n  description,\n  error,\n  id,\n  name,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  disabled,\n  required,\n  value,\n  size = \"default\",\n  className,\n  wrapperClassName,\n}: {\n  label: React.ReactNode\n  description?: React.ReactNode\n  error?: React.ReactNode\n  id?: string\n  name?: string\n  checked?: boolean\n  defaultChecked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  disabled?: boolean\n  required?: boolean\n  value?: string\n  size?: \"sm\" | \"default\"\n  className?: string\n  wrapperClassName?: string\n}) {\n  const generatedId = React.useId()\n  const fieldId = id ?? name ?? generatedId\n\n  return (\n    <Field\n      className={cn(\"justify-between\", wrapperClassName)}\n      data-disabled={disabled ? true : undefined}\n      data-invalid={error ? true : undefined}\n      orientation=\"horizontal\"\n    >\n      <FieldContent>\n        <FieldLabel htmlFor={fieldId}>{label}</FieldLabel>\n        {description ? (\n          <FieldDescription>{description}</FieldDescription>\n        ) : null}\n        {error ? <FieldError>{error}</FieldError> : null}\n      </FieldContent>\n      <Switch\n        aria-invalid={error ? true : undefined}\n        checked={checked}\n        className={className}\n        defaultChecked={defaultChecked}\n        disabled={disabled}\n        id={fieldId}\n        name={name}\n        onCheckedChange={onCheckedChange}\n        required={required}\n        size={size}\n        value={value}\n      />\n    </Field>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/form-field-switch.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

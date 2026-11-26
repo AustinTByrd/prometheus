@@ -199,6 +199,97 @@
       "type": "registry:component"
     },
     {
+      "name": "confirm-dialog",
+      "title": "Confirm Dialog",
+      "description": "Confirmation modal built on AlertDialog with async loading state and destructive variant. Use this instead of wiring AlertDialog, pending state, and cancel/confirm buttons by hand.",
+      "registryDependencies": [
+        "alert-dialog",
+        "AustinTByrd/prometheus/button"
+      ],
+      "files": [
+        {
+          "path": "registry/components/confirm-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/confirm-dialog.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "simple-popover",
+      "title": "Simple Popover",
+      "description": "Desktop popover with trigger, optional header, and positioning props. Does not install mobile drawer behavior — use Responsive Popover when the same content should open as a drawer on mobile.",
+      "registryDependencies": [
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "registry/components/simple-popover.tsx",
+          "type": "registry:component",
+          "target": "components/simple-popover.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "responsive-popover",
+      "title": "Responsive Popover",
+      "description": "Same API as Simple Popover, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop popover.",
+      "registryDependencies": [
+        "drawer",
+        "AustinTByrd/prometheus/simple-popover",
+        "AustinTByrd/prometheus/prometheus-provider"
+      ],
+      "files": [
+        {
+          "path": "registry/components/responsive-popover.tsx",
+          "type": "registry:component",
+          "target": "components/responsive-popover.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "copy-button",
+      "title": "Copy Button",
+      "description": "Clipboard copy button with temporary copied feedback built on Prometheus Button. Use this instead of repeating clipboard state and timeout cleanup.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button"
+      ],
+      "files": [
+        {
+          "path": "registry/components/copy-button.tsx",
+          "type": "registry:component",
+          "target": "components/copy-button.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "theme-toggle",
+      "title": "Theme Toggle",
+      "description": "Hydration-safe light/dark toggle wired to next-themes and SimpleTooltip. Pairs with PrometheusProvider.",
+      "dependencies": [
+        "lucide-react",
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/simple-tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/components/theme-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/theme-toggle.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
       "name": "page-header",
       "title": "Page Header",
       "description": "Title, description, and action slot with optional sticky positioning. Use this instead of rebuilding header layout on every screen.",
@@ -321,6 +412,40 @@
           "path": "registry/forms/form-field-checkbox.tsx",
           "type": "registry:component",
           "target": "components/form-field-checkbox.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-switch",
+      "title": "Form Field Switch",
+      "description": "Settings-row switch paired with label, description, and validation message. Use this for boolean settings toggles.",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-switch.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-switch.tsx"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "form-field-radio-group",
+      "title": "Form Field Radio Group",
+      "description": "Labeled single-choice radio group from an options array using FieldSet and FieldLegend. Use this instead of assembling RadioGroup and Field rows by hand.",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "files": [
+        {
+          "path": "registry/forms/form-field-radio-group.tsx",
+          "type": "registry:component",
+          "target": "components/form-field-radio-group.tsx"
         }
       ],
       "type": "registry:component"
