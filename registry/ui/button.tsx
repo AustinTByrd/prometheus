@@ -11,6 +11,9 @@ import { SURFACE_BG } from "@/lib/surface-classes"
 /** Steps above the substrate, so a default button stays lighter than the surface it sits on. */
 const DEFAULT_LIFT = 2
 
+const PILL_SPACING_CLASSES =
+  "rounded-(--pill-r) in-data-[slot=button-group]:rounded-(--pill-r) px-(--pill-px) [&:not(:has(*))]:px-[calc(var(--pill-px)_+_var(--pill-r)_*_(1_-_pi_/_4)_*_var(--pill-r)_/_var(--pill))] [&>:not([data-slot=button-content])]:[--pill-edge:calc(var(--pill-r)_*_(1_-_pi_/_4)_*_var(--pill-r)_/_var(--pill))] [&>svg]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&>[data-icon]]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&>:not([data-slot=button-content]):first-child]:ms-(--pill-edge) [&>:not([data-slot=button-content]):last-child]:me-(--pill-edge) [&_[data-slot=button-layer]>*]:[--pill-edge:calc(var(--pill-r)_*_(1_-_pi_/_4)_*_var(--pill-r)_/_var(--pill))] [&_[data-slot=button-layer]>svg]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&_[data-slot=button-layer]>[data-icon]]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&_[data-slot=button-layer]>:first-child]:ms-(--pill-edge) [&_[data-slot=button-layer]>:last-child]:me-(--pill-edge)"
+
 const buttonVariants = cva(
   "group/button relative isolate inline-flex shrink-0 cursor-pointer items-center justify-center rounded-sm border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-[background-color,color,box-shadow,transform,opacity,filter,padding] duration-(--duration-fast) ease-(--ease-standard) outline-none select-none before:pointer-events-none before:absolute before:inset-0 before:z-0 before:rounded-[inherit] before:bg-hover before:opacity-0 before:transition-opacity before:duration-(--duration-fast) before:ease-(--ease-standard) hover:before:opacity-100 hover:text-[color-mix(in_oklab,currentColor_88%,transparent)] active:before:opacity-100 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 motion-safe:active:not-aria-[haspopup]:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 *:relative *:z-[1] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -28,11 +31,10 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 opacity-80 hover:before:opacity-0 hover:underline hover:opacity-100 active:before:opacity-0 active:opacity-100",
       },
       size: {
-        default:
-          "h-8 gap-1.5 px-2.5 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2",
-        xs: "h-6 gap-1 rounded-xs px-2 text-xs in-data-[slot=button-group]:rounded-sm has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-1.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-xs px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-sm has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-1.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2",
+        default: "h-8 gap-1.5 px-2.5",
+        xs: "h-6 gap-1 rounded-xs px-2 text-xs in-data-[slot=button-group]:rounded-sm [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-xs px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-sm [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-2.5",
         icon: "size-8",
         "icon-xs":
           "size-6 rounded-xs in-data-[slot=button-group]:rounded-sm [&_svg:not([class*='size-'])]:size-3",
@@ -46,28 +48,60 @@ const buttonVariants = cva(
     },
     compoundVariants: [
       {
-        pill: true,
+        pill: false,
         size: "xs",
         className:
-          "px-2.5 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2",
+          "has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-1.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-1.5",
+      },
+      {
+        pill: false,
+        size: "sm",
+        className:
+          "has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-1.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-1.5",
+      },
+      {
+        pill: false,
+        size: "default",
+        className:
+          "has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2",
+      },
+      {
+        pill: false,
+        size: "lg",
+        className:
+          "has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2",
+      },
+      {
+        pill: true,
+        size: "xs",
+        className: cn(
+          "[--pill-py:5px] [--pill-px:8px] [--pill:12px] [--pill-r:var(--pill)]",
+          PILL_SPACING_CLASSES,
+        ),
       },
       {
         pill: true,
         size: "sm",
-        className:
-          "px-3 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2.5",
+        className: cn(
+          "[--pill-py:6px] [--pill-px:10px] [--pill:14px] [--pill-r:var(--pill)]",
+          PILL_SPACING_CLASSES,
+        ),
       },
       {
         pill: true,
         size: "default",
-        className:
-          "px-3 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2.5",
+        className: cn(
+          "[--pill-py:7px] [--pill-px:10px] [--pill:16px] [--pill-r:var(--pill)]",
+          PILL_SPACING_CLASSES,
+        ),
       },
       {
         pill: true,
         size: "lg",
-        className:
-          "px-3 has-[[data-icon=inline-end]:not([data-exiting]_*)]:pr-2.5 has-[[data-icon=inline-start]:not([data-exiting]_*)]:pl-2.5",
+        className: cn(
+          "[--pill-py:9px] [--pill-px:10px] [--pill:18px] [--pill-r:var(--pill)]",
+          PILL_SPACING_CLASSES,
+        ),
       },
     ],
     defaultVariants: {
@@ -99,9 +133,66 @@ function contentKey(node: React.ReactNode): string {
   return ""
 }
 
+function flattenPillNodes(
+  node: React.ReactNode,
+  out: React.ReactNode[],
+): void {
+  if (node == null || typeof node === "boolean") return
+  if (Array.isArray(node)) {
+    for (const item of node) flattenPillNodes(item, out)
+    return
+  }
+  if (React.isValidElement(node) && node.type === React.Fragment) {
+    flattenPillNodes(
+      (node.props as { children?: React.ReactNode }).children,
+      out,
+    )
+    return
+  }
+  out.push(node)
+}
+
+function normalizePillChildren(children: React.ReactNode): React.ReactNode {
+  const flat: React.ReactNode[] = []
+  flattenPillNodes(children, flat)
+
+  const result: React.ReactNode[] = []
+  let textBuffer: (string | number)[] = []
+
+  const flushText = () => {
+    if (textBuffer.length === 0) return
+    const trimmed = textBuffer.join("").trim()
+    textBuffer = []
+    if (!trimmed) return
+    result.push(
+      <span data-slot="pill-label" key={`pill-label-${result.length}`}>
+        {trimmed}
+      </span>,
+    )
+  }
+
+  for (const item of flat) {
+    if (typeof item === "string" || typeof item === "number") {
+      textBuffer.push(item)
+    } else {
+      flushText()
+      result.push(item)
+    }
+  }
+  flushText()
+
+  return result
+}
+
 type SwapLayer = { id: number; key: string; node: React.ReactNode }
 
-function ButtonContent({ children }: { children: React.ReactNode }) {
+function ButtonContent({
+  children,
+  pill,
+}: {
+  children: React.ReactNode
+  pill: boolean
+}) {
   const key = contentKey(children)
   const [layers, setLayers] = React.useState<SwapLayer[]>(() => [
     { id: 0, key, node: children },
@@ -167,10 +258,12 @@ function ButtonContent({ children }: { children: React.ReactNode }) {
     >
       {layers.map((layer, index) => {
         const exiting = index < layers.length - 1
+        const layerNode = exiting ? layer.node : children
         return (
           <span
             aria-hidden={exiting || undefined}
             data-exiting={exiting ? "" : undefined}
+            data-slot="button-layer"
             className={cn(
               "inline-flex items-center justify-center gap-[inherit] whitespace-nowrap transition-[opacity,translate,filter] duration-220 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:duration-150 motion-reduce:ease-linear",
               layer.id > 0 &&
@@ -180,7 +273,7 @@ function ButtonContent({ children }: { children: React.ReactNode }) {
             )}
             key={layer.id}
           >
-            {exiting ? layer.node : children}
+            {pill ? normalizePillChildren(layerNode) : layerNode}
           </span>
         )
       })}
@@ -211,7 +304,11 @@ function Button({
       )}
       {...props}
     >
-      {children == null ? children : <ButtonContent>{children}</ButtonContent>}
+      {children == null ? (
+        children
+      ) : (
+        <ButtonContent pill={Boolean(pill)}>{children}</ButtonContent>
+      )}
     </ButtonPrimitive>
   )
 }

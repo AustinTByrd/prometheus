@@ -1,3 +1,5 @@
+import { CheckCircleIcon, SparklesIcon } from "@heroicons/react/16/solid"
+
 import { Badge } from "@/components/ui/badge"
 import { chartPalette } from "@/lib/chart-palette"
 
@@ -28,6 +30,16 @@ export function BadgeDemo() {
             {labels[color]}
           </Badge>
         ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge color="sage">
+          <CheckCircleIcon />
+          Healthy
+        </Badge>
+        <Badge color="blue" size="lg">
+          <SparklesIcon />
+          Optical pill spacing
+        </Badge>
       </div>
     </div>
   )

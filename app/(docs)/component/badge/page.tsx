@@ -40,7 +40,10 @@ export default function BadgePage() {
         <DocsProse>
           Soft tags on the Data Foundations palette. Leave <code>color</code>{" "}
           off for a muted neutral. <code>size=&quot;lg&quot;</code> is one step
-          up for denser labels and titles.
+          up for denser labels and titles. Badges use the same{" "}
+          <Link href="/component/button#pill">π-based pill spacing</Link> as
+          pill buttons, so text clears the curve and leading or trailing icons
+          sit concentric in the round cap.
         </DocsProse>
         <BadgeDemo />
         <CodeBlock>{usageSample}</CodeBlock>

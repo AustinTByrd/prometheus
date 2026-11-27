@@ -21,44 +21,54 @@ type TabRect = {
   height: number
 }
 
+const PILL_TAB_EDGE_CLASSES =
+  "rounded-(--pill-r) px-(--pill-px) [&>*]:[--pill-edge:calc(var(--pill-r)_*_(1_-_pi_/_4)_*_var(--pill-r)_/_var(--pill))] [&>svg]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&>[data-icon]]:[--pill-edge:calc(var(--pill-py)_-_var(--pill-px))] [&>:first-child]:ms-(--pill-edge) [&>:last-child:not([data-tab-collapsible])]:me-(--pill-edge)"
+
 const SIZE_CONFIG: Record<
   TabsSize,
   {
     control: string
-    px: string
-    collapsedPx: string
+    pillVars: string
     gap: string
     text: string
     icon: string
     labelMargin: number
+    iconEdgePx: number
+    textEdgePx: number
   }
 > = {
   sm: {
     control: "h-7",
-    px: "px-3",
-    collapsedPx: "px-[7px]",
+    pillVars:
+      "[--pill-py:7px] [--pill-px:10px] [--pill:14px] [--pill-r:var(--pill)]",
     gap: "gap-1.5",
     text: "text-[0.8rem]",
     icon: "size-3.5",
     labelMargin: 6,
+    iconEdgePx: -3,
+    textEdgePx: 14 * (1 - Math.PI / 4),
   },
   default: {
     control: "h-8",
-    px: "px-3",
-    collapsedPx: "px-2",
+    pillVars:
+      "[--pill-py:8px] [--pill-px:10px] [--pill:16px] [--pill-r:var(--pill)]",
     gap: "gap-1.5",
     text: "text-sm",
     icon: "size-4",
     labelMargin: 6,
+    iconEdgePx: -2,
+    textEdgePx: 16 * (1 - Math.PI / 4),
   },
   lg: {
     control: "h-9",
-    px: "px-3.5",
-    collapsedPx: "px-2.5",
+    pillVars:
+      "[--pill-py:10px] [--pill-px:11px] [--pill:18px] [--pill-r:var(--pill)]",
     gap: "gap-2",
     text: "text-sm",
     icon: "size-4",
     labelMargin: 8,
+    iconEdgePx: -1,
+    textEdgePx: 18 * (1 - Math.PI / 4),
   },
 }
 
@@ -475,9 +485,10 @@ const TabsItem = React.forwardRef<HTMLButtonElement, TabsItemProps>(
         aria-controls={idPrefix ? `${idPrefix}-panel-${index}` : undefined}
         aria-label={collapseLabel && !showLabel ? label : undefined}
         className={cn(
-          "group/tab relative z-10 inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent outline-none whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-50",
+          "group/tab relative z-10 inline-flex shrink-0 cursor-pointer items-center justify-center border-none bg-transparent outline-none whitespace-nowrap select-none disabled:pointer-events-none disabled:opacity-50",
           sizeClasses.control,
-          collapseLabel && !showLabel ? sizeClasses.collapsedPx : sizeClasses.px,
+          sizeClasses.pillVars,
+          PILL_TAB_EDGE_CLASSES,
           !collapseLabel && sizeClasses.gap,
           className,
         )}
@@ -496,15 +507,27 @@ const TabsItem = React.forwardRef<HTMLButtonElement, TabsItemProps>(
             {showLabel && (
               <motion.span
                 key="label"
+                data-tab-collapsible=""
                 className="overflow-hidden"
                 style={labelWidth == null ? { width: "auto" } : undefined}
-                initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+                initial={{
+                  width: 0,
+                  opacity: 0,
+                  marginLeft: 0,
+                  marginRight: sizeClasses.iconEdgePx,
+                }}
                 animate={{
                   ...(labelWidth != null ? { width: labelWidth } : null),
                   opacity: 1,
                   marginLeft: sizeClasses.labelMargin,
+                  marginRight: sizeClasses.textEdgePx,
                 }}
-                exit={{ width: 0, opacity: 0, marginLeft: 0 }}
+                exit={{
+                  width: 0,
+                  opacity: 0,
+                  marginLeft: 0,
+                  marginRight: sizeClasses.iconEdgePx,
+                }}
                 transition={expandTransition}
               >
                 {labelContent}
