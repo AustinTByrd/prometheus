@@ -1,0 +1,149 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography",
+  "title": "Typography",
+  "description": "Type ramp from text-xs through text-5xl. Each step sets size, line-height, and tracking. Titles from text-xl use font-display. Long-form copy uses prose. Drop caps use drop-cap (2 lines), drop-cap-3, or drop-cap-4.",
+  "files": [
+    {
+      "path": "registry/lib/typography.ts",
+      "content": "// @prometheus 0.2.0\n\n/**\n * Type ramp. Each step is a size, a line-height, and tracking.\n * Theme variables `--text-*` match these values. The ramp ends at 5xl.\n */\nexport const typeRamp = {\n  xs: {\n    className: \"text-xs\",\n    size: \"0.75rem\",\n    lineHeight: \"1rem\",\n    tracking: \"0.02em\",\n    display: false,\n    role: \"Meta and captions.\",\n  },\n  sm: {\n    className: \"text-sm\",\n    size: \"0.875rem\",\n    lineHeight: \"1.25rem\",\n    tracking: \"0.01em\",\n    display: false,\n    role: \"Default UI and controls.\",\n  },\n  base: {\n    className: \"text-base\",\n    size: \"1rem\",\n    lineHeight: \"1.5rem\",\n    tracking: \"0em\",\n    display: false,\n    role: \"Reading and prose.\",\n  },\n  lg: {\n    className: \"text-lg\",\n    size: \"1.125rem\",\n    lineHeight: \"1.75rem\",\n    tracking: \"-0.01em\",\n    display: false,\n    role: \"Leads and large UI.\",\n  },\n  xl: {\n    className: \"text-xl\",\n    size: \"1.25rem\",\n    lineHeight: \"1.75rem\",\n    tracking: \"-0.02em\",\n    display: true,\n    role: \"Small titles.\",\n  },\n  \"2xl\": {\n    className: \"text-2xl\",\n    size: \"1.5rem\",\n    lineHeight: \"2rem\",\n    tracking: \"-0.025em\",\n    display: true,\n    role: \"Section titles.\",\n  },\n  \"3xl\": {\n    className: \"text-3xl\",\n    size: \"1.875rem\",\n    lineHeight: \"2.25rem\",\n    tracking: \"-0.03em\",\n    display: true,\n    role: \"Page titles.\",\n  },\n  \"4xl\": {\n    className: \"text-4xl\",\n    size: \"2.25rem\",\n    lineHeight: \"2.75rem\",\n    tracking: \"-0.03em\",\n    display: true,\n    role: \"Display titles.\",\n  },\n  \"5xl\": {\n    className: \"text-5xl\",\n    size: \"3rem\",\n    lineHeight: \"3.5rem\",\n    tracking: \"-0.035em\",\n    display: true,\n    role: \"Rare, large display.\",\n  },\n} as const\n\nexport type TypeStep = keyof typeof typeRamp\n\n/**\n * Drop cap. Put on a paragraph, or on a `prose` root so the first paragraph’s\n * opening letter sinks in Geist Serif. Default and minimum are two lines; use\n * `drop-cap-3` or `drop-cap-4` for taller caps. Or set `--drop-cap-lines` on a\n * `drop-cap` element for a custom height (clamped to at least 2 in CSS).\n */\nexport const dropCap = \"drop-cap\" as const\n\nexport type DropCapLines = 2 | 3 | 4\n\n/** Class for a drop cap of `lines` body lines tall (default 2; minimum 2). */\nexport function dropCapClass(lines: DropCapLines = 2) {\n  return lines === 2 ? dropCap : (`drop-cap-${lines}` as const)\n}\n",
+      "type": "registry:lib",
+      "target": "lib/typography.ts"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "text-xs": "0.75rem",
+      "text-xs--line-height": "1rem",
+      "text-xs--letter-spacing": "0.02em",
+      "text-sm": "0.875rem",
+      "text-sm--line-height": "1.25rem",
+      "text-sm--letter-spacing": "0.01em",
+      "text-base": "1rem",
+      "text-base--line-height": "1.5rem",
+      "text-base--letter-spacing": "0em",
+      "text-lg": "1.125rem",
+      "text-lg--line-height": "1.75rem",
+      "text-lg--letter-spacing": "-0.01em",
+      "text-xl": "1.25rem",
+      "text-xl--line-height": "1.75rem",
+      "text-xl--letter-spacing": "-0.02em",
+      "text-2xl": "1.5rem",
+      "text-2xl--line-height": "2rem",
+      "text-2xl--letter-spacing": "-0.025em",
+      "text-3xl": "1.875rem",
+      "text-3xl--line-height": "2.25rem",
+      "text-3xl--letter-spacing": "-0.03em",
+      "text-4xl": "2.25rem",
+      "text-4xl--line-height": "2.75rem",
+      "text-4xl--letter-spacing": "-0.03em",
+      "text-5xl": "3rem",
+      "text-5xl--line-height": "3.5rem",
+      "text-5xl--letter-spacing": "-0.035em",
+      "text-6xl--letter-spacing": "-0.04em",
+      "text-7xl--letter-spacing": "-0.04em",
+      "text-8xl--letter-spacing": "-0.04em",
+      "text-9xl--letter-spacing": "-0.04em"
+    }
+  },
+  "css": {
+    "@layer base": {
+      ".font-display": {
+        "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+        "font-weight": "500",
+        "font-variant-ligatures": "none"
+      },
+      ".prose": {
+        "max-width": "65ch",
+        "font-size": "var(--text-base)",
+        "line-height": "var(--text-base--line-height)",
+        "letter-spacing": "var(--text-base--letter-spacing)",
+        "color": "var(--foreground)"
+      },
+      ".prose > * + *": {
+        "margin-top": "0.75em"
+      },
+      ".prose :where(h1, h2, h3)": {
+        "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+        "font-weight": "500",
+        "font-variant-ligatures": "none",
+        "text-wrap": "balance"
+      },
+      ".prose :where(h1)": {
+        "font-size": "var(--text-4xl)",
+        "line-height": "var(--text-4xl--line-height)",
+        "letter-spacing": "var(--text-4xl--letter-spacing)"
+      },
+      ".prose > * + :where(h1)": {
+        "margin-top": "0"
+      },
+      ".prose :where(h2)": {
+        "font-size": "var(--text-2xl)",
+        "line-height": "var(--text-2xl--line-height)",
+        "letter-spacing": "var(--text-2xl--letter-spacing)"
+      },
+      ".prose > * + :where(h2)": {
+        "margin-top": "1.5em"
+      },
+      ".prose :where(h3)": {
+        "font-size": "var(--text-xl)",
+        "line-height": "var(--text-xl--line-height)",
+        "letter-spacing": "var(--text-xl--letter-spacing)"
+      },
+      ".prose > * + :where(h3)": {
+        "margin-top": "1.25em"
+      },
+      ".prose :where(p, ul, ol)": {
+        "text-wrap": "pretty"
+      },
+      ".prose :where(a)": {
+        "text-decoration-line": "underline",
+        "text-decoration-color": "color-mix(in oklab, var(--foreground) 40%, transparent)",
+        "text-underline-offset": "0.15em"
+      },
+      ".prose :where(strong)": {
+        "font-weight": "500"
+      },
+      ".prose :where(ul, ol)": {
+        "padding-left": "1.25rem"
+      },
+      ".prose :where(ul)": {
+        "list-style-type": "disc"
+      },
+      ".prose :where(ol)": {
+        "list-style-type": "decimal"
+      },
+      ".prose :where(li + li)": {
+        "margin-top": "0.25em"
+      },
+      ".prose :where(code)": {
+        "font-family": "var(--font-mono), ui-monospace, monospace",
+        "font-size": "0.875em",
+        "background": "var(--muted)",
+        "border-radius": "0.25rem",
+        "padding": "0.1em 0.35em"
+      },
+      ".drop-cap, .drop-cap-3, .drop-cap-4": {
+        "--drop-cap-lines": "2"
+      },
+      ".drop-cap-3": {
+        "--drop-cap-lines": "3"
+      },
+      ".drop-cap-4": {
+        "--drop-cap-lines": "4"
+      },
+      ".drop-cap::first-letter, .drop-cap-3::first-letter, .drop-cap-4::first-letter, .prose.drop-cap > p:first-of-type::first-letter, .prose.drop-cap-3 > p:first-of-type::first-letter, .prose.drop-cap-4 > p:first-of-type::first-letter": {
+        "float": "left",
+        "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+        "font-weight": "500",
+        "font-variant-ligatures": "none",
+        "font-size": "calc(max(2, var(--drop-cap-lines, 2)) * 1lh)",
+        "line-height": "1",
+        "margin-right": "0.1em",
+        "padding-top": "0",
+        "color": "var(--foreground)"
+      }
+    }
+  },
+  "type": "registry:lib"
+}

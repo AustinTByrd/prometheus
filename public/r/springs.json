@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "springs",
+  "title": "Springs",
+  "description": "Critically damped spring tiers for pointer-driven motion. Prefer these over hand-written durations.",
+  "files": [
+    {
+      "path": "registry/lib/springs.ts",
+      "content": "// @prometheus 0.2.0\n\n/**\n * Motion springs for pointer-driven UI. Critically damped enter; exit is a\n * plain tween one tier quicker. Prefer these over hand-written durations.\n */\nexport const spring = {\n  fast: {\n    type: \"spring\" as const,\n    duration: 0.08,\n    bounce: 0,\n    exit: { duration: 0.06 },\n  },\n  moderate: {\n    type: \"spring\" as const,\n    duration: 0.16,\n    bounce: 0,\n    exit: { duration: 0.12 },\n  },\n  slow: {\n    type: \"spring\" as const,\n    duration: 0.24,\n    bounce: 0.12,\n    exit: { duration: 0.16 },\n  },\n} as const\n\nexport const exitFallbackMs = (tier: { exit: { duration: number } }) =>\n  Math.round(tier.exit.duration * 1000) + 100\n",
+      "type": "registry:lib",
+      "target": "lib/springs.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

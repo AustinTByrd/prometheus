@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "size-context",
+  "title": "Size",
+  "description": "Two-step size ladder (default and compact). SizeProvider pins a region; components read useSizeVariant.",
+  "files": [
+    {
+      "path": "registry/lib/size-context.tsx",
+      "content": "// @prometheus 0.2.0\n\"use client\"\n\nimport * as React from \"react\"\n\nexport type SizeVariant = \"default\" | \"compact\"\n\n/** iOS Safari zooms inputs under 16px on coarse pointers. */\nexport const fieldTouchClass = \"pointer-coarse:text-[16px]\"\n\ntype SizeContextValue = {\n  size: SizeVariant\n  setSize: (size: SizeVariant) => void\n}\n\nconst SizeContext = React.createContext<SizeContextValue | null>(null)\n\n/** Resolve size: explicit prop → provider → default. */\nexport function useSizeVariant(override?: SizeVariant | null): SizeVariant {\n  const ctx = React.useContext(SizeContext)\n  return override ?? ctx?.size ?? \"default\"\n}\n\nexport function useSizeContext() {\n  const ctx = React.useContext(SizeContext)\n  if (!ctx) throw new Error(\"useSizeContext must be used within a SizeProvider\")\n  return ctx\n}\n\nexport function SizeProvider({\n  children,\n  size,\n  defaultSize = \"default\",\n}: {\n  children: React.ReactNode\n  size?: SizeVariant\n  defaultSize?: SizeVariant\n}) {\n  const [internalSize, setInternalSize] = React.useState<SizeVariant>(defaultSize)\n  const isControlled = size !== undefined\n  const resolved = size ?? internalSize\n\n  const setSize = React.useCallback(\n    (next: SizeVariant) => {\n      if (isControlled) return\n      setInternalSize(next)\n    },\n    [isControlled]\n  )\n\n  const value = React.useMemo(\n    () => ({ size: resolved, setSize }),\n    [resolved, setSize]\n  )\n\n  return <SizeContext.Provider value={value}>{children}</SizeContext.Provider>\n}\n",
+      "type": "registry:lib",
+      "target": "lib/size-context.tsx"
+    }
+  ],
+  "type": "registry:lib"
+}

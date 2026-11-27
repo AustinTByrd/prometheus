@@ -6,67 +6,105 @@
     {
       "name": "base",
       "title": "Prometheus Base",
-      "description": "Prometheus design-system defaults for a new app. Locks Base UI, Geist, Lucide, ember tokens, and the @prometheus namespace. Install this with shadcn init instead of composing a theme by hand.",
+      "description": "Prometheus design-system defaults for a new app. Locks Base UI, Geist, Heroicons, warm paper tokens, the type ramp, breakpoint tokens, and the @prometheus namespace. Install this with shadcn init instead of composing a theme by hand.",
       "dependencies": [
         "class-variance-authority",
         "clsx",
         "tailwind-merge",
         "tw-animate-css",
-        "lucide-react",
+        "@heroicons/react",
         "next-themes",
         "@base-ui/react"
       ],
       "registryDependencies": [
         "utils",
         "font-geist",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/breakpoints",
         "AustinTByrd/prometheus/agent",
-        "AustinTByrd/prometheus/prometheus-provider"
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/prometheus-provider",
+        "AustinTByrd/prometheus/app-shell",
+        "AustinTByrd/prometheus/changelog",
+        "AustinTByrd/prometheus/theme"
       ],
       "cssVars": {
         "theme": {
           "font-sans": "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif",
           "font-mono": "Geist Mono, Geist Mono Fallback, ui-monospace, monospace",
-          "radius": "0.625rem"
+          "radius": "0.75rem",
+          "color-hover": "var(--hover)",
+          "color-hover-light": "var(--hover-light)"
         },
         "light": {
-          "background": "oklch(1 0 0)",
-          "foreground": "oklch(0.145 0 0)",
-          "card": "oklch(1 0 0)",
-          "card-foreground": "oklch(0.145 0 0)",
-          "popover": "oklch(1 0 0)",
-          "popover-foreground": "oklch(0.145 0 0)",
-          "primary": "oklch(0.55 0.16 48)",
-          "primary-foreground": "oklch(0.99 0.01 90)",
-          "secondary": "oklch(0.97 0 0)",
-          "secondary-foreground": "oklch(0.205 0 0)",
-          "muted": "oklch(0.97 0 0)",
-          "muted-foreground": "oklch(0.556 0 0)",
-          "accent": "oklch(0.97 0 0)",
-          "accent-foreground": "oklch(0.205 0 0)",
+          "background": "#F7F6F2",
+          "foreground": "#73574A",
+          "card": "#FFFFFF",
+          "card-foreground": "#73574A",
+          "popover": "#FFFFFF",
+          "popover-foreground": "#73574A",
+          "primary": "#73574A",
+          "primary-foreground": "#FEF1DF",
+          "secondary": "#EDECE8",
+          "secondary-foreground": "#73574A",
+          "muted": "#EDECE8",
+          "muted-foreground": "#7E756C",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "accent": "#EDECE8",
+          "accent-foreground": "#73574A",
           "destructive": "oklch(0.577 0.245 27.325)",
-          "border": "oklch(0.922 0 0)",
-          "input": "oklch(0.922 0 0)",
-          "ring": "oklch(0.55 0.16 48)"
+          "border": "#E6E4DE",
+          "input": "#E0DDD6",
+          "ring": "#73574A",
+          "chart-1": "#73574A",
+          "chart-2": "#5B793F",
+          "chart-3": "#5B5DDF",
+          "chart-4": "#7E756C",
+          "chart-5": "#9A918A",
+          "sidebar": "#F7F6F2",
+          "sidebar-foreground": "#73574A",
+          "sidebar-primary": "#73574A",
+          "sidebar-primary-foreground": "#FEF1DF",
+          "sidebar-accent": "#EDECE8",
+          "sidebar-accent-foreground": "#73574A",
+          "sidebar-border": "#E6E4DE",
+          "sidebar-ring": "#7E756C",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
         },
         "dark": {
-          "background": "oklch(0.145 0 0)",
-          "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.205 0 0)",
-          "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.205 0 0)",
-          "popover-foreground": "oklch(0.985 0 0)",
-          "primary": "oklch(0.78 0.14 55)",
-          "primary-foreground": "oklch(0.22 0.04 50)",
-          "secondary": "oklch(0.269 0 0)",
-          "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.269 0 0)",
-          "muted-foreground": "oklch(0.708 0 0)",
-          "accent": "oklch(0.269 0 0)",
-          "accent-foreground": "oklch(0.985 0 0)",
+          "background": "#1C1918",
+          "foreground": "#FEF1DF",
+          "card": "#2C2926",
+          "card-foreground": "#FEF1DF",
+          "popover": "#2C2926",
+          "popover-foreground": "#FEF1DF",
+          "primary": "#FEF1DF",
+          "primary-foreground": "#73574A",
+          "secondary": "#FEF1DF1A",
+          "secondary-foreground": "#FEF1DF",
+          "muted": "#FEF1DF1A",
+          "muted-foreground": "#9A928A",
+          "accent": "#FEF1DF1A",
+          "accent-foreground": "#FEF1DF",
           "destructive": "oklch(0.704 0.191 22.216)",
-          "border": "oklch(1 0 0 / 10%)",
-          "input": "oklch(1 0 0 / 15%)",
-          "ring": "oklch(0.78 0.14 55)"
+          "border": "#FFFFFF14",
+          "input": "#FFFFFF1F",
+          "ring": "#FEF1DF",
+          "chart-1": "#FEF1DF",
+          "chart-2": "#8FA876",
+          "chart-3": "#8B8DE8",
+          "chart-4": "#9A928A",
+          "chart-5": "#B89A8A",
+          "sidebar": "#1C1918",
+          "sidebar-foreground": "#FEF1DF",
+          "sidebar-primary": "#FEF1DF",
+          "sidebar-primary-foreground": "#73574A",
+          "sidebar-accent": "#FEF1DF1A",
+          "sidebar-accent-foreground": "#FEF1DF",
+          "sidebar-border": "#FFFFFF14",
+          "sidebar-ring": "#9A928A",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
         }
       },
       "type": "registry:base",
@@ -84,243 +122,1468 @@
       }
     },
     {
+      "name": "changelog",
+      "title": "Prometheus 0.2.0",
+      "description": "Current registry version is 0.2.0. Compare it with the // @prometheus stamp in a copied file, then re-add items that are behind. Installing this writes PROMETHEUS.md.",
+      "files": [
+        {
+          "path": "registry/base/PROMETHEUS.md",
+          "type": "registry:file",
+          "target": "~/PROMETHEUS.md"
+        }
+      ],
+      "type": "registry:item"
+    },
+    {
+      "name": "starter",
+      "title": "Prometheus starter",
+      "description": "A Next.js app with every Prometheus component installed and the system wired: Base UI, soft radius, default size, Heroicons, system theme, umber accent. Configure further from the docs Make them yours panel.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "tw-animate-css",
+        "@heroicons/react",
+        "next-themes",
+        "@base-ui/react",
+        "geist",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "font-geist",
+        "AustinTByrd/prometheus/theme",
+        "AustinTByrd/prometheus/motion",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/breakpoints",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/omit",
+        "AustinTByrd/prometheus/font-weight",
+        "AustinTByrd/prometheus/size-context",
+        "AustinTByrd/prometheus/shape-context",
+        "AustinTByrd/prometheus/prometheus-provider",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/toggle-button",
+        "AustinTByrd/prometheus/checkbox",
+        "AustinTByrd/prometheus/checkbox-group",
+        "AustinTByrd/prometheus/switch",
+        "AustinTByrd/prometheus/radio-group",
+        "AustinTByrd/prometheus/input",
+        "AustinTByrd/prometheus/textarea",
+        "AustinTByrd/prometheus/dialog",
+        "AustinTByrd/prometheus/select",
+        "AustinTByrd/prometheus/menu",
+        "AustinTByrd/prometheus/slider",
+        "AustinTByrd/prometheus/tooltip",
+        "AustinTByrd/prometheus/lightbox",
+        "AustinTByrd/prometheus/drawer",
+        "AustinTByrd/prometheus/sheet",
+        "AustinTByrd/prometheus/table",
+        "AustinTByrd/prometheus/sidebar",
+        "AustinTByrd/prometheus/app-shell",
+        "AustinTByrd/prometheus/skeleton",
+        "AustinTByrd/prometheus/empty",
+        "AustinTByrd/prometheus/error",
+        "AustinTByrd/prometheus/form",
+        "AustinTByrd/prometheus/data-display",
+        "AustinTByrd/prometheus/badge",
+        "AustinTByrd/prometheus/list",
+        "AustinTByrd/prometheus/tabs",
+        "AustinTByrd/prometheus/agent",
+        "AustinTByrd/prometheus/changelog"
+      ],
+      "files": [
+        {
+          "path": "registry/base/starter-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "registry/base/starter-page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        },
+        {
+          "path": "registry/base/starter-providers.tsx",
+          "type": "registry:component",
+          "target": "components/providers.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "font-sans": "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "Geist Mono, Geist Mono Fallback, ui-monospace, monospace",
+          "radius": "0.75rem",
+          "color-hover": "var(--hover)",
+          "color-hover-light": "var(--hover-light)"
+        },
+        "light": {
+          "background": "#F7F6F2",
+          "foreground": "#73574A",
+          "card": "#FFFFFF",
+          "card-foreground": "#73574A",
+          "popover": "#FFFFFF",
+          "popover-foreground": "#73574A",
+          "primary": "#73574A",
+          "primary-foreground": "#FEF1DF",
+          "secondary": "#EDECE8",
+          "secondary-foreground": "#73574A",
+          "muted": "#EDECE8",
+          "muted-foreground": "#7E756C",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "accent": "#EDECE8",
+          "accent-foreground": "#73574A",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "#E6E4DE",
+          "input": "#E0DDD6",
+          "ring": "#73574A",
+          "chart-1": "#73574A",
+          "chart-2": "#5B793F",
+          "chart-3": "#5B5DDF",
+          "chart-4": "#7E756C",
+          "chart-5": "#9A918A",
+          "sidebar": "#F7F6F2",
+          "sidebar-foreground": "#73574A",
+          "sidebar-primary": "#73574A",
+          "sidebar-primary-foreground": "#FEF1DF",
+          "sidebar-accent": "#EDECE8",
+          "sidebar-accent-foreground": "#73574A",
+          "sidebar-border": "#E6E4DE",
+          "sidebar-ring": "#7E756C",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
+        },
+        "dark": {
+          "background": "#1C1918",
+          "foreground": "#FEF1DF",
+          "card": "#2C2926",
+          "card-foreground": "#FEF1DF",
+          "popover": "#2C2926",
+          "popover-foreground": "#FEF1DF",
+          "primary": "#FEF1DF",
+          "primary-foreground": "#73574A",
+          "secondary": "#FEF1DF1A",
+          "secondary-foreground": "#FEF1DF",
+          "muted": "#FEF1DF1A",
+          "muted-foreground": "#9A928A",
+          "accent": "#FEF1DF1A",
+          "accent-foreground": "#FEF1DF",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "#FFFFFF14",
+          "input": "#FFFFFF1F",
+          "ring": "#FEF1DF",
+          "chart-1": "#FEF1DF",
+          "chart-2": "#8FA876",
+          "chart-3": "#8B8DE8",
+          "chart-4": "#9A928A",
+          "chart-5": "#B89A8A",
+          "sidebar": "#1C1918",
+          "sidebar-foreground": "#FEF1DF",
+          "sidebar-primary": "#FEF1DF",
+          "sidebar-primary-foreground": "#73574A",
+          "sidebar-accent": "#FEF1DF1A",
+          "sidebar-accent-foreground": "#FEF1DF",
+          "sidebar-border": "#FFFFFF14",
+          "sidebar-ring": "#9A928A",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
+        }
+      },
+      "docs": "Docs: https://prometheus-ui-rust.vercel.app. Copy the install prompt from any docs page to bake in your Make them yours choices.",
+      "type": "registry:base",
+      "config": {
+        "style": "base-nova",
+        "rsc": true,
+        "tsx": true,
+        "tailwind": {
+          "baseColor": "neutral"
+        },
+        "iconLibrary": "lucide",
+        "registries": {
+          "@prometheus": "https://prometheus-ui-rust.vercel.app/r/{name}.json"
+        }
+      }
+    },
+    {
+      "name": "setup",
+      "title": "Prometheus setup",
+      "description": "Install every Prometheus component and system lib into an existing shadcn app. Use --overwrite. Then wrap the root in Providers from components/providers.tsx.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "tw-animate-css",
+        "@heroicons/react",
+        "next-themes",
+        "@base-ui/react",
+        "geist",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "font-geist",
+        "AustinTByrd/prometheus/theme",
+        "AustinTByrd/prometheus/motion",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/breakpoints",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/omit",
+        "AustinTByrd/prometheus/font-weight",
+        "AustinTByrd/prometheus/size-context",
+        "AustinTByrd/prometheus/shape-context",
+        "AustinTByrd/prometheus/prometheus-provider",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/toggle-button",
+        "AustinTByrd/prometheus/checkbox",
+        "AustinTByrd/prometheus/checkbox-group",
+        "AustinTByrd/prometheus/switch",
+        "AustinTByrd/prometheus/radio-group",
+        "AustinTByrd/prometheus/input",
+        "AustinTByrd/prometheus/textarea",
+        "AustinTByrd/prometheus/dialog",
+        "AustinTByrd/prometheus/select",
+        "AustinTByrd/prometheus/menu",
+        "AustinTByrd/prometheus/slider",
+        "AustinTByrd/prometheus/tooltip",
+        "AustinTByrd/prometheus/lightbox",
+        "AustinTByrd/prometheus/drawer",
+        "AustinTByrd/prometheus/sheet",
+        "AustinTByrd/prometheus/table",
+        "AustinTByrd/prometheus/sidebar",
+        "AustinTByrd/prometheus/app-shell",
+        "AustinTByrd/prometheus/skeleton",
+        "AustinTByrd/prometheus/empty",
+        "AustinTByrd/prometheus/error",
+        "AustinTByrd/prometheus/form",
+        "AustinTByrd/prometheus/data-display",
+        "AustinTByrd/prometheus/badge",
+        "AustinTByrd/prometheus/list",
+        "AustinTByrd/prometheus/tabs",
+        "AustinTByrd/prometheus/agent",
+        "AustinTByrd/prometheus/changelog"
+      ],
+      "files": [
+        {
+          "path": "registry/base/starter-providers.tsx",
+          "type": "registry:component",
+          "target": "components/providers.tsx"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "font-sans": "Geist, Geist Fallback, ui-sans-serif, system-ui, sans-serif",
+          "font-mono": "Geist Mono, Geist Mono Fallback, ui-monospace, monospace",
+          "radius": "0.75rem",
+          "color-hover": "var(--hover)",
+          "color-hover-light": "var(--hover-light)"
+        },
+        "light": {
+          "background": "#F7F6F2",
+          "foreground": "#73574A",
+          "card": "#FFFFFF",
+          "card-foreground": "#73574A",
+          "popover": "#FFFFFF",
+          "popover-foreground": "#73574A",
+          "primary": "#73574A",
+          "primary-foreground": "#FEF1DF",
+          "secondary": "#EDECE8",
+          "secondary-foreground": "#73574A",
+          "muted": "#EDECE8",
+          "muted-foreground": "#7E756C",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "accent": "#EDECE8",
+          "accent-foreground": "#73574A",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "#E6E4DE",
+          "input": "#E0DDD6",
+          "ring": "#73574A",
+          "chart-1": "#73574A",
+          "chart-2": "#5B793F",
+          "chart-3": "#5B5DDF",
+          "chart-4": "#7E756C",
+          "chart-5": "#9A918A",
+          "sidebar": "#F7F6F2",
+          "sidebar-foreground": "#73574A",
+          "sidebar-primary": "#73574A",
+          "sidebar-primary-foreground": "#FEF1DF",
+          "sidebar-accent": "#EDECE8",
+          "sidebar-accent-foreground": "#73574A",
+          "sidebar-border": "#E6E4DE",
+          "sidebar-ring": "#7E756C",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
+        },
+        "dark": {
+          "background": "#1C1918",
+          "foreground": "#FEF1DF",
+          "card": "#2C2926",
+          "card-foreground": "#FEF1DF",
+          "popover": "#2C2926",
+          "popover-foreground": "#FEF1DF",
+          "primary": "#FEF1DF",
+          "primary-foreground": "#73574A",
+          "secondary": "#FEF1DF1A",
+          "secondary-foreground": "#FEF1DF",
+          "muted": "#FEF1DF1A",
+          "muted-foreground": "#9A928A",
+          "accent": "#FEF1DF1A",
+          "accent-foreground": "#FEF1DF",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "#FFFFFF14",
+          "input": "#FFFFFF1F",
+          "ring": "#FEF1DF",
+          "chart-1": "#FEF1DF",
+          "chart-2": "#8FA876",
+          "chart-3": "#8B8DE8",
+          "chart-4": "#9A928A",
+          "chart-5": "#B89A8A",
+          "sidebar": "#1C1918",
+          "sidebar-foreground": "#FEF1DF",
+          "sidebar-primary": "#FEF1DF",
+          "sidebar-primary-foreground": "#73574A",
+          "sidebar-accent": "#FEF1DF1A",
+          "sidebar-accent-foreground": "#FEF1DF",
+          "sidebar-border": "#FFFFFF14",
+          "sidebar-ring": "#9A928A",
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)"
+        }
+      },
+      "docs": "After install, wrap children in <Providers /> from components/providers.tsx. Docs: https://prometheus-ui-rust.vercel.app",
+      "type": "registry:block"
+    },
+    {
+      "name": "motion",
+      "title": "Motion",
+      "description": "Shared durations, easing, and the height spring. Import these instead of inventing a second curve.",
+      "files": [
+        {
+          "path": "registry/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "duration-instant": "120ms",
+          "duration-fast": "160ms",
+          "duration-exit": "180ms",
+          "duration-standard": "240ms",
+          "duration-considered": "480ms",
+          "ease-enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "ease-standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+          "ease-exit": "cubic-bezier(0.7, 0, 0.84, 0)"
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "theme",
+      "title": "Theme",
+      "description": "Portable Prometheus extension tokens derived from the host theme. Ships --hover / --hover-light / --active / --selected and Tailwind color bridges so Fluid Hover, Slider fills, and controls work without this app’s globals.css. Depends on motion.",
+      "registryDependencies": [
+        "AustinTByrd/prometheus/motion"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/theme.ts",
+          "type": "registry:lib",
+          "target": "lib/theme.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "color-hover": "var(--hover)",
+          "color-hover-light": "var(--hover-light)",
+          "color-active": "var(--active)",
+          "color-selected": "var(--selected)"
+        },
+        "light": {
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)",
+          "active": "rgb(from var(--foreground) r g b / 12%)",
+          "selected": "color-mix(in oklab, var(--foreground) 16%, var(--background))",
+          "focus-ring": "var(--ring)"
+        },
+        "dark": {
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)",
+          "active": "rgb(from var(--foreground) r g b / 14%)",
+          "selected": "color-mix(in oklab, var(--foreground) 22%, var(--background))",
+          "focus-ring": "var(--ring)"
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "typography",
+      "title": "Typography",
+      "description": "Type ramp from text-xs through text-5xl. Each step sets size, line-height, and tracking. Titles from text-xl use font-display. Long-form copy uses prose. Drop caps use drop-cap (2 lines), drop-cap-3, or drop-cap-4.",
+      "files": [
+        {
+          "path": "registry/lib/typography.ts",
+          "type": "registry:lib",
+          "target": "lib/typography.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "text-xs": "0.75rem",
+          "text-xs--line-height": "1rem",
+          "text-xs--letter-spacing": "0.02em",
+          "text-sm": "0.875rem",
+          "text-sm--line-height": "1.25rem",
+          "text-sm--letter-spacing": "0.01em",
+          "text-base": "1rem",
+          "text-base--line-height": "1.5rem",
+          "text-base--letter-spacing": "0em",
+          "text-lg": "1.125rem",
+          "text-lg--line-height": "1.75rem",
+          "text-lg--letter-spacing": "-0.01em",
+          "text-xl": "1.25rem",
+          "text-xl--line-height": "1.75rem",
+          "text-xl--letter-spacing": "-0.02em",
+          "text-2xl": "1.5rem",
+          "text-2xl--line-height": "2rem",
+          "text-2xl--letter-spacing": "-0.025em",
+          "text-3xl": "1.875rem",
+          "text-3xl--line-height": "2.25rem",
+          "text-3xl--letter-spacing": "-0.03em",
+          "text-4xl": "2.25rem",
+          "text-4xl--line-height": "2.75rem",
+          "text-4xl--letter-spacing": "-0.03em",
+          "text-5xl": "3rem",
+          "text-5xl--line-height": "3.5rem",
+          "text-5xl--letter-spacing": "-0.035em",
+          "text-6xl--letter-spacing": "-0.04em",
+          "text-7xl--letter-spacing": "-0.04em",
+          "text-8xl--letter-spacing": "-0.04em",
+          "text-9xl--letter-spacing": "-0.04em"
+        }
+      },
+      "css": {
+        "@layer base": {
+          ".font-display": {
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none"
+          },
+          ".prose": {
+            "max-width": "65ch",
+            "font-size": "var(--text-base)",
+            "line-height": "var(--text-base--line-height)",
+            "letter-spacing": "var(--text-base--letter-spacing)",
+            "color": "var(--foreground)"
+          },
+          ".prose > * + *": {
+            "margin-top": "0.75em"
+          },
+          ".prose :where(h1, h2, h3)": {
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none",
+            "text-wrap": "balance"
+          },
+          ".prose :where(h1)": {
+            "font-size": "var(--text-4xl)",
+            "line-height": "var(--text-4xl--line-height)",
+            "letter-spacing": "var(--text-4xl--letter-spacing)"
+          },
+          ".prose > * + :where(h1)": {
+            "margin-top": "0"
+          },
+          ".prose :where(h2)": {
+            "font-size": "var(--text-2xl)",
+            "line-height": "var(--text-2xl--line-height)",
+            "letter-spacing": "var(--text-2xl--letter-spacing)"
+          },
+          ".prose > * + :where(h2)": {
+            "margin-top": "1.5em"
+          },
+          ".prose :where(h3)": {
+            "font-size": "var(--text-xl)",
+            "line-height": "var(--text-xl--line-height)",
+            "letter-spacing": "var(--text-xl--letter-spacing)"
+          },
+          ".prose > * + :where(h3)": {
+            "margin-top": "1.25em"
+          },
+          ".prose :where(p, ul, ol)": {
+            "text-wrap": "pretty"
+          },
+          ".prose :where(a)": {
+            "text-decoration-line": "underline",
+            "text-decoration-color": "color-mix(in oklab, var(--foreground) 40%, transparent)",
+            "text-underline-offset": "0.15em"
+          },
+          ".prose :where(strong)": {
+            "font-weight": "500"
+          },
+          ".prose :where(ul, ol)": {
+            "padding-left": "1.25rem"
+          },
+          ".prose :where(ul)": {
+            "list-style-type": "disc"
+          },
+          ".prose :where(ol)": {
+            "list-style-type": "decimal"
+          },
+          ".prose :where(li + li)": {
+            "margin-top": "0.25em"
+          },
+          ".prose :where(code)": {
+            "font-family": "var(--font-mono), ui-monospace, monospace",
+            "font-size": "0.875em",
+            "background": "var(--muted)",
+            "border-radius": "0.25rem",
+            "padding": "0.1em 0.35em"
+          },
+          ".drop-cap, .drop-cap-3, .drop-cap-4": {
+            "--drop-cap-lines": "2"
+          },
+          ".drop-cap-3": {
+            "--drop-cap-lines": "3"
+          },
+          ".drop-cap-4": {
+            "--drop-cap-lines": "4"
+          },
+          ".drop-cap::first-letter, .drop-cap-3::first-letter, .drop-cap-4::first-letter, .prose.drop-cap > p:first-of-type::first-letter, .prose.drop-cap-3 > p:first-of-type::first-letter, .prose.drop-cap-4 > p:first-of-type::first-letter": {
+            "float": "left",
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none",
+            "font-size": "calc(max(2, var(--drop-cap-lines, 2)) * 1lh)",
+            "line-height": "1",
+            "margin-right": "0.1em",
+            "padding-top": "0",
+            "color": "var(--foreground)"
+          }
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "breakpoints",
+      "title": "Breakpoints",
+      "description": "Viewport widths sm through xl. The app frame splits at md: below it, usePrometheus().isMobile is true and the sidebar is a sheet.",
+      "files": [
+        {
+          "path": "registry/lib/breakpoints.ts",
+          "type": "registry:lib",
+          "target": "lib/breakpoints.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "breakpoint-sm": "40rem",
+          "breakpoint-md": "48rem",
+          "breakpoint-lg": "64rem",
+          "breakpoint-xl": "80rem"
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "smooth-corners",
+      "title": "Smooth Corners",
+      "description": "Lisse squircles for Prometheus panels and overlays. CORNERS match --radius* tokens. Squircle curve with smoothing 1 by default. Use useCornerRef on Base UI popups; Elevated and overlays already apply it. Pill and circle stay CSS rounded-full.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/smooth-corners.tsx",
+          "type": "registry:lib",
+          "target": "lib/smooth-corners.tsx"
+        }
+      ],
+      "css": {
+        "@layer utilities": {
+          "[data-slot=\"smooth-corners\"][data-state=\"ready\"]": {
+            "border-radius": "0 !important"
+          }
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "elevated",
+      "title": "Surfaces",
+      "description": "Eight nested surface levels from Fluid Functionalism. Overlays read their substrate and lift so dialogs, selects, and drawers stay visible at any depth in light and dark mode. PrometheusProvider starts the ladder at surface 1. Panels use Lisse smooth corners by default.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/elevated.tsx",
+          "type": "registry:lib",
+          "target": "lib/elevated.tsx"
+        },
+        {
+          "path": "registry/lib/surface-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/surface-context.tsx"
+        },
+        {
+          "path": "registry/lib/surface-classes.ts",
+          "type": "registry:lib",
+          "target": "lib/surface-classes.ts"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "color-surface-1": "var(--surface-1)",
+          "color-surface-2": "var(--surface-2)",
+          "color-surface-3": "var(--surface-3)",
+          "color-surface-4": "var(--surface-4)",
+          "color-surface-5": "var(--surface-5)",
+          "color-surface-6": "var(--surface-6)",
+          "color-surface-7": "var(--surface-7)",
+          "color-surface-8": "var(--surface-8)",
+          "shadow-surface-1": "var(--shadow-1)",
+          "shadow-surface-2": "var(--shadow-2)",
+          "shadow-surface-3": "var(--shadow-3)",
+          "shadow-surface-4": "var(--shadow-4)",
+          "shadow-surface-5": "var(--shadow-5)",
+          "shadow-surface-6": "var(--shadow-6)",
+          "shadow-surface-7": "var(--shadow-7)",
+          "shadow-surface-8": "var(--shadow-8)"
+        },
+        "light": {
+          "surface-1": "#F7F6F2",
+          "surface-2": "#FBFBF9",
+          "surface-3": "#FFFFFF",
+          "surface-4": "#FFFFFF",
+          "surface-5": "#FFFFFF",
+          "surface-6": "#FFFFFF",
+          "surface-7": "#FFFFFF",
+          "surface-8": "#FFFFFF",
+          "background": "#F7F6F2",
+          "card": "#FFFFFF",
+          "popover": "#FFFFFF",
+          "shadow-color": "#77777714",
+          "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+          "shadow-1": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color)",
+          "shadow-2": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color)",
+          "shadow-3": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color)",
+          "shadow-4": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color)",
+          "shadow-5": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color)",
+          "shadow-6": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color)",
+          "shadow-7": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color)",
+          "shadow-8": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color)"
+        },
+        "dark": {
+          "surface-1": "#1C1918",
+          "surface-2": "#24211F",
+          "surface-3": "#2C2926",
+          "surface-4": "#33302D",
+          "surface-5": "#3A3734",
+          "surface-6": "#413E3B",
+          "surface-7": "#484542",
+          "surface-8": "#4F4C49",
+          "background": "#1C1918",
+          "card": "#2C2926",
+          "popover": "#2C2926",
+          "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+          "dm-ring-base": "rgba(255,255,255,0.02)",
+          "dm-ring-mid": "rgba(255,255,255,0.04)",
+          "dm-ring-high": "rgba(255,255,255,0.06)",
+          "dm-drop": "rgba(0,0,0,0.18)",
+          "shadow-1": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base)",
+          "shadow-2": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 1px 1px -0.5px var(--dm-drop)",
+          "shadow-3": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 0 0 1px rgba(0,0,0,0.12), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop)",
+          "shadow-4": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.14), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop)",
+          "shadow-5": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.16), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop)",
+          "shadow-6": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.18), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop)",
+          "shadow-7": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.20), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop)",
+          "shadow-8": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.22), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop), 0 96px 96px -48px var(--dm-drop)"
+        }
+      },
+      "type": "registry:lib"
+    },
+    {
+      "name": "fluid-hover",
+      "title": "Fluid Hover",
+      "description": "One highlight that glides from item to item under the pointer instead of blinking between them. List, Sidebar, Checkbox group, and Radio group already use it. Installs theme (hover tokens) and motion.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/motion",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "lib/fluid-hover.tsx"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "springs",
+      "title": "Springs",
+      "description": "Critically damped spring tiers for pointer-driven motion. Prefer these over hand-written durations.",
+      "files": [
+        {
+          "path": "registry/lib/springs.ts",
+          "type": "registry:lib",
+          "target": "lib/springs.ts"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "omit",
+      "title": "Omit",
+      "description": "Shallow omit helper for stripping props before spreading onto a host element.",
+      "files": [
+        {
+          "path": "registry/lib/omit.ts",
+          "type": "registry:lib",
+          "target": "lib/omit.ts"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "font-weight",
+      "title": "Font weight",
+      "description": "Variable-font weight tokens for fontVariationSettings, paired with opsz so weight changes keep width steady.",
+      "files": [
+        {
+          "path": "registry/lib/font-weight.ts",
+          "type": "registry:lib",
+          "target": "lib/font-weight.ts"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "size-context",
+      "title": "Size",
+      "description": "Two-step size ladder (default and compact). SizeProvider pins a region; components read useSizeVariant.",
+      "files": [
+        {
+          "path": "registry/lib/size-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/size-context.tsx"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "shape-context",
+      "title": "Shape",
+      "description": "Corner shape ladder: sharp, rounded, and pill. ShapeProvider sets the variant; components read useShape.",
+      "files": [
+        {
+          "path": "registry/lib/shape-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/shape-context.tsx"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "chart-palette",
+      "title": "Chart palette",
+      "description": "Six pastel colors for charts and badges, ordered so neighbouring hues stay apart under common color vision types. Soft tags clear 7:1.",
+      "files": [
+        {
+          "path": "registry/lib/chart-palette.ts",
+          "type": "registry:lib",
+          "target": "lib/chart-palette.ts"
+        }
+      ],
+      "type": "registry:lib"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "description": "Base UI button on Prometheus tokens: an elevated default plus five fallback variants, control-height sizes, inline icons, and the shared focus ring. Pill stays CSS rounded-full.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "button-primary": "#3b2a21",
+          "button-primary-gradient": "linear-gradient(#665146 0%, #3b2a21 36.79% 60.86%, #503d33 100%)",
+          "button-primary-border": "rgb(31 18 12 / 0.68)",
+          "button-primary-foreground": "#fef1df"
+        },
+        "dark": {
+          "button-primary": "#f4e2c8",
+          "button-primary-gradient": "linear-gradient(#fffaf3 0%, #f4e2c8 36.79% 60.86%, #fbedd9 100%)",
+          "button-primary-border": "rgb(64 46 37 / 0.68)",
+          "button-primary-foreground": "#3b2a21"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
+      "name": "toggle-button",
+      "title": "Toggle button",
+      "description": "Base UI toggle on the default Button: raised when off, flat on a muted fill when selected. Control-height sizes, inline icons, and a group for single or multiple selection.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/toggle-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-button.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "description": "A hairline square. Checked, it fills with foreground and a surface-colored Heroicons check. Pair with Field.",
+      "dependencies": [
+        "@base-ui/react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "checkbox-group",
+      "title": "Checkbox group",
+      "description": "Checkbox rows with Fluid Hover and contiguous selections that merge into one background. Each row uses a filled check.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/checkbox",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox-group.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "description": "A labeled toggle. The thumb stretches on hover and press, springs across the track, and can be dragged past the midpoint to flip.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "switch-checked": "var(--primary)"
+        },
+        "dark": {
+          "switch-checked": "var(--primary-foreground)"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
+      "name": "radio-group",
+      "title": "Radio group",
+      "description": "Radio rows styled like Checkbox group: Fluid Hover, a muted selection fill, and a filled control with a surface-colored dot. Circles stay CSS rounded-full.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "input",
+      "title": "Input",
+      "description": "Base UI text input on Prometheus tokens: a bordered default or a filled muted wash, control-height sizes, start and end slots, a pending check, and invalid, read-only, and disabled states. Form wires it up as FormInput.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "spinner",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "description": "Multi-line text field on the Input tokens: grows with the text between rows and maxRows, a character or word count, an optional grab handle, and invalid, read-only, and disabled states. Form wires it up as FormTextarea.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "dialog",
+      "title": "Dialog",
+      "description": "Base UI dialog that lifts four surface steps off its substrate and uses Lisse smooth corners.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "description": "Base UI select whose menu lifts two surface steps off its substrate, so it stays visible inside a dialog. Menu uses Lisse smooth corners.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "menu",
+      "title": "Menu",
+      "description": "Base UI menu that lifts two surface steps off its substrate, with Lisse smooth corners, radio and checkbox items, and nested submenus.",
+      "dependencies": [
+        "@base-ui/react",
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menu.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "slider",
+      "title": "Slider",
+      "description": "One slider, two ladder steps: the default pip/scrubber design and the compact design with range mode and value display. Built on Base UI with spring motion.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/omit",
+        "AustinTByrd/prometheus/font-weight",
+        "AustinTByrd/prometheus/size-context",
+        "AustinTByrd/prometheus/shape-context"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "description": "Base UI tooltip that lifts two surface steps off its substrate, with Lisse smooth corners, collision-aware positioning, and composable parts for advanced layouts.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "lightbox",
+      "title": "Lightbox",
+      "description": "ramka lightbox on Prometheus tokens: a morph from the thumbnail, swipe, pinch to zoom, pull to dismiss, and Button controls, plus a gallery that builds the whole viewer from an array of images.",
+      "dependencies": [
+        "@ramka/react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/lightbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/lightbox.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "description": "Base UI drawer that lifts on the same surface ladder as Dialog, with Lisse smooth corners on the free edge.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "sheet",
+      "title": "Sheet",
+      "description": "Base UI sheet that lifts four surface steps off its substrate, inset 8px from the window edge with Lisse smooth corners all round.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "table",
+      "title": "Table",
+      "description": "TanStack Table and Virtual, with cells that split, stretch, and snap as the container widens. Merged values strain toward their column, then click into place.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "@tanstack/react-virtual"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "description": "Collapsible sidebar that uses usePrometheus().isMobile and becomes a sheet on a narrow viewport. Drag the rail to resize: open to one fixed width, or learn the width you keep choosing and snap to it. Prefer AppShell for the app frame.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/input",
+        "separator",
+        "AustinTByrd/prometheus/skeleton",
+        "AustinTByrd/prometheus/tooltip",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/sheet",
+        "AustinTByrd/prometheus/prometheus-provider",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "app-shell",
+      "title": "App Shell",
+      "description": "Sidebar, top bar, scrolling main, and a one-row footer. App screens start here. The root layout stays fonts and PrometheusProvider.",
+      "registryDependencies": [
+        "AustinTByrd/prometheus/sidebar",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/app-shell.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/app-shell.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "description": "Skullet skeletons in Prometheus tokens. Wrap the loaded view; the skeleton is measured from it, so nothing moves when the data lands.",
+      "dependencies": [
+        "skullet"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "skullet-base": "var(--muted)",
+          "skullet-highlight": "color-mix(in oklab, var(--background) 70%, transparent)",
+          "skullet-radius": "var(--radius-sm)",
+          "skullet-animation": "shimmer"
+        },
+        "dark": {
+          "skullet-highlight": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+        }
+      },
+      "type": "registry:ui"
+    },
+    {
+      "name": "empty",
+      "title": "Empty",
+      "description": "Empty state with an icon slot, a title, one sentence, and actions.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/empty.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "error",
+      "title": "Error",
+      "description": "Error state with an icon slot, a title, one sentence, and actions.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/error.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/error.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "description": "react-hook-form and zod. Field errors, a root error, and a submit button that shows Spinner while pending.",
+      "dependencies": [
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod"
+      ],
+      "registryDependencies": [
+        "field",
+        "AustinTByrd/prometheus/input",
+        "AustinTByrd/prometheus/textarea",
+        "AustinTByrd/prometheus/checkbox",
+        "label",
+        "spinner",
+        "utils",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "data-display",
+      "title": "Data display",
+      "description": "Recharts-powered bar and line chart cards, ChartContainer, ChartCard, ChartTooltip, ChartLegend, and ChartKey. Bars use pastel fills; lines stay monochrome. Hairline grid, in the app's own font, with a value tag on hover. Charts fade in on scroll, and reduced motion keeps the end state.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/data-display.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/data-display.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "description": "Soft pill labels on the Data Foundations pastel palette, plus a neutral muted default. A translucent tint sits over the local surface so the wash stays stable on any parent.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "description": "Image or initials avatar and a see-through AvatarStack. Every dimension derives from --avatar-size, and stacked neighbours are cut with a real CSS mask so any background shows through the gaps.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "list",
+      "title": "List",
+      "description": "Rows of links between hairline rules, with a title on the left and a detail on the right. One Fluid Hover fill glides from row to row.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/list.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/list.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "description": "Horizontal pill tabs with a raised default-button selection indicator, gliding hover wash that never crosses the active tab, optional active-label collapse, and manual keyboard activation.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ],
+      "type": "registry:ui"
+    },
+    {
       "name": "prometheus-provider",
       "title": "Prometheus Provider",
-      "description": "App provider for Prometheus. Supplies isMobile, next-themes, and TooltipProvider once at the root. Use usePrometheus() instead of adding a second breakpoint hook beside every dialog or menu.",
+      "description": "App provider for Prometheus. Supplies isMobile, next-themes, size/shape ladders, TooltipProvider, and SurfaceProvider (substrate 1) once at the root. Use usePrometheus() instead of adding a second breakpoint hook beside every dialog or menu.",
       "dependencies": [
         "next-themes"
       ],
       "registryDependencies": [
-        "tooltip"
+        "AustinTByrd/prometheus/tooltip",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/breakpoints",
+        "AustinTByrd/prometheus/theme",
+        "AustinTByrd/prometheus/size-context",
+        "AustinTByrd/prometheus/shape-context"
       ],
       "files": [
         {
           "path": "registry/components/prometheus-provider.tsx",
           "type": "registry:component",
           "target": "components/prometheus-provider.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "button",
-      "title": "Button",
-      "description": "Enhanced button with loading, leading/trailing icons, and href rendering. Use this instead of wrapping the primitive with a Spinner and icon spacing on every action.",
-      "registryDependencies": [
-        "button",
-        "spinner"
-      ],
-      "files": [
-        {
-          "path": "registry/components/button.tsx",
-          "type": "registry:component",
-          "target": "components/button.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "simple-tooltip",
-      "title": "Simple Tooltip",
-      "description": "Tooltip with a one-prop API: pass content and a single child trigger. Use this instead of assembling Tooltip, TooltipTrigger, and TooltipContent for a standard hint.",
-      "registryDependencies": [
-        "tooltip"
-      ],
-      "files": [
-        {
-          "path": "registry/components/simple-tooltip.tsx",
-          "type": "registry:component",
-          "target": "components/simple-tooltip.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "conditional-tooltip",
-      "title": "Conditional Tooltip",
-      "description": "Renders SimpleTooltip only when a condition and content are present. Use it for disabled explanations without duplicating the trigger in two branches.",
-      "registryDependencies": [
-        "AustinTByrd/prometheus/simple-tooltip"
-      ],
-      "files": [
-        {
-          "path": "registry/components/conditional-tooltip.tsx",
-          "type": "registry:component",
-          "target": "components/conditional-tooltip.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "conditional-wrap",
-      "title": "Conditional Wrap",
-      "description": "Conditionally wrap children with a function so optional links, providers, or layouts do not duplicate the child tree in a ternary.",
-      "files": [
-        {
-          "path": "registry/components/conditional-wrap.tsx",
-          "type": "registry:component",
-          "target": "components/conditional-wrap.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "simple-dialog",
-      "title": "Simple Dialog",
-      "description": "Centered dialog with title, description, trigger, and footer props. Use this for the standard desktop modal. It does not install mobile drawer behavior — use Responsive Dialog when the same interaction must become a sheet on small screens.",
-      "registryDependencies": [
-        "dialog"
-      ],
-      "files": [
-        {
-          "path": "registry/components/simple-dialog.tsx",
-          "type": "registry:component",
-          "target": "components/simple-dialog.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "responsive-dialog",
-      "title": "Responsive Dialog",
-      "description": "Same API as Simple Dialog, presented as a swipeable drawer on mobile. Depends on PrometheusProvider for isMobile. Use mobileView=\"keep\" to force the desktop dialog. Do not rebuild a second mobile sheet beside Simple Dialog.",
-      "registryDependencies": [
-        "drawer",
-        "AustinTByrd/prometheus/simple-dialog",
-        "AustinTByrd/prometheus/prometheus-provider"
-      ],
-      "files": [
-        {
-          "path": "registry/components/responsive-dialog.tsx",
-          "type": "registry:component",
-          "target": "components/responsive-dialog.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "page-header",
-      "title": "Page Header",
-      "description": "Title, description, and action slot with optional sticky positioning. Use this instead of rebuilding header layout on every screen.",
-      "files": [
-        {
-          "path": "registry/components/page-header.tsx",
-          "type": "registry:component",
-          "target": "components/page-header.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "spinner",
-      "title": "Spinner",
-      "description": "Shared spinner plus FullPageSpinner and FillHeightSpinner layouts. Use these instead of recentering a Loader icon at each loading boundary.",
-      "registryDependencies": [
-        "spinner"
-      ],
-      "files": [
-        {
-          "path": "registry/components/spinner.tsx",
-          "type": "registry:component",
-          "target": "components/spinner.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "kbd",
-      "title": "Keyboard Shortcut",
-      "description": "Visual keycaps for shortcut hints. Display only — bind the actual keys in your app. Use KbdShortcut with a string array instead of hand-styled kbd tags.",
-      "files": [
-        {
-          "path": "registry/components/kbd.tsx",
-          "type": "registry:component",
-          "target": "components/kbd.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "form-field-wrapper",
-      "title": "Form Field Wrapper",
-      "description": "Shared field shell for label, control, description, and error. Wrap custom controls with this instead of inventing a second error layout.",
-      "registryDependencies": [
-        "field",
-        "label"
-      ],
-      "files": [
-        {
-          "path": "registry/forms/form-field-wrapper.tsx",
-          "type": "registry:component",
-          "target": "components/form-field-wrapper.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "form-field-input",
-      "title": "Form Field Input",
-      "description": "Labeled text input with description and error wiring. Works with react-hook-form register() or plain value/onChange. Do not rebuild Field + Label + Input for a standard text field.",
-      "registryDependencies": [
-        "input",
-        "AustinTByrd/prometheus/form-field-wrapper"
-      ],
-      "files": [
-        {
-          "path": "registry/forms/form-field-input.tsx",
-          "type": "registry:component",
-          "target": "components/form-field-input.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "form-field-textarea",
-      "title": "Form Field Textarea",
-      "description": "Labeled textarea with the shared field shell. Use this for multiline fields; use the textarea primitive only when you need a custom layout.",
-      "registryDependencies": [
-        "textarea",
-        "AustinTByrd/prometheus/form-field-wrapper"
-      ],
-      "files": [
-        {
-          "path": "registry/forms/form-field-textarea.tsx",
-          "type": "registry:component",
-          "target": "components/form-field-textarea.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "form-field-select",
-      "title": "Form Field Select",
-      "description": "Labeled single-value select from an options array. Use this instead of assembling Select, SelectTrigger, SelectContent, and Field by hand for a standard choice.",
-      "registryDependencies": [
-        "select",
-        "AustinTByrd/prometheus/form-field-wrapper"
-      ],
-      "files": [
-        {
-          "path": "registry/forms/form-field-select.tsx",
-          "type": "registry:component",
-          "target": "components/form-field-select.tsx"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "form-field-checkbox",
-      "title": "Form Field Checkbox",
-      "description": "Checkbox paired with its label and validation message. Use this for standard boolean fields.",
-      "registryDependencies": [
-        "checkbox",
-        "AustinTByrd/prometheus/form-field-wrapper"
-      ],
-      "files": [
-        {
-          "path": "registry/forms/form-field-checkbox.tsx",
-          "type": "registry:component",
-          "target": "components/form-field-checkbox.tsx"
         }
       ],
       "type": "registry:component"

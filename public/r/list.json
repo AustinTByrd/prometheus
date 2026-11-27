@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "list",
+  "title": "List",
+  "description": "Rows of links between hairline rules, with a title on the left and a detail on the right. One Fluid Hover fill glides from row to row.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "AustinTByrd/prometheus/fluid-hover",
+    "AustinTByrd/prometheus/typography",
+    "AustinTByrd/prometheus/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/list.tsx",
+      "content": "// @prometheus 0.2.0\n\"use client\"\n\nimport * as React from \"react\"\nimport { mergeProps } from \"@base-ui/react/merge-props\"\nimport { useRender } from \"@base-ui/react/use-render\"\nimport { cn } from \"@/lib/utils\"\n\nimport { FluidHoverHighlight, useFluidHover } from \"@/lib/fluid-hover\"\n\nfunction List({\n  label,\n  className,\n  children,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  /** Muted line above the rows, like \"Open roles\". */\n  label?: React.ReactNode\n}) {\n  const hover = useFluidHover<HTMLDivElement>()\n  const labelId = React.useId()\n\n  return (\n    <div\n      data-slot=\"list\"\n      className={cn(\"@container/list\", className)}\n      {...props}\n    >\n      {label ? (\n        <p\n          className=\"mb-3 text-sm text-muted-foreground/70\"\n          data-slot=\"list-label\"\n          id={labelId}\n        >\n          {label}\n        </p>\n      ) : null}\n      <div\n        aria-labelledby={label ? labelId : undefined}\n        className=\"relative isolate -mx-[5px]\"\n        data-slot=\"list-rows\"\n        ref={hover.ref}\n        role=\"group\"\n        {...hover.handlers}\n      >\n        <FluidHoverHighlight\n          className=\"rounded-sm\"\n          hover={hover}\n          inset={{ y: 5 }}\n        />\n        {children}\n      </div>\n    </div>\n  )\n}\n\nfunction ListItem({\n  render,\n  meta,\n  className,\n  children,\n  ...props\n}: useRender.ComponentProps<\"a\"> &\n  React.ComponentProps<\"a\"> & {\n    /** Right-hand detail, like a team. Hidden when the list is narrow. */\n    meta?: React.ReactNode\n  }) {\n  return useRender({\n    defaultTagName: \"a\",\n    props: mergeProps<\"a\">(\n      {\n        className: cn(\n          \"relative flex h-11 cursor-pointer items-center justify-between gap-4 rounded-sm px-[5px] text-base tracking-[-0.01em] text-muted-foreground outline-none select-none focus-visible:ring-2 focus-visible:ring-ring\",\n          \"after:absolute after:inset-x-[5px] after:bottom-0 after:h-px after:bg-border\",\n          \"[[data-slot=fluid-hover-highlight]+&]:before:absolute [[data-slot=fluid-hover-highlight]+&]:before:inset-x-[5px] [[data-slot=fluid-hover-highlight]+&]:before:top-0 [[data-slot=fluid-hover-highlight]+&]:before:h-px [[data-slot=fluid-hover-highlight]+&]:before:bg-border\",\n          className,\n        ),\n        children: (\n          <>\n            <span\n              className=\"min-w-0 truncate @max-[28rem]/list:text-sm\"\n              data-slot=\"list-item-title\"\n            >\n              {children}\n            </span>\n            {meta ? (\n              <span\n                className=\"shrink-0 @max-[28rem]/list:hidden\"\n                data-slot=\"list-item-meta\"\n              >\n                {meta}\n              </span>\n            ) : null}\n          </>\n        ),\n        \"data-fluid-hover-item\": \"\",\n        \"data-slot\": \"list-item\",\n      } as React.ComponentProps<\"a\">,\n      props,\n    ),\n    render,\n  })\n}\n\nexport { List, ListItem }\n",
+      "type": "registry:ui",
+      "target": "components/ui/list.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

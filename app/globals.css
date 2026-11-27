@@ -29,6 +29,10 @@
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
+  --color-hover: var(--hover);
+  --color-hover-light: var(--hover-light);
+  --color-active: var(--active);
+  --color-selected: var(--selected);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -37,79 +41,301 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+  --color-surface-5: var(--surface-5);
+  --color-surface-6: var(--surface-6);
+  --color-surface-7: var(--surface-7);
+  --color-surface-8: var(--surface-8);
+  --shadow-surface-1: var(--shadow-1);
+  --shadow-surface-2: var(--shadow-2);
+  --shadow-surface-3: var(--shadow-3);
+  --shadow-surface-4: var(--shadow-4);
+  --shadow-surface-5: var(--shadow-5);
+  --shadow-surface-6: var(--shadow-6);
+  --shadow-surface-7: var(--shadow-7);
+  --shadow-surface-8: var(--shadow-8);
+  --radius-xs: calc(var(--radius) - 6px);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 2px);
+  --radius-2xl: calc(var(--radius) + 6px);
+  --radius-3xl: calc(var(--radius) + 10px);
+  --duration-instant: 120ms;
+  --duration-fast: 160ms;
+  --duration-exit: 180ms;
+  --duration-standard: 240ms;
+  --duration-considered: 480ms;
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /*
+   * Type ramp. Keep in sync with registry/lib/typography.ts.
+   * Each step sets size, line-height, and tracking. The ramp ends at 5xl.
+   * Larger steps stay available and only carry tracking.
+   */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-xs--letter-spacing: 0.02em;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-sm--letter-spacing: 0.01em;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-base--letter-spacing: 0em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-xl--letter-spacing: -0.02em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-2xl--letter-spacing: -0.025em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-3xl--letter-spacing: -0.03em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.75rem;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-5xl--letter-spacing: -0.035em;
+  --text-6xl--letter-spacing: -0.04em;
+  --text-7xl--letter-spacing: -0.04em;
+  --text-8xl--letter-spacing: -0.04em;
+  --text-9xl--letter-spacing: -0.04em;
+
+  /* Viewport widths. Keep in sync with registry/lib/breakpoints.ts. */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.16 48);
-  --primary-foreground: oklch(0.99 0.01 90);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+:root,
+.light {
+  --radius: 0.75rem;
+  --duration-instant: 120ms;
+  --duration-fast: 160ms;
+  --duration-exit: 180ms;
+  --duration-standard: 240ms;
+  --duration-considered: 480ms;
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-xs--letter-spacing: 0.02em;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-sm--letter-spacing: 0.01em;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-base--letter-spacing: 0em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-xl--letter-spacing: -0.02em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-2xl--letter-spacing: -0.025em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-3xl--letter-spacing: -0.03em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.75rem;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-5xl--letter-spacing: -0.035em;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --surface-1: #f7f6f2;
+  --surface-2: #fbfbf9;
+  --surface-3: #ffffff;
+  --surface-4: #ffffff;
+  --surface-5: #ffffff;
+  --surface-6: #ffffff;
+  --surface-7: #ffffff;
+  --surface-8: #ffffff;
+  --shadow-color: #77777714;
+  /* Top edge highlight shared by surface stacks + raised controls. */
+  --shadow-inset-hi: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --shadow-1: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color);
+  --shadow-2: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color);
+  --shadow-3: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color);
+  --shadow-4: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color),
+    0 6px 6px -3px var(--shadow-color);
+  --shadow-5: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color),
+    0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color);
+  --shadow-6: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color),
+    0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color),
+    0 24px 24px -12px var(--shadow-color);
+  --shadow-7: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color),
+    0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color),
+    0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color);
+  --shadow-8: var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color),
+    0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color),
+    0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color),
+    0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color),
+    0 96px 96px -48px var(--shadow-color);
+  --background: var(--surface-1);
+  --foreground: #73574a;
+  --card: var(--surface-3);
+  --card-foreground: #73574a;
+  --popover: var(--surface-3);
+  --popover-foreground: #73574a;
+  --primary: #73574a;
+  --primary-foreground: #fef1df;
+  /* Switch on-track. Keep in sync with registry/ui switch cssVars. */
+  --switch-checked: var(--primary);
+  --button-primary: #3b2a21;
+  --button-primary-gradient: linear-gradient(#665146 0%, #3b2a21 36.79% 60.86%, #503d33 100%);
+  --button-primary-border: rgb(31 18 12 / 0.68);
+  --button-primary-foreground: #fef1df;
+  --secondary: #edece8;
+  --secondary-foreground: #73574a;
+  --muted: #edece8;
+  --muted-foreground: #7e756c;
+  /* Hover washes. Keep in sync with registry/lib (theme) cssVars. */
+  /* Dark hover (8%): empty surfaces. Light hover (4%): over existing fills. */
+  --hover: rgb(from var(--foreground) r g b / 8%);
+  --hover-light: rgb(from var(--foreground) r g b / 4%);
+  --active: rgb(from var(--foreground) r g b / 12%);
+  --selected: color-mix(in oklab, var(--foreground) 16%, var(--background));
+  --focus-ring: var(--ring);
+  --accent: #edece8;
+  --accent-foreground: #73574a;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.55 0.16 48);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: #e6e4de;
+  --input: #e0ddd6;
+  --ring: #73574a;
+  --chart-1: #73574a;
+  --chart-2: #5b793f;
+  --chart-3: #5b5ddf;
+  --chart-4: #7e756c;
+  --chart-5: #9a918a;
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: #73574a;
+  --sidebar-primary: #73574a;
+  --sidebar-primary-foreground: #fef1df;
+  --sidebar-accent: #edece8;
+  --sidebar-accent-foreground: #73574a;
+  --sidebar-border: #e6e4de;
+  --sidebar-ring: #7e756c;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.78 0.14 55);
-  --primary-foreground: oklch(0.22 0.04 50);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --surface-1: #1c1918;
+  --surface-2: #24211f;
+  --surface-3: #2c2926;
+  --surface-4: #33302d;
+  --surface-5: #3a3734;
+  --surface-6: #413e3b;
+  --surface-7: #484542;
+  --surface-8: #4f4c49;
+  --shadow-inset-hi: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --dm-ring-base: rgba(255, 255, 255, 0.02);
+  --dm-ring-mid: rgba(255, 255, 255, 0.04);
+  --dm-ring-high: rgba(255, 255, 255, 0.06);
+  --dm-drop: rgba(0, 0, 0, 0.18);
+  --shadow-1: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base);
+  --shadow-2: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base),
+    0 1px 1px -0.5px var(--dm-drop);
+  --shadow-3: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base),
+    0 0 0 1px rgba(0, 0, 0, 0.12), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop);
+  --shadow-4: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid),
+    0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop);
+  --shadow-5: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid),
+    0 0 0 1px rgba(0, 0, 0, 0.16), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
+    0 12px 12px -6px var(--dm-drop);
+  --shadow-6: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high),
+    0 0 0 1px rgba(0, 0, 0, 0.18), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
+    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop);
+  --shadow-7: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high),
+    0 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
+    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop),
+    0 48px 48px -24px var(--dm-drop);
+  --shadow-8: var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high),
+    0 0 0 1px rgba(0, 0, 0, 0.22), 0 1px 1px -0.5px var(--dm-drop),
+    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
+    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop),
+    0 48px 48px -24px var(--dm-drop), 0 96px 96px -48px var(--dm-drop);
+  --background: var(--surface-1);
+  --foreground: #fef1df;
+  --card: var(--surface-3);
+  --card-foreground: #fef1df;
+  --popover: var(--surface-3);
+  --popover-foreground: #fef1df;
+  --primary: #fef1df;
+  --primary-foreground: #73574a;
+  /* Switch on-track. Keep in sync with registry/ui switch cssVars. */
+  --switch-checked: var(--primary-foreground);
+  --button-primary: #f4e2c8;
+  --button-primary-gradient: linear-gradient(#fffaf3 0%, #f4e2c8 36.79% 60.86%, #fbedd9 100%);
+  --button-primary-border: rgb(64 46 37 / 0.68);
+  --button-primary-foreground: #3b2a21;
+  --secondary: #fef1df1a;
+  --secondary-foreground: #fef1df;
+  --muted: #fef1df1a;
+  --muted-foreground: #9a928a;
+  /* Hover washes. Keep in sync with registry/lib (theme) cssVars. */
+  /* Dark hover (8%): empty surfaces. Light hover (4%): over existing fills. */
+  --hover: rgb(from var(--foreground) r g b / 8%);
+  --hover-light: rgb(from var(--foreground) r g b / 4%);
+  --active: rgb(from var(--foreground) r g b / 14%);
+  --selected: color-mix(in oklab, var(--foreground) 22%, var(--background));
+  --focus-ring: var(--ring);
+  --accent: #fef1df1a;
+  --accent-foreground: #fef1df;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.78 0.14 55);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --border: #ffffff14;
+  --input: #ffffff1f;
+  --ring: #fef1df;
+  --chart-1: #fef1df;
+  --chart-2: #8fa876;
+  --chart-3: #8b8de8;
+  --chart-4: #9a928a;
+  --chart-5: #b89a8a;
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: #fef1df;
+  --sidebar-primary: #fef1df;
+  --sidebar-primary-foreground: #73574a;
+  --sidebar-accent: #fef1df1a;
+  --sidebar-accent-foreground: #fef1df;
+  --sidebar-border: #ffffff14;
+  --sidebar-ring: #9a928a;
+}
+
+:root {
+  --skullet-base: var(--muted);
+  --skullet-highlight: color-mix(in oklab, var(--background) 70%, transparent);
+  --skullet-radius: var(--radius-sm);
+  --skullet-animation: shimmer;
+}
+
+.dark {
+  --skullet-highlight: color-mix(in oklab, var(--foreground) 8%, transparent);
 }
 
 @layer base {
@@ -119,4 +345,168 @@
   body {
     @apply bg-background text-foreground;
   }
+  .prose {
+    max-width: 65ch;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    letter-spacing: var(--text-base--letter-spacing);
+    color: var(--foreground);
+  }
+  .prose > * + * {
+    margin-top: 0.75em;
+  }
+  .prose :where(h1, h2, h3) {
+    font-family: var(--font-geist-serif), "Times New Roman", serif;
+    font-weight: 500;
+    font-variant-ligatures: none;
+    text-wrap: balance;
+  }
+  .prose :where(h1) {
+    font-size: var(--text-4xl);
+    line-height: var(--text-4xl--line-height);
+    letter-spacing: var(--text-4xl--letter-spacing);
+  }
+  .prose > * + :where(h1) {
+    margin-top: 0;
+  }
+  .prose :where(h2) {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    letter-spacing: var(--text-2xl--letter-spacing);
+  }
+  .prose > * + :where(h2) {
+    margin-top: 1.5em;
+  }
+  .prose :where(h3) {
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
+    letter-spacing: var(--text-xl--letter-spacing);
+  }
+  .prose > * + :where(h3) {
+    margin-top: 1.25em;
+  }
+  .prose :where(p, ul, ol) {
+    text-wrap: pretty;
+  }
+  .prose :where(a) {
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, var(--foreground) 40%, transparent);
+    text-underline-offset: 0.15em;
+  }
+  .prose :where(strong) {
+    font-weight: 500;
+  }
+  .prose :where(ul, ol) {
+    padding-left: 1.25rem;
+  }
+  .prose :where(ul) {
+    list-style-type: disc;
+  }
+  .prose :where(ol) {
+    list-style-type: decimal;
+  }
+  .prose :where(li + li) {
+    margin-top: 0.25em;
+  }
+  .prose :where(code) {
+    border-radius: 0.25rem;
+    background: var(--muted);
+    padding: 0.1em 0.35em;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.875em;
+  }
+  /* Drop cap. Keep in sync with registry/lib (typography) css. */
+  .drop-cap,
+  .drop-cap-3,
+  .drop-cap-4 {
+    --drop-cap-lines: 2;
+  }
+  .drop-cap-3 {
+    --drop-cap-lines: 3;
+  }
+  .drop-cap-4 {
+    --drop-cap-lines: 4;
+  }
+  .drop-cap::first-letter,
+  .drop-cap-3::first-letter,
+  .drop-cap-4::first-letter,
+  .prose.drop-cap > p:first-of-type::first-letter,
+  .prose.drop-cap-3 > p:first-of-type::first-letter,
+  .prose.drop-cap-4 > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-geist-serif), "Times New Roman", serif;
+    font-weight: 500;
+    font-variant-ligatures: none;
+    /* Floor at 2 lines. No padding — even 0.05em makes the float claim an
+       extra body line (N+1 wrap). ::first-letter ignores height. */
+    font-size: calc(max(2, var(--drop-cap-lines, 2)) * 1lh);
+    line-height: 1;
+    margin-right: 0.1em;
+    padding-top: 0;
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  /* Beat Tailwind rounded-* and React style re-applies once Lisse clips. */
+  [data-slot="smooth-corners"][data-state="ready"] {
+    border-radius: 0 !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-geist-serif), "Times New Roman", serif;
+  font-weight: 500;
+  font-variant-ligatures: none;
+}
+
+/* Kit preview: Make them yours (docs). Keep in sync with lib/kit-settings.ts */
+html[data-kit-heading="geist"] .font-display,
+html[data-kit-heading="geist"] .drop-cap::first-letter,
+html[data-kit-heading="geist"] .drop-cap-3::first-letter,
+html[data-kit-heading="geist"] .drop-cap-4::first-letter,
+html[data-kit-heading="geist"] .prose.drop-cap > p:first-of-type::first-letter,
+html[data-kit-heading="geist"] .prose.drop-cap-3 > p:first-of-type::first-letter,
+html[data-kit-heading="geist"] .prose.drop-cap-4 > p:first-of-type::first-letter {
+  font-family: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui, sans-serif;
+  font-variant-ligatures: normal;
+}
+
+html[data-kit-heading="inter"] .font-display,
+html[data-kit-heading="inter"] .drop-cap::first-letter,
+html[data-kit-heading="inter"] .drop-cap-3::first-letter,
+html[data-kit-heading="inter"] .drop-cap-4::first-letter,
+html[data-kit-heading="inter"] .prose.drop-cap > p:first-of-type::first-letter,
+html[data-kit-heading="inter"] .prose.drop-cap-3 > p:first-of-type::first-letter,
+html[data-kit-heading="inter"] .prose.drop-cap-4 > p:first-of-type::first-letter {
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-variant-ligatures: normal;
+}
+
+html[data-kit-size="compact"] article [data-slot="button"],
+html[data-kit-size="compact"] article [data-slot="input"],
+html[data-kit-size="compact"] article [data-slot="textarea"],
+html[data-kit-size="compact"] article [data-slot="switch"],
+html[data-kit-size="compact"] article [data-slot="checkbox"],
+html[data-kit-size="compact"] article [data-slot="radio"] {
+  zoom: 0.875;
+}
+
+html[data-kit-hover="instant"] [data-slot="fluid-hover-highlight"] {
+  transition-duration: 0ms !important;
+}
+
+html[data-kit-hover="instant"] {
+  --duration-instant: 0ms;
+  --duration-fast: 0ms;
+}
+
+.article-rail {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    color-mix(in oklab, var(--foreground) 8%, var(--background)) 400px,
+    color-mix(in oklab, var(--foreground) 8%, var(--background)) calc(100% - 80px),
+    transparent 100%
+  );
 }

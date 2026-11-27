@@ -1,9 +1,20 @@
+// @prometheus 0.2.0
 "use client"
 
 import * as React from "react"
 import { ThemeProvider } from "next-themes"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { breakpoints } from "@/lib/breakpoints"
+import {
+  ShapeProvider,
+  type ShapeVariant,
+} from "@/lib/shape-context"
+import {
+  SizeProvider,
+  type SizeVariant,
+} from "@/lib/size-context"
+import { SurfaceProvider } from "@/lib/surface-context"
 
 type PrometheusContextValue = {
   isMobile: boolean
@@ -25,14 +36,22 @@ export function usePrometheus() {
 
 export function PrometheusProvider({
   children,
-  breakpoint = 768,
+  breakpoint = breakpoints.md.px,
   isMobile: isMobileProp,
   defaultTheme = "dark",
+  enableSystem = true,
+  forcedTheme,
+  size = "default",
+  shape = "rounded",
 }: {
   children: React.ReactNode
   breakpoint?: number
   isMobile?: boolean
   defaultTheme?: "light" | "dark" | "system"
+  enableSystem?: boolean
+  forcedTheme?: "light" | "dark"
+  size?: SizeVariant
+  shape?: ShapeVariant
 }) {
   const [isMobileDetected, setIsMobileDetected] = React.useState(false)
 
@@ -48,12 +67,21 @@ export function PrometheusProvider({
   const isMobile = isMobileProp ?? isMobileDetected
 
   return (
-    <ThemeProvider attribute="class" defaultTheme={defaultTheme} enableSystem>
-      <TooltipProvider>
-        <PrometheusContext.Provider value={{ isMobile }}>
-          {children}
-        </PrometheusContext.Provider>
-      </TooltipProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme={defaultTheme}
+      enableSystem={enableSystem}
+      forcedTheme={forcedTheme}
+    >
+      <SizeProvider size={size}>
+        <ShapeProvider shape={shape}>
+          <TooltipProvider>
+            <PrometheusContext.Provider value={{ isMobile }}>
+              <SurfaceProvider value={1}>{children}</SurfaceProvider>
+            </PrometheusContext.Provider>
+          </TooltipProvider>
+        </ShapeProvider>
+      </SizeProvider>
     </ThemeProvider>
   )
 }

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "changelog",
+  "title": "Prometheus 0.2.0",
+  "description": "Current registry version is 0.2.0. Compare it with the // @prometheus stamp in a copied file, then re-add items that are behind. Installing this writes PROMETHEUS.md.",
+  "files": [
+    {
+      "path": "registry/base/PROMETHEUS.md",
+      "content": "# Prometheus\n\nVersion: 0.2.0\n\nThis project copied Prometheus at the version above. Registry source files start with `// @prometheus 0.2.0`.\n\nBefore editing one of those files, compare its stamp with the registry changelog:\n\n```bash\nnpx shadcn@latest view AustinTByrd/prometheus/changelog\n```\n\nIf the registry version is newer, re-add the items that changed:\n\n```bash\nnpx shadcn@latest add AustinTByrd/prometheus/<item>\n```\n\nCopying source does not push later fixes into this project.\n",
+      "type": "registry:file",
+      "target": "~/PROMETHEUS.md"
+    }
+  ],
+  "type": "registry:item"
+}

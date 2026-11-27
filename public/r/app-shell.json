@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "app-shell",
+  "title": "App Shell",
+  "description": "Sidebar, top bar, scrolling main, and a one-row footer. App screens start here. The root layout stays fonts and PrometheusProvider.",
+  "registryDependencies": [
+    "AustinTByrd/prometheus/sidebar",
+    "AustinTByrd/prometheus/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/app-shell.tsx",
+      "content": "// @prometheus 0.2.0\n\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarHeader,\n  SidebarInset,\n  SidebarProvider,\n  SidebarRail,\n  SidebarTrigger,\n  type SidebarResize,\n} from \"@/components/ui/sidebar\"\n\nfunction AppShell({\n  brand,\n  nav,\n  title,\n  actions,\n  footer,\n  resize = \"none\",\n  children,\n  className,\n}: {\n  brand?: React.ReactNode\n  nav: React.ReactNode\n  title?: React.ReactNode\n  actions?: React.ReactNode\n  footer?: React.ReactNode\n  resize?: SidebarResize\n  children: React.ReactNode\n  className?: string\n}) {\n  return (\n    <SidebarProvider className={cn(\"h-svh\", className)} resize={resize}>\n      <Sidebar collapsible=\"icon\">\n        {resize === \"none\" ? null : <SidebarRail />}\n        {brand ? (\n          <SidebarHeader className=\"overflow-hidden group-data-[collapsible=icon]:hidden\">\n            <div className=\"truncate\">{brand}</div>\n          </SidebarHeader>\n        ) : null}\n        <SidebarContent>{nav}</SidebarContent>\n      </Sidebar>\n      <SidebarInset className=\"h-svh min-h-0\">\n        <header className=\"flex h-12 shrink-0 items-center gap-2 border-b border-border px-3\">\n          <SidebarTrigger />\n          {title ? (\n            <div className=\"min-w-0 flex-1 truncate text-sm font-medium text-foreground\">\n              {title}\n            </div>\n          ) : (\n            <div className=\"flex-1\" />\n          )}\n          {actions ? (\n            <div className=\"flex shrink-0 items-center gap-2\">{actions}</div>\n          ) : null}\n        </header>\n        <div className=\"flex min-h-0 flex-1 flex-col overflow-auto\">{children}</div>\n        {footer ? (\n          <footer className=\"flex h-10 shrink-0 items-center border-t border-border px-4 text-sm text-muted-foreground\">\n            {footer}\n          </footer>\n        ) : null}\n      </SidebarInset>\n    </SidebarProvider>\n  )\n}\n\nexport { AppShell }\n",
+      "type": "registry:ui",
+      "target": "components/ui/app-shell.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,661 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Base UI button on Prometheus tokens: an elevated default plus five fallback variants, control-height sizes, inline icons, and the shared focus ring. Pill stays CSS rounded-full.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "cssVars": {
+        "light": {
+          "button-primary": "#3b2a21",
+          "button-primary-gradient": "linear-gradient(#665146 0%, #3b2a21 36.79% 60.86%, #503d33 100%)",
+          "button-primary-border": "rgb(31 18 12 / 0.68)",
+          "button-primary-foreground": "#fef1df"
+        },
+        "dark": {
+          "button-primary": "#f4e2c8",
+          "button-primary-gradient": "linear-gradient(#fffaf3 0%, #f4e2c8 36.79% 60.86%, #fbedd9 100%)",
+          "button-primary-border": "rgb(64 46 37 / 0.68)",
+          "button-primary-foreground": "#3b2a21"
+        }
+      },
+      "files": [
+        {
+          "path": "button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-button",
+      "type": "registry:ui",
+      "title": "Toggle button",
+      "description": "Base UI toggle on the default Button: raised when off, flat on a muted fill when selected. Control-height sizes, inline icons, and a group for single or multiple selection.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "toggle-button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A hairline square. Checked, it fills with foreground and a surface-colored Heroicons check. Pair with Field.",
+      "dependencies": [
+        "@base-ui/react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox group",
+      "description": "Checkbox rows with Fluid Hover and contiguous selections that merge into one background. Each row uses a filled check.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/checkbox",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "checkbox-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A labeled toggle. The thumb stretches on hover and press, springs across the track, and can be dragged past the midpoint to flip.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "cssVars": {
+        "light": {
+          "switch-checked": "var(--primary)"
+        },
+        "dark": {
+          "switch-checked": "var(--primary-foreground)"
+        }
+      },
+      "files": [
+        {
+          "path": "switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio group",
+      "description": "Radio rows styled like Checkbox group: Fluid Hover, a muted selection fill, and a filled control with a surface-colored dot. Circles stay CSS rounded-full.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Base UI text input on Prometheus tokens: a bordered default or a filled muted wash, control-height sizes, start and end slots, a pending check, and invalid, read-only, and disabled states. Form wires it up as FormInput.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "spinner",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line text field on the Input tokens: grows with the text between rows and maxRows, a character or word count, an optional grab handle, and invalid, read-only, and disabled states. Form wires it up as FormTextarea.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Base UI dialog that lifts four surface steps off its substrate and uses Lisse smooth corners.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Base UI select whose menu lifts two surface steps off its substrate, so it stays visible inside a dialog. Menu uses Lisse smooth corners.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "Base UI menu that lifts two surface steps off its substrate, with Lisse smooth corners, radio and checkbox items, and nested submenus.",
+      "dependencies": [
+        "@base-ui/react",
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "One slider, two ladder steps: the default pip/scrubber design and the compact design with range mode and value display. Built on Base UI with spring motion.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/theme",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/omit",
+        "AustinTByrd/prometheus/font-weight",
+        "AustinTByrd/prometheus/size-context",
+        "AustinTByrd/prometheus/shape-context"
+      ],
+      "files": [
+        {
+          "path": "slider.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Base UI tooltip that lifts two surface steps off its substrate, with Lisse smooth corners, collision-aware positioning, and composable parts for advanced layouts.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "lightbox",
+      "type": "registry:ui",
+      "title": "Lightbox",
+      "description": "ramka lightbox on Prometheus tokens: a morph from the thumbnail, swipe, pinch to zoom, pull to dismiss, and Button controls, plus a gallery that builds the whole viewer from an array of images.",
+      "dependencies": [
+        "@ramka/react",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "lightbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/lightbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Base UI drawer that lifts on the same surface ladder as Dialog, with Lisse smooth corners on the free edge.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "drawer.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Base UI sheet that lifts four surface steps off its substrate, inset 8px from the window edge with Lisse smooth corners all round.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "TanStack Table and Virtual, with cells that split, stretch, and snap as the container widens. Merged values strain toward their column, then click into place.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "@tanstack/react-virtual"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "Collapsible sidebar that uses usePrometheus().isMobile and becomes a sheet on a narrow viewport. Drag the rail to resize: open to one fixed width, or learn the width you keep choosing and snap to it. Prefer AppShell for the app frame.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "@heroicons/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/input",
+        "separator",
+        "AustinTByrd/prometheus/skeleton",
+        "AustinTByrd/prometheus/tooltip",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/sheet",
+        "AustinTByrd/prometheus/prometheus-provider",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "sidebar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:ui",
+      "title": "App Shell",
+      "description": "Sidebar, top bar, scrolling main, and a one-row footer. App screens start here. The root layout stays fonts and PrometheusProvider.",
+      "registryDependencies": [
+        "AustinTByrd/prometheus/sidebar",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "app-shell.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/app-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Skullet skeletons in Prometheus tokens. Wrap the loaded view; the skeleton is measured from it, so nothing moves when the data lands.",
+      "dependencies": [
+        "skullet"
+      ],
+      "cssVars": {
+        "light": {
+          "skullet-base": "var(--muted)",
+          "skullet-highlight": "color-mix(in oklab, var(--background) 70%, transparent)",
+          "skullet-radius": "var(--radius-sm)",
+          "skullet-animation": "shimmer"
+        },
+        "dark": {
+          "skullet-highlight": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+        }
+      },
+      "files": [
+        {
+          "path": "skeleton.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/skeleton.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/theme"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state with an icon slot, a title, one sentence, and actions.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "empty.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/empty.tsx"
+        }
+      ]
+    },
+    {
+      "name": "error",
+      "type": "registry:ui",
+      "title": "Error",
+      "description": "Error state with an icon slot, a title, one sentence, and actions.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "error.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/error.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "react-hook-form and zod. Field errors, a root error, and a submit button that shows Spinner while pending.",
+      "dependencies": [
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod"
+      ],
+      "registryDependencies": [
+        "field",
+        "AustinTByrd/prometheus/input",
+        "AustinTByrd/prometheus/textarea",
+        "AustinTByrd/prometheus/checkbox",
+        "label",
+        "spinner",
+        "utils",
+        "AustinTByrd/prometheus/button",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "form.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-display",
+      "type": "registry:ui",
+      "title": "Data display",
+      "description": "Recharts-powered bar and line chart cards, ChartContainer, ChartCard, ChartTooltip, ChartLegend, and ChartKey. Bars use pastel fills; lines stay monochrome. Hairline grid, in the app's own font, with a value tag on hover. Charts fade in on scroll, and reduced motion keeps the end state.",
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "data-display.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/data-display.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Soft pill labels on the Data Foundations pastel palette, plus a neutral muted default. A translucent tint sits over the local surface so the wash stays stable on any parent.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Image or initials avatar and a see-through AvatarStack. Every dimension derives from --avatar-size, and stacked neighbours are cut with a real CSS mask so any background shows through the gaps.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/chart-palette",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "type": "registry:ui",
+      "title": "List",
+      "description": "Rows of links between hairline rules, with a title on the left and a detail on the right. One Fluid Hover fill glides from row to row.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/fluid-hover",
+        "AustinTByrd/prometheus/typography",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "list.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/list.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Horizontal pill tabs with a raised default-button selection indicator, gliding hover wash that never crosses the active tab, optional active-label collapse, and manual keyboard activation.",
+      "dependencies": [
+        "@base-ui/react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/elevated",
+        "AustinTByrd/prometheus/springs",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    }
+  ]
+}

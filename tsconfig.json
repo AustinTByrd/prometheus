@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -19,24 +23,154 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/components/prometheus-provider": ["./registry/components/prometheus-provider.tsx"],
-      "@/components/button": ["./registry/components/button.tsx"],
-      "@/components/simple-tooltip": ["./registry/components/simple-tooltip.tsx"],
-      "@/components/conditional-tooltip": ["./registry/components/conditional-tooltip.tsx"],
-      "@/components/conditional-wrap": ["./registry/components/conditional-wrap.tsx"],
-      "@/components/simple-dialog": ["./registry/components/simple-dialog.tsx"],
-      "@/components/responsive-dialog": ["./registry/components/responsive-dialog.tsx"],
-      "@/components/page-header": ["./registry/components/page-header.tsx"],
-      "@/components/spinner": ["./registry/components/spinner.tsx"],
-      "@/components/kbd": ["./registry/components/kbd.tsx"],
-      "@/components/form-field-wrapper": ["./registry/forms/form-field-wrapper.tsx"],
-      "@/components/form-field-input": ["./registry/forms/form-field-input.tsx"],
-      "@/components/form-field-textarea": ["./registry/forms/form-field-textarea.tsx"],
-      "@/components/form-field-select": ["./registry/forms/form-field-select.tsx"],
-      "@/components/form-field-checkbox": ["./registry/forms/form-field-checkbox.tsx"]
+      "@/*": [
+        "./*"
+      ],
+      "@/components/prometheus-provider": [
+        "./registry/components/prometheus-provider.tsx"
+      ],
+      "@/lib/elevated": [
+        "./registry/lib/elevated.tsx"
+      ],
+      "@/lib/smooth-corners": [
+        "./registry/lib/smooth-corners.tsx"
+      ],
+      "@/lib/motion": [
+        "./registry/lib/motion.ts"
+      ],
+      "@/lib/theme": [
+        "./registry/lib/theme.ts"
+      ],
+      "@/lib/fluid-hover": [
+        "./registry/lib/fluid-hover.tsx"
+      ],
+      "@/lib/typography": [
+        "./registry/lib/typography.ts"
+      ],
+      "@/lib/breakpoints": [
+        "./registry/lib/breakpoints.ts"
+      ],
+      "@/lib/surface-context": [
+        "./registry/lib/surface-context.tsx"
+      ],
+      "@/lib/surface-classes": [
+        "./registry/lib/surface-classes.ts"
+      ],
+      "@/lib/springs": [
+        "./registry/lib/springs.ts"
+      ],
+      "@/lib/omit": [
+        "./registry/lib/omit.ts"
+      ],
+      "@/lib/font-weight": [
+        "./registry/lib/font-weight.ts"
+      ],
+      "@/lib/size-context": [
+        "./registry/lib/size-context.tsx"
+      ],
+      "@/lib/shape-context": [
+        "./registry/lib/shape-context.tsx"
+      ],
+      "@/lib/chart-palette": [
+        "./registry/lib/chart-palette.ts"
+      ],
+      "@/components/ui/button": [
+        "./registry/ui/button.tsx"
+      ],
+      "@/components/ui/toggle-button": [
+        "./registry/ui/toggle-button.tsx"
+      ],
+      "@/components/ui/checkbox": [
+        "./registry/ui/checkbox.tsx"
+      ],
+      "@/components/ui/checkbox-group": [
+        "./registry/ui/checkbox-group.tsx"
+      ],
+      "@/components/ui/switch": [
+        "./registry/ui/switch.tsx"
+      ],
+      "@/components/ui/radio-group": [
+        "./registry/ui/radio-group.tsx"
+      ],
+      "@/components/ui/input": [
+        "./registry/ui/input.tsx"
+      ],
+      "@/components/ui/textarea": [
+        "./registry/ui/textarea.tsx"
+      ],
+      "@/components/ui/dialog": [
+        "./registry/ui/dialog.tsx"
+      ],
+      "@/components/ui/select": [
+        "./registry/ui/select.tsx"
+      ],
+      "@/components/ui/menu": [
+        "./registry/ui/menu.tsx"
+      ],
+      "@/components/ui/slider": [
+        "./registry/ui/slider.tsx"
+      ],
+      "@/components/ui/drawer": [
+        "./registry/ui/drawer.tsx"
+      ],
+      "@/components/ui/sheet": [
+        "./registry/ui/sheet.tsx"
+      ],
+      "@/components/ui/tooltip": [
+        "./registry/ui/tooltip.tsx"
+      ],
+      "@/components/ui/list": [
+        "./registry/ui/list.tsx"
+      ],
+      "@/components/ui/lightbox": [
+        "./registry/ui/lightbox.tsx"
+      ],
+      "@/components/ui/table": [
+        "./registry/ui/table.tsx"
+      ],
+      "@/components/ui/sidebar": [
+        "./registry/ui/sidebar.tsx"
+      ],
+      "@/components/ui/app-shell": [
+        "./registry/ui/app-shell.tsx"
+      ],
+      "@/components/ui/skeleton": [
+        "./registry/ui/skeleton.tsx"
+      ],
+      "@/components/ui/empty": [
+        "./registry/ui/empty.tsx"
+      ],
+      "@/components/ui/error": [
+        "./registry/ui/error.tsx"
+      ],
+      "@/components/ui/form": [
+        "./registry/ui/form.tsx"
+      ],
+      "@/components/ui/data-display": [
+        "./registry/ui/data-display.tsx"
+      ],
+      "@/components/ui/badge": [
+        "./registry/ui/badge.tsx"
+      ],
+      "@/components/ui/avatar": [
+        "./registry/ui/avatar.tsx"
+      ],
+      "@/components/ui/tabs": [
+        "./registry/ui/tabs.tsx"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "registry/base/starter-layout.tsx",
+    "registry/base/starter-page.tsx",
+    "registry/base/starter-providers.tsx"
+  ]
 }

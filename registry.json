@@ -4,8 +4,9 @@
   "homepage": "https://prometheus-ui-rust.vercel.app",
   "include": [
     "registry/base/registry.json",
+    "registry/lib/registry.json",
+    "registry/ui/registry.json",
     "registry/components/registry.json",
-    "registry/forms/registry.json",
     "registry/agent/registry.json"
   ]
 }

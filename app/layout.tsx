@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next"
+import { Geist, Geist_Mono, Inter } from "next/font/google"
+import localFont from "next/font/local"
 
 import { PrometheusProvider } from "@/components/prometheus-provider"
-import { SiteHeader } from "@/components/site/site-header"
 
 import "./globals.css"
 
@@ -17,10 +17,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+})
+
+const geistSerif = localFont({
+  src: "../node_modules/geist/dist/fonts/geist-serif/GeistSerifVF.woff2",
+  variable: "--font-geist-serif",
+  weight: "100 900",
+  fallback: ["Times New Roman", "Times", "serif"],
+  adjustFontFallback: "Times New Roman",
+})
+
 export const metadata: Metadata = {
   title: "Prometheus",
   description:
-    "A personal shadcn registry. Your components. Your defaults. Every project.",
+    "A personal design system as a shadcn registry. Your components. Your defaults. Every project.",
 }
 
 export default function RootLayout({
@@ -30,13 +43,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${geistSerif.variable} ${inter.variable}`}
       lang="en"
       suppressHydrationWarning
     >
       <body className="min-h-svh antialiased">
-        <PrometheusProvider>
-          <SiteHeader />
+        <PrometheusProvider defaultTheme="system" enableSystem>
           {children}
         </PrometheusProvider>
       </body>

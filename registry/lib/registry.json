@@ -1,0 +1,457 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "motion",
+      "type": "registry:lib",
+      "title": "Motion",
+      "description": "Shared durations, easing, and the height spring. Import these instead of inventing a second curve.",
+      "cssVars": {
+        "theme": {
+          "duration-instant": "120ms",
+          "duration-fast": "160ms",
+          "duration-exit": "180ms",
+          "duration-standard": "240ms",
+          "duration-considered": "480ms",
+          "ease-enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "ease-standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+          "ease-exit": "cubic-bezier(0.7, 0, 0.84, 0)"
+        }
+      },
+      "files": [
+        {
+          "path": "motion.ts",
+          "type": "registry:lib",
+          "target": "lib/motion.ts"
+        }
+      ]
+    },
+    {
+      "name": "theme",
+      "type": "registry:lib",
+      "title": "Theme",
+      "description": "Portable Prometheus extension tokens derived from the host theme. Ships --hover / --hover-light / --active / --selected and Tailwind color bridges so Fluid Hover, Slider fills, and controls work without this app’s globals.css. Depends on motion.",
+      "registryDependencies": [
+        "AustinTByrd/prometheus/motion"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-hover": "var(--hover)",
+          "color-hover-light": "var(--hover-light)",
+          "color-active": "var(--active)",
+          "color-selected": "var(--selected)"
+        },
+        "light": {
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)",
+          "active": "rgb(from var(--foreground) r g b / 12%)",
+          "selected": "color-mix(in oklab, var(--foreground) 16%, var(--background))",
+          "focus-ring": "var(--ring)"
+        },
+        "dark": {
+          "hover": "rgb(from var(--foreground) r g b / 8%)",
+          "hover-light": "rgb(from var(--foreground) r g b / 4%)",
+          "active": "rgb(from var(--foreground) r g b / 14%)",
+          "selected": "color-mix(in oklab, var(--foreground) 22%, var(--background))",
+          "focus-ring": "var(--ring)"
+        }
+      },
+      "files": [
+        {
+          "path": "theme.ts",
+          "type": "registry:lib",
+          "target": "lib/theme.ts"
+        }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:lib",
+      "title": "Typography",
+      "description": "Type ramp from text-xs through text-5xl. Each step sets size, line-height, and tracking. Titles from text-xl use font-display. Long-form copy uses prose. Drop caps use drop-cap (2 lines), drop-cap-3, or drop-cap-4.",
+      "cssVars": {
+        "theme": {
+          "text-xs": "0.75rem",
+          "text-xs--line-height": "1rem",
+          "text-xs--letter-spacing": "0.02em",
+          "text-sm": "0.875rem",
+          "text-sm--line-height": "1.25rem",
+          "text-sm--letter-spacing": "0.01em",
+          "text-base": "1rem",
+          "text-base--line-height": "1.5rem",
+          "text-base--letter-spacing": "0em",
+          "text-lg": "1.125rem",
+          "text-lg--line-height": "1.75rem",
+          "text-lg--letter-spacing": "-0.01em",
+          "text-xl": "1.25rem",
+          "text-xl--line-height": "1.75rem",
+          "text-xl--letter-spacing": "-0.02em",
+          "text-2xl": "1.5rem",
+          "text-2xl--line-height": "2rem",
+          "text-2xl--letter-spacing": "-0.025em",
+          "text-3xl": "1.875rem",
+          "text-3xl--line-height": "2.25rem",
+          "text-3xl--letter-spacing": "-0.03em",
+          "text-4xl": "2.25rem",
+          "text-4xl--line-height": "2.75rem",
+          "text-4xl--letter-spacing": "-0.03em",
+          "text-5xl": "3rem",
+          "text-5xl--line-height": "3.5rem",
+          "text-5xl--letter-spacing": "-0.035em",
+          "text-6xl--letter-spacing": "-0.04em",
+          "text-7xl--letter-spacing": "-0.04em",
+          "text-8xl--letter-spacing": "-0.04em",
+          "text-9xl--letter-spacing": "-0.04em"
+        }
+      },
+      "css": {
+        "@layer base": {
+          ".font-display": {
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none"
+          },
+          ".prose": {
+            "max-width": "65ch",
+            "font-size": "var(--text-base)",
+            "line-height": "var(--text-base--line-height)",
+            "letter-spacing": "var(--text-base--letter-spacing)",
+            "color": "var(--foreground)"
+          },
+          ".prose > * + *": {
+            "margin-top": "0.75em"
+          },
+          ".prose :where(h1, h2, h3)": {
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none",
+            "text-wrap": "balance"
+          },
+          ".prose :where(h1)": {
+            "font-size": "var(--text-4xl)",
+            "line-height": "var(--text-4xl--line-height)",
+            "letter-spacing": "var(--text-4xl--letter-spacing)"
+          },
+          ".prose > * + :where(h1)": {
+            "margin-top": "0"
+          },
+          ".prose :where(h2)": {
+            "font-size": "var(--text-2xl)",
+            "line-height": "var(--text-2xl--line-height)",
+            "letter-spacing": "var(--text-2xl--letter-spacing)"
+          },
+          ".prose > * + :where(h2)": {
+            "margin-top": "1.5em"
+          },
+          ".prose :where(h3)": {
+            "font-size": "var(--text-xl)",
+            "line-height": "var(--text-xl--line-height)",
+            "letter-spacing": "var(--text-xl--letter-spacing)"
+          },
+          ".prose > * + :where(h3)": {
+            "margin-top": "1.25em"
+          },
+          ".prose :where(p, ul, ol)": {
+            "text-wrap": "pretty"
+          },
+          ".prose :where(a)": {
+            "text-decoration-line": "underline",
+            "text-decoration-color": "color-mix(in oklab, var(--foreground) 40%, transparent)",
+            "text-underline-offset": "0.15em"
+          },
+          ".prose :where(strong)": {
+            "font-weight": "500"
+          },
+          ".prose :where(ul, ol)": {
+            "padding-left": "1.25rem"
+          },
+          ".prose :where(ul)": {
+            "list-style-type": "disc"
+          },
+          ".prose :where(ol)": {
+            "list-style-type": "decimal"
+          },
+          ".prose :where(li + li)": {
+            "margin-top": "0.25em"
+          },
+          ".prose :where(code)": {
+            "font-family": "var(--font-mono), ui-monospace, monospace",
+            "font-size": "0.875em",
+            "background": "var(--muted)",
+            "border-radius": "0.25rem",
+            "padding": "0.1em 0.35em"
+          },
+          ".drop-cap, .drop-cap-3, .drop-cap-4": {
+            "--drop-cap-lines": "2"
+          },
+          ".drop-cap-3": {
+            "--drop-cap-lines": "3"
+          },
+          ".drop-cap-4": {
+            "--drop-cap-lines": "4"
+          },
+          ".drop-cap::first-letter, .drop-cap-3::first-letter, .drop-cap-4::first-letter, .prose.drop-cap > p:first-of-type::first-letter, .prose.drop-cap-3 > p:first-of-type::first-letter, .prose.drop-cap-4 > p:first-of-type::first-letter": {
+            "float": "left",
+            "font-family": "var(--font-geist-serif), \"Times New Roman\", serif",
+            "font-weight": "500",
+            "font-variant-ligatures": "none",
+            "font-size": "calc(max(2, var(--drop-cap-lines, 2)) * 1lh)",
+            "line-height": "1",
+            "margin-right": "0.1em",
+            "padding-top": "0",
+            "color": "var(--foreground)"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "typography.ts",
+          "type": "registry:lib",
+          "target": "lib/typography.ts"
+        }
+      ]
+    },
+    {
+      "name": "breakpoints",
+      "type": "registry:lib",
+      "title": "Breakpoints",
+      "description": "Viewport widths sm through xl. The app frame splits at md: below it, usePrometheus().isMobile is true and the sidebar is a sheet.",
+      "cssVars": {
+        "theme": {
+          "breakpoint-sm": "40rem",
+          "breakpoint-md": "48rem",
+          "breakpoint-lg": "64rem",
+          "breakpoint-xl": "80rem"
+        }
+      },
+      "files": [
+        {
+          "path": "breakpoints.ts",
+          "type": "registry:lib",
+          "target": "lib/breakpoints.ts"
+        }
+      ]
+    },
+    {
+      "name": "smooth-corners",
+      "type": "registry:lib",
+      "title": "Smooth Corners",
+      "description": "Lisse squircles for Prometheus panels and overlays. CORNERS match --radius* tokens. Squircle curve with smoothing 1 by default. Use useCornerRef on Base UI popups; Elevated and overlays already apply it. Pill and circle stay CSS rounded-full.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "css": {
+        "@layer utilities": {
+          "[data-slot=\"smooth-corners\"][data-state=\"ready\"]": {
+            "border-radius": "0 !important"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "smooth-corners.tsx",
+          "type": "registry:lib",
+          "target": "lib/smooth-corners.tsx"
+        }
+      ]
+    },
+    {
+      "name": "elevated",
+      "type": "registry:lib",
+      "title": "Surfaces",
+      "description": "Eight nested surface levels from Fluid Functionalism. Overlays read their substrate and lift so dialogs, selects, and drawers stay visible at any depth in light and dark mode. PrometheusProvider starts the ladder at surface 1. Panels use Lisse smooth corners by default.",
+      "dependencies": [
+        "@lisse/react",
+        "@lisse/core"
+      ],
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/smooth-corners",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "cssVars": {
+        "theme": {
+          "color-surface-1": "var(--surface-1)",
+          "color-surface-2": "var(--surface-2)",
+          "color-surface-3": "var(--surface-3)",
+          "color-surface-4": "var(--surface-4)",
+          "color-surface-5": "var(--surface-5)",
+          "color-surface-6": "var(--surface-6)",
+          "color-surface-7": "var(--surface-7)",
+          "color-surface-8": "var(--surface-8)",
+          "shadow-surface-1": "var(--shadow-1)",
+          "shadow-surface-2": "var(--shadow-2)",
+          "shadow-surface-3": "var(--shadow-3)",
+          "shadow-surface-4": "var(--shadow-4)",
+          "shadow-surface-5": "var(--shadow-5)",
+          "shadow-surface-6": "var(--shadow-6)",
+          "shadow-surface-7": "var(--shadow-7)",
+          "shadow-surface-8": "var(--shadow-8)"
+        },
+        "light": {
+          "surface-1": "#F7F6F2",
+          "surface-2": "#FBFBF9",
+          "surface-3": "#FFFFFF",
+          "surface-4": "#FFFFFF",
+          "surface-5": "#FFFFFF",
+          "surface-6": "#FFFFFF",
+          "surface-7": "#FFFFFF",
+          "surface-8": "#FFFFFF",
+          "background": "#F7F6F2",
+          "card": "#FFFFFF",
+          "popover": "#FFFFFF",
+          "shadow-color": "#77777714",
+          "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+          "shadow-1": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color)",
+          "shadow-2": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color)",
+          "shadow-3": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color)",
+          "shadow-4": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color)",
+          "shadow-5": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color)",
+          "shadow-6": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color)",
+          "shadow-7": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color)",
+          "shadow-8": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color)"
+        },
+        "dark": {
+          "surface-1": "#1C1918",
+          "surface-2": "#24211F",
+          "surface-3": "#2C2926",
+          "surface-4": "#33302D",
+          "surface-5": "#3A3734",
+          "surface-6": "#413E3B",
+          "surface-7": "#484542",
+          "surface-8": "#4F4C49",
+          "background": "#1C1918",
+          "card": "#2C2926",
+          "popover": "#2C2926",
+          "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+          "dm-ring-base": "rgba(255,255,255,0.02)",
+          "dm-ring-mid": "rgba(255,255,255,0.04)",
+          "dm-ring-high": "rgba(255,255,255,0.06)",
+          "dm-drop": "rgba(0,0,0,0.18)",
+          "shadow-1": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base)",
+          "shadow-2": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 1px 1px -0.5px var(--dm-drop)",
+          "shadow-3": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 0 0 1px rgba(0,0,0,0.12), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop)",
+          "shadow-4": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.14), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop)",
+          "shadow-5": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.16), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop)",
+          "shadow-6": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.18), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop)",
+          "shadow-7": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.20), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop)",
+          "shadow-8": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.22), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop), 0 96px 96px -48px var(--dm-drop)"
+        }
+      },
+      "files": [
+        {
+          "path": "elevated.tsx",
+          "type": "registry:lib",
+          "target": "lib/elevated.tsx"
+        },
+        {
+          "path": "surface-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/surface-context.tsx"
+        },
+        {
+          "path": "surface-classes.ts",
+          "type": "registry:lib",
+          "target": "lib/surface-classes.ts"
+        }
+      ]
+    },
+    {
+      "name": "fluid-hover",
+      "type": "registry:lib",
+      "title": "Fluid Hover",
+      "description": "One highlight that glides from item to item under the pointer instead of blinking between them. List, Sidebar, Checkbox group, and Radio group already use it. Installs theme (hover tokens) and motion.",
+      "registryDependencies": [
+        "utils",
+        "AustinTByrd/prometheus/motion",
+        "AustinTByrd/prometheus/theme"
+      ],
+      "files": [
+        {
+          "path": "fluid-hover.tsx",
+          "type": "registry:lib",
+          "target": "lib/fluid-hover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "springs",
+      "type": "registry:lib",
+      "title": "Springs",
+      "description": "Critically damped spring tiers for pointer-driven motion. Prefer these over hand-written durations.",
+      "files": [
+        {
+          "path": "springs.ts",
+          "type": "registry:lib",
+          "target": "lib/springs.ts"
+        }
+      ]
+    },
+    {
+      "name": "omit",
+      "type": "registry:lib",
+      "title": "Omit",
+      "description": "Shallow omit helper for stripping props before spreading onto a host element.",
+      "files": [
+        {
+          "path": "omit.ts",
+          "type": "registry:lib",
+          "target": "lib/omit.ts"
+        }
+      ]
+    },
+    {
+      "name": "font-weight",
+      "type": "registry:lib",
+      "title": "Font weight",
+      "description": "Variable-font weight tokens for fontVariationSettings, paired with opsz so weight changes keep width steady.",
+      "files": [
+        {
+          "path": "font-weight.ts",
+          "type": "registry:lib",
+          "target": "lib/font-weight.ts"
+        }
+      ]
+    },
+    {
+      "name": "size-context",
+      "type": "registry:lib",
+      "title": "Size",
+      "description": "Two-step size ladder (default and compact). SizeProvider pins a region; components read useSizeVariant.",
+      "files": [
+        {
+          "path": "size-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/size-context.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shape-context",
+      "type": "registry:lib",
+      "title": "Shape",
+      "description": "Corner shape ladder: sharp, rounded, and pill. ShapeProvider sets the variant; components read useShape.",
+      "files": [
+        {
+          "path": "shape-context.tsx",
+          "type": "registry:lib",
+          "target": "lib/shape-context.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart-palette",
+      "type": "registry:lib",
+      "title": "Chart palette",
+      "description": "Six pastel colors for charts and badges, ordered so neighbouring hues stay apart under common color vision types. Soft tags clear 7:1.",
+      "files": [
+        {
+          "path": "chart-palette.ts",
+          "type": "registry:lib",
+          "target": "lib/chart-palette.ts"
+        }
+      ]
+    }
+  ]
+}

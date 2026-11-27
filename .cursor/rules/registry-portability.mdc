@@ -1,0 +1,22 @@
+---
+description: Prometheus registry items must stay fully portable for shadcn install
+alwaysApply: true
+---
+
+# Registry portability
+
+Every Prometheus item must work after `npx shadcn add` in a consumer app that does **not** have this repo’s `app/globals.css`.
+
+## Rules
+
+- Prefer semantic Tailwind tokens (`bg-background`, `text-muted-foreground`, `bg-hover`, `duration-standard`). Do not hardcode Prometheus palette hex in UI components.
+- Any new CSS variable or `@theme` bridge used by a component must ship on that item’s `cssVars` / `css`, or on a registry dependency that already ships it (usually `AustinTByrd/prometheus/theme` or `motion` / `elevated` / `typography`).
+- New UI and lib items must list `AustinTByrd/prometheus/theme` in `registryDependencies` unless they are pure docs/agent files with no runtime styles.
+- Keep `app/globals.css` in sync with registry `cssVars` for local demos — the registry item is the source of truth for consumers.
+- Do not rely on docs-only CSS, site layout styles, or this app’s warm-paper defaults for component behavior.
+
+## Checklist before shipping an item
+
+1. Install path works a la carte (component → its deps → tokens).
+2. Hover/motion/surface classes resolve without copying `globals.css`.
+3. `pnpm registry:build` regenerates `public/r`.

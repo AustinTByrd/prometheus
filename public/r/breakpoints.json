@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breakpoints",
+  "title": "Breakpoints",
+  "description": "Viewport widths sm through xl. The app frame splits at md: below it, usePrometheus().isMobile is true and the sidebar is a sheet.",
+  "files": [
+    {
+      "path": "registry/lib/breakpoints.ts",
+      "content": "// @prometheus 0.2.0\n\n/**\n * Viewport widths. Theme variables `--breakpoint-*` are the same widths in\n * rem (a 16px root). Below `md`, usePrometheus().isMobile is true.\n */\nexport const breakpoints = {\n  sm: {\n    px: 640,\n    rem: \"40rem\",\n    role: \"Stacked controls become a row.\",\n  },\n  md: {\n    px: 768,\n    rem: \"48rem\",\n    role: \"App frame. Below this, the sidebar is a sheet.\",\n  },\n  lg: {\n    px: 1024,\n    rem: \"64rem\",\n    role: \"A side navigation fits beside the page.\",\n  },\n  xl: {\n    px: 1280,\n    rem: \"80rem\",\n    role: \"A second rail fits beside the page.\",\n  },\n} as const\n\nexport type Breakpoint = keyof typeof breakpoints\n",
+      "type": "registry:lib",
+      "target": "lib/breakpoints.ts"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "breakpoint-sm": "40rem",
+      "breakpoint-md": "48rem",
+      "breakpoint-lg": "64rem",
+      "breakpoint-xl": "80rem"
+    }
+  },
+  "type": "registry:lib"
+}

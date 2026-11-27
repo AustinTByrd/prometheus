@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "font-weight",
+  "title": "Font weight",
+  "description": "Variable-font weight tokens for fontVariationSettings, paired with opsz so weight changes keep width steady.",
+  "files": [
+    {
+      "path": "registry/lib/font-weight.ts",
+      "content": "// @prometheus 0.2.0\n\n/**\n * Variable-font weight tokens for `fontVariationSettings`. Pairs `wght` with\n * `opsz` so weight changes keep advance width nearly constant (Inter-style).\n */\nexport const fontWeights = {\n  normal: \"'wght' 400, 'opsz' 14\",\n  semibold: \"'wght' 550, 'opsz' 18\",\n  bold: \"'wght' 700, 'opsz' 25\",\n} as const\n",
+      "type": "registry:lib",
+      "target": "lib/font-weight.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

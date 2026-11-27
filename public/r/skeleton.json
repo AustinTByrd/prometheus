@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Skullet skeletons in Prometheus tokens. Wrap the loaded view; the skeleton is measured from it, so nothing moves when the data lands.",
+  "dependencies": [
+    "skullet"
+  ],
+  "registryDependencies": [
+    "AustinTByrd/prometheus/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/skeleton.tsx",
+      "content": "// @prometheus 0.2.0\nexport {\n  Skeleton,\n  SkeletonBox,\n  SkeletonSuspense,\n  SkulletProvider,\n  type SkeletonBoxProps,\n  type SkeletonProps,\n  type SkeletonSuspenseProps,\n} from \"skullet/react\"\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "skullet-base": "var(--muted)",
+      "skullet-highlight": "color-mix(in oklab, var(--background) 70%, transparent)",
+      "skullet-radius": "var(--radius-sm)",
+      "skullet-animation": "shimmer"
+    },
+    "dark": {
+      "skullet-highlight": "color-mix(in oklab, var(--foreground) 8%, transparent)"
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "omit",
+  "title": "Omit",
+  "description": "Shallow omit helper for stripping props before spreading onto a host element.",
+  "files": [
+    {
+      "path": "registry/lib/omit.ts",
+      "content": "// @prometheus 0.2.0\n\n/** Shallow copy of `object` without `keys`. */\nexport function omit<T extends object, K extends keyof T>(\n  object: T,\n  keys: readonly K[]\n): Omit<T, K> {\n  const rest = { ...object }\n  for (const key of keys) delete rest[key]\n  return rest\n}\n",
+      "type": "registry:lib",
+      "target": "lib/omit.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

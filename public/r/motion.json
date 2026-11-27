@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "motion",
+  "title": "Motion",
+  "description": "Shared durations, easing, and the height spring. Import these instead of inventing a second curve.",
+  "files": [
+    {
+      "path": "registry/lib/motion.ts",
+      "content": "// @prometheus 0.2.0\n\n/** Durations in milliseconds. */\nexport const duration = {\n  /** Reduced-motion fades. */\n  instant: 120,\n  /** Small state changes, and a placeholder leaving. */\n  fast: 160,\n  /** Exits. Quicker than an entrance. */\n  exit: 180,\n  /** Content arriving, panels, menus. */\n  standard: 240,\n  /** Rare, introductory reveals. */\n  considered: 480,\n} as const\n\n/** CSS easing functions. */\nexport const ease = {\n  /** Elements arriving. Soft settle, no overshoot. */\n  enter: \"cubic-bezier(0.16, 1, 0.3, 1)\",\n  /** Default for color, opacity, and small fades. */\n  standard: \"cubic-bezier(0.22, 1, 0.36, 1)\",\n  /** Elements leaving. Accelerates away. */\n  exit: \"cubic-bezier(0.7, 0, 0.84, 0)\",\n} as const\n\n/**\n * Height and layout. Visual duration 0.4s, bounce 0.\n * Critically damped, so the value never passes the target.\n */\nexport const spring = {\n  smooth: { visualDuration: 0.4, bounce: 0 },\n} as const\n\n/** How far arriving content rises, in pixels. */\nexport const rise = 4\n\nconst HEIGHT_ROOT = (2 * Math.PI) / (spring.smooth.visualDuration * 1.2)\nconst HEIGHT_STIFFNESS = HEIGHT_ROOT * HEIGHT_ROOT\n/** Radians per millisecond. Bounce 0 keeps this critically damped. */\nconst HEIGHT_OMEGA = Math.sqrt(HEIGHT_STIFFNESS) / 1000\n\nexport function prefersReducedMotion() {\n  return window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches\n}\n\n/**\n * Critically damped height spring (`spring.smooth`).\n * `stop` cancels the frame without calling `onComplete`.\n */\nexport function springHeight(\n  from: number,\n  to: number,\n  onFrame: (value: number) => void,\n  onComplete: () => void\n) {\n  const delta = to - from\n  const rest = Math.abs(delta) < 5 ? 0.005 : 0.5\n  const started = performance.now()\n  let raf = 0\n  let stopped = false\n\n  const tick = (now: number) => {\n    if (stopped) return\n    const t = now - started\n    const value =\n      to - Math.exp(-HEIGHT_OMEGA * t) * (delta + HEIGHT_OMEGA * delta * t)\n    if (Math.abs(to - value) <= rest || t > 800) {\n      onFrame(to)\n      onComplete()\n      return\n    }\n    onFrame(value)\n    raf = requestAnimationFrame(tick)\n  }\n\n  raf = requestAnimationFrame(tick)\n  return {\n    stop() {\n      stopped = true\n      cancelAnimationFrame(raf)\n    },\n  }\n}\n",
+      "type": "registry:lib",
+      "target": "lib/motion.ts"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "duration-instant": "120ms",
+      "duration-fast": "160ms",
+      "duration-exit": "180ms",
+      "duration-standard": "240ms",
+      "duration-considered": "480ms",
+      "ease-enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "ease-standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "ease-exit": "cubic-bezier(0.7, 0, 0.84, 0)"
+    }
+  },
+  "type": "registry:lib"
+}

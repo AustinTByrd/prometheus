@@ -1,0 +1,105 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elevated",
+  "title": "Surfaces",
+  "description": "Eight nested surface levels from Fluid Functionalism. Overlays read their substrate and lift so dialogs, selects, and drawers stay visible at any depth in light and dark mode. PrometheusProvider starts the ladder at surface 1. Panels use Lisse smooth corners by default.",
+  "dependencies": [
+    "@lisse/react",
+    "@lisse/core"
+  ],
+  "registryDependencies": [
+    "utils",
+    "AustinTByrd/prometheus/smooth-corners",
+    "AustinTByrd/prometheus/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/lib/elevated.tsx",
+      "content": "// @prometheus 0.2.0\n\"use client\"\n\nimport {\n  forwardRef,\n  type ComponentPropsWithoutRef,\n  type ReactNode,\n} from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { SurfaceProvider, useSurface } from \"@/lib/surface-context\"\nimport { surfaceClasses } from \"@/lib/surface-classes\"\nimport {\n  OVERLAY_CORNERS,\n  cornersCssRadius,\n  useCornerRef,\n  type CornerSize,\n  type SmoothCornerOptions,\n} from \"@/lib/smooth-corners\"\n\nexport function useElevatedLevel(offset: number) {\n  const substrate = useSurface()\n  return Math.min(substrate + offset, 8)\n}\n\ninterface ElevatedProps extends ComponentPropsWithoutRef<\"div\"> {\n  /**\n   * Steps above the current substrate.\n   *\n   * The panel's own level becomes `min(substrate + offset, 8)` and is\n   * re-provided to descendants, so nested overlays keep climbing.\n   *\n   * Conventional offsets:\n   * 2 — dropdown / popover / select menu / tooltip\n   * 4 — dialog / modal / drawer / sheet\n   */\n  offset: number\n  /**\n   * Override for the shadow level. Defaults to the computed surface level.\n   *\n   * Pass a fixed value when the component should keep a constant shadow\n   * regardless of depth — e.g. a dropdown always reads as shadow-surface-3\n   * whether it opens on the page or inside a dialog.\n   */\n  shadowLevel?: number\n  /**\n   * Lisse smooth-corner config. Defaults to panel (`xl` / 16px, squircle, smoothing 1).\n   * Pass a preset key (`\"lg\"`, `\"xl\"`, …) or a full `SmoothCornerOptions` object.\n   */\n  corners?: SmoothCornerOptions | CornerSize\n  children?: ReactNode\n}\n\nconst Elevated = forwardRef<HTMLDivElement, ElevatedProps>(\n  (\n    {\n      offset,\n      shadowLevel,\n      corners = OVERLAY_CORNERS.panel,\n      className,\n      style,\n      children,\n      ...props\n    },\n    forwardedRef\n  ) => {\n    const level = useElevatedLevel(offset)\n    const ref = useCornerRef(corners, forwardedRef)\n\n    return (\n      <SurfaceProvider value={level}>\n        <div\n          ref={ref}\n          className={cn(surfaceClasses(level, shadowLevel ?? level), className)}\n          {...props}\n          style={{ borderRadius: cornersCssRadius(corners), ...style }}\n        >\n          {children}\n        </div>\n      </SurfaceProvider>\n    )\n  }\n)\nElevated.displayName = \"Elevated\"\n\nexport { Elevated }\nexport type { ElevatedProps }\n",
+      "type": "registry:lib",
+      "target": "lib/elevated.tsx"
+    },
+    {
+      "path": "registry/lib/surface-context.tsx",
+      "content": "// @prometheus 0.2.0\n\"use client\"\n\nimport { createContext, useContext, type ReactNode } from \"react\"\n\nconst SurfaceContext = createContext(1)\n\nexport function useSurface(): number {\n  return useContext(SurfaceContext)\n}\n\nexport function SurfaceProvider({\n  value,\n  children,\n}: {\n  value: number\n  children: ReactNode\n}) {\n  return (\n    <SurfaceContext.Provider value={Math.max(1, Math.min(8, value))}>\n      {children}\n    </SurfaceContext.Provider>\n  )\n}\n",
+      "type": "registry:lib",
+      "target": "lib/surface-context.tsx"
+    },
+    {
+      "path": "registry/lib/surface-classes.ts",
+      "content": "// @prometheus 0.2.0\n/**\n * Static lookup tables for surface tokens.\n *\n * Tailwind v4's scanner only generates utilities for literal class names.\n * Template strings like `bg-surface-${level}` never emit, so the background\n * renders transparent. Keep every level written out here.\n */\n\nexport const SURFACE_BG: Record<number, string> = {\n  1: \"bg-surface-1\",\n  2: \"bg-surface-2\",\n  3: \"bg-surface-3\",\n  4: \"bg-surface-4\",\n  5: \"bg-surface-5\",\n  6: \"bg-surface-6\",\n  7: \"bg-surface-7\",\n  8: \"bg-surface-8\",\n}\n\nexport const SURFACE_SHADOW: Record<number, string> = {\n  1: \"shadow-surface-1\",\n  2: \"shadow-surface-2\",\n  3: \"shadow-surface-3\",\n  4: \"shadow-surface-4\",\n  5: \"shadow-surface-5\",\n  6: \"shadow-surface-6\",\n  7: \"shadow-surface-7\",\n  8: \"shadow-surface-8\",\n}\n\nexport const SURFACE_HOVER_BG: Record<number, string> = {\n  1: \"hover:bg-surface-1\",\n  2: \"hover:bg-surface-2\",\n  3: \"hover:bg-surface-3\",\n  4: \"hover:bg-surface-4\",\n  5: \"hover:bg-surface-5\",\n  6: \"hover:bg-surface-6\",\n  7: \"hover:bg-surface-7\",\n  8: \"hover:bg-surface-8\",\n}\n\nexport const SURFACE_HOVER_SHADOW: Record<number, string> = {\n  1: \"hover:shadow-surface-1\",\n  2: \"hover:shadow-surface-2\",\n  3: \"hover:shadow-surface-3\",\n  4: \"hover:shadow-surface-4\",\n  5: \"hover:shadow-surface-5\",\n  6: \"hover:shadow-surface-6\",\n  7: \"hover:shadow-surface-7\",\n  8: \"hover:shadow-surface-8\",\n}\n\nfunction clampLevel(level: number) {\n  return Math.round(Math.max(1, Math.min(8, level)))\n}\n\nexport function surfaceClasses(\n  bgLevel: number,\n  shadowLevel: number = bgLevel\n): string {\n  return `${SURFACE_BG[clampLevel(bgLevel)]} ${SURFACE_SHADOW[clampLevel(shadowLevel)]}`\n}\n\nexport function surfaceHoverClasses(\n  bgLevel: number,\n  shadowLevel: number = bgLevel\n): string {\n  return `${SURFACE_HOVER_BG[clampLevel(bgLevel)]} ${SURFACE_HOVER_SHADOW[clampLevel(shadowLevel)]}`\n}\n\n/** Conventional lift above the current substrate. */\nexport const SURFACE_OFFSET = {\n  menu: 2,\n  tooltip: 2,\n  dialog: 4,\n} as const\n\n/** Fixed shadow weight so a menu still reads as a menu inside a dialog. */\nexport const SURFACE_SHADOW_LEVEL = {\n  menu: 3,\n  tooltip: 3,\n  dialog: 5,\n} as const\n",
+      "type": "registry:lib",
+      "target": "lib/surface-classes.ts"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-surface-1": "var(--surface-1)",
+      "color-surface-2": "var(--surface-2)",
+      "color-surface-3": "var(--surface-3)",
+      "color-surface-4": "var(--surface-4)",
+      "color-surface-5": "var(--surface-5)",
+      "color-surface-6": "var(--surface-6)",
+      "color-surface-7": "var(--surface-7)",
+      "color-surface-8": "var(--surface-8)",
+      "shadow-surface-1": "var(--shadow-1)",
+      "shadow-surface-2": "var(--shadow-2)",
+      "shadow-surface-3": "var(--shadow-3)",
+      "shadow-surface-4": "var(--shadow-4)",
+      "shadow-surface-5": "var(--shadow-5)",
+      "shadow-surface-6": "var(--shadow-6)",
+      "shadow-surface-7": "var(--shadow-7)",
+      "shadow-surface-8": "var(--shadow-8)"
+    },
+    "light": {
+      "surface-1": "#F7F6F2",
+      "surface-2": "#FBFBF9",
+      "surface-3": "#FFFFFF",
+      "surface-4": "#FFFFFF",
+      "surface-5": "#FFFFFF",
+      "surface-6": "#FFFFFF",
+      "surface-7": "#FFFFFF",
+      "surface-8": "#FFFFFF",
+      "background": "#F7F6F2",
+      "card": "#FFFFFF",
+      "popover": "#FFFFFF",
+      "shadow-color": "#77777714",
+      "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+      "shadow-1": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color)",
+      "shadow-2": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color)",
+      "shadow-3": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color)",
+      "shadow-4": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color)",
+      "shadow-5": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color)",
+      "shadow-6": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color)",
+      "shadow-7": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color)",
+      "shadow-8": "var(--shadow-inset-hi), 0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color), 0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color), 0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color), 0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color)"
+    },
+    "dark": {
+      "surface-1": "#1C1918",
+      "surface-2": "#24211F",
+      "surface-3": "#2C2926",
+      "surface-4": "#33302D",
+      "surface-5": "#3A3734",
+      "surface-6": "#413E3B",
+      "surface-7": "#484542",
+      "surface-8": "#4F4C49",
+      "background": "#1C1918",
+      "card": "#2C2926",
+      "popover": "#2C2926",
+      "shadow-inset-hi": "inset 0 1px 0 0 rgba(255, 255, 255, 0.08)",
+      "dm-ring-base": "rgba(255,255,255,0.02)",
+      "dm-ring-mid": "rgba(255,255,255,0.04)",
+      "dm-ring-high": "rgba(255,255,255,0.06)",
+      "dm-drop": "rgba(0,0,0,0.18)",
+      "shadow-1": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base)",
+      "shadow-2": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 1px 1px -0.5px var(--dm-drop)",
+      "shadow-3": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-base), 0 0 0 1px rgba(0,0,0,0.12), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop)",
+      "shadow-4": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.14), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop)",
+      "shadow-5": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-mid), 0 0 0 1px rgba(0,0,0,0.16), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop)",
+      "shadow-6": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.18), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop)",
+      "shadow-7": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.20), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop)",
+      "shadow-8": "var(--shadow-inset-hi), inset 0 0 0 1px var(--dm-ring-high), 0 0 0 1px rgba(0,0,0,0.22), 0 1px 1px -0.5px var(--dm-drop), 0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop), 0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop), 0 48px 48px -24px var(--dm-drop), 0 96px 96px -48px var(--dm-drop)"
+    }
+  },
+  "type": "registry:lib"
+}
