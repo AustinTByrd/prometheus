@@ -72,7 +72,7 @@ function useLanded(ref: RefObject<Element | null>) {
 }
 
 const pill =
-  "rounded-full px-2 py-0.5 text-xs leading-none whitespace-nowrap"
+  "[--pill-py:0.125rem] [--pill-px:0.5rem] [--pill:calc(var(--pill-py)_+_0.5lh)] [--pill-r:var(--pill)] rounded-(--pill-r) py-(--pill-py) px-[calc(var(--pill-px)_+_var(--pill-r)_*_(1_-_pi_/_4)_*_var(--pill-r)_/_var(--pill))] text-xs leading-none whitespace-nowrap"
 
 // ---------------------------------------------------------------------------
 // Composable Recharts primitives (ChartConfig, ChartContainer, ChartCard,

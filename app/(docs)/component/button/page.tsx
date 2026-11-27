@@ -10,6 +10,7 @@ import {
   ButtonVariantDemo,
 } from "@/app/demos/button-docs"
 import { CodeBlock } from "@/components/site/code-block"
+import { PillSpacingDemo } from "@/components/site/pill-spacing-demo"
 import {
   DocsArticle,
   DocsProse,
@@ -66,11 +67,23 @@ export default function ButtonPage() {
 
       <DocsSection id="pill" title="Pill">
         <DocsProse>
-          <code>pill</code> rounds any variant and size fully. Text buttons gain
-          a little padding on each side, so the label sits clear of the curve
-          instead of crowding it. Icon-only sizes become circles.
+          <code>pill</code> rounds any variant and size fully. Fully rounded
+          ends steal area from text and push leading or trailing icons
+          off-center in the cap. Instead of fixed pixel bumps, pill edges derive
+          from the pill radius: text edges add{" "}
+          <code>r × (1 − π / 4) × r / pill</code> to restore the area lost to
+          the curve, while icon edges pull in by <code>py − px</code> so the
+          icon sits concentric inside the round cap.
         </DocsProse>
         <ButtonPillDemo />
+        <DocsProse>
+          Explore the geometry below. Drag the top edge (<code>--py</code>),
+          right edge (<code>--px</code>), or corner dot (<code>--r</code>), drag
+          the icon left or right to reorder the DOM, or click either child and
+          press <code>Delete</code> to see single-child text pills and circular
+          icon pills fall out of the same CSS.
+        </DocsProse>
+        <PillSpacingDemo />
       </DocsSection>
 
       <DocsSection id="icon" title="Icon">
